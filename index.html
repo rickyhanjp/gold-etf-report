@@ -1,10 +1,82 @@
 <!DOCTYPE html>
-<html>
+<html lang="zh-CN">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>518880 黄金 ETF 策略回测报告</title>
     <meta http-equiv="refresh" content="0; url=report.html">
-    <title>Redirecting to Report...</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            margin: 0;
+            padding: 20px;
+        }
+        .container {
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            max-width: 600px;
+            text-align: center;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+        }
+        h1 {
+            color: #667eea;
+            margin-bottom: 20px;
+        }
+        p {
+            color: #666;
+            line-height: 1.6;
+            margin-bottom: 30px;
+        }
+        .loading {
+            border: 4px solid #f3f3f3;
+            border-top: 4px solid #667eea;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            animation: spin 1s linear infinite;
+            margin: 20px auto;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        .button {
+            display: inline-block;
+            background: #667eea;
+            color: white;
+            padding: 15px 30px;
+            border-radius: 10px;
+            text-decoration: none;
+            font-weight: bold;
+            margin-top: 20px;
+        }
+    </style>
 </head>
 <body>
-    <p>Redirecting to <a href="report.html">518880 黄金 ETF 回测报告</a>...</p>
+    <div class="container">
+        <h1>🚀 518880 黄金 ETF 策略回测报告</h1>
+        <div class="loading"></div>
+        <p>正在跳转到报告页面...</p>
+        <p style="font-size: 14px;">如果页面没有自动跳转，请点击下方按钮</p>
+        <a href="report.html" class="button">打开报告</a>
+        
+        <div style="margin-top: 40px; padding-top: 30px; border-top: 1px solid #eee; color: #999; font-size: 12px;">
+            <p>策略表现：<strong>+151.78%</strong> 总收益 | <strong>+69.75%</strong> 超额收益</p>
+            <p>回测期间：2021-2025 年</p>
+        </div>
+    </div>
+    
+    <script>
+        // 3 秒后自动跳转
+        setTimeout(function() {
+            window.location.href = 'report.html';
+        }, 3000);
+    </script>
 </body>
 </html>
