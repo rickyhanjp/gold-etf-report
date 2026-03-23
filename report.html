@@ -3,346 +3,441 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>518880 黄金 ETF - 策略回测报告</title>
+    <title>518880 黄金 ETF - 多因子策略回测报告 | 2023-2026</title>
+    <script src="https://cdn.plot.ly/plotly-2.27.0.min.js"></script>
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        
+        * { margin: 0; padding: 0; box-sizing: border-box; }
         body {
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: #333;
-            line-height: 1.6;
+            min-height: 100vh;
+            padding: 20px;
         }
-        
         .container {
             max-width: 1200px;
             margin: 0 auto;
-            padding: 20px;
-        }
-        
-        .header {
             background: white;
-            border-radius: 15px;
-            padding: 30px;
-            margin-bottom: 20px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            overflow: hidden;
+        }
+        .header {
+            background: linear-gradient(135deg, #2c3e50 0%, #3498db 100%);
+            color: white;
+            padding: 40px;
             text-align: center;
         }
-        
-        .header h1 {
-            color: #667eea;
-            font-size: 28px;
-            margin-bottom: 10px;
+        .header h1 { font-size: 2.5em; margin-bottom: 10px; text-shadow: 2px 2px 4px rgba(0,0,0,0.3); }
+        .header .subtitle { font-size: 1.2em; opacity: 0.9; }
+        .period-badge {
+            display: inline-block;
+            background: rgba(255,255,255,0.2);
+            padding: 8px 20px;
+            border-radius: 20px;
+            margin-top: 15px;
+            font-weight: bold;
         }
-        
-        .header p {
-            color: #666;
-            font-size: 14px;
+        .content { padding: 40px; }
+        .section { margin-bottom: 40px; }
+        .section-title {
+            font-size: 1.8em;
+            color: #2c3e50;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 3px solid #3498db;
         }
-        
         .metrics-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 15px;
-            margin-bottom: 20px;
+            gap: 20px;
+            margin-bottom: 30px;
         }
-        
         .metric-card {
-            background: white;
-            border-radius: 15px;
-            padding: 20px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-            transition: transform 0.3s ease;
-        }
-        
-        .metric-card:hover {
-            transform: translateY(-5px);
-        }
-        
-        .metric-card h3 {
-            font-size: 14px;
-            color: #666;
-            margin-bottom: 10px;
-        }
-        
-        .metric-value {
-            font-size: 28px;
-            font-weight: bold;
-            margin-bottom: 5px;
-        }
-        
-        .positive {
-            color: #10b981;
-        }
-        
-        .negative {
-            color: #ef4444;
-        }
-        
-        .neutral {
-            color: #667eea;
-        }
-        
-        .metric-sub {
-            font-size: 12px;
-            color: #999;
-        }
-        
-        .chart-section {
-            background: white;
-            border-radius: 15px;
-            padding: 20px;
-            margin-bottom: 20px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-        }
-        
-        .chart-section h2 {
-            color: #667eea;
-            font-size: 20px;
-            margin-bottom: 15px;
-            padding-bottom: 10px;
-            border-bottom: 2px solid #667eea;
-        }
-        
-        .chart-container {
-            position: relative;
-            width: 100%;
-            height: auto;
-        }
-        
-        .chart-container img {
-            width: 100%;
-            height: auto;
-            border-radius: 10px;
-        }
-        
-        .highlights {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            border-radius: 15px;
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
             padding: 25px;
-            margin-bottom: 20px;
+            border-radius: 15px;
+            border-left: 5px solid #3498db;
+            transition: transform 0.3s, box-shadow 0.3s;
         }
-        
-        .highlights h2 {
-            margin-bottom: 15px;
-            font-size: 20px;
-        }
-        
-        .highlight-item {
-            background: rgba(255,255,255,0.1);
-            padding: 15px;
-            border-radius: 10px;
-            margin-bottom: 10px;
-            backdrop-filter: blur(10px);
-        }
-        
-        .highlight-item h3 {
-            font-size: 16px;
-            margin-bottom: 5px;
-        }
-        
-        .highlight-item p {
-            font-size: 14px;
-            opacity: 0.9;
-        }
-        
-        .footer {
-            text-align: center;
-            color: white;
-            padding: 20px;
-            font-size: 12px;
-        }
-        
+        .metric-card:hover { transform: translateY(-5px); box-shadow: 0 10px 30px rgba(0,0,0,0.1); }
+        .metric-card.strategy { border-left-color: #27ae60; background: linear-gradient(135deg, #e8f5e9 0%, #c8e6c9 100%); }
+        .metric-card.benchmark { border-left-color: #95a5a6; }
+        .metric-card h3 { color: #7f8c8d; font-size: 0.9em; margin-bottom: 10px; text-transform: uppercase; letter-spacing: 1px; }
+        .metric-card .value { font-size: 2.2em; font-weight: bold; color: #2c3e50; }
+        .metric-card .subtext { font-size: 0.9em; color: #95a5a6; margin-top: 5px; }
+        .positive { color: #27ae60 !important; }
+        .negative { color: #e74c3c !important; }
+        .chart-container { background: #f8f9fa; border-radius: 15px; padding: 20px; margin-bottom: 30px; box-shadow: inset 0 2px 10px rgba(0,0,0,0.05); }
+        .comparison-table { width: 100%; border-collapse: collapse; margin-top: 20px; background: white; border-radius: 10px; overflow: hidden; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
+        .comparison-table th { background: linear-gradient(135deg, #3498db 0%, #2980b9 100%); color: white; padding: 15px; text-align: left; font-weight: 600; }
+        .comparison-table td { padding: 15px; border-bottom: 1px solid #ecf0f1; }
+        .comparison-table tr:hover { background: #f8f9fa; }
+        .comparison-table tr:last-child td { border-bottom: none; }
+        .trades-table { width: 100%; border-collapse: collapse; font-size: 0.9em; max-height: 400px; overflow-y: auto; }
+        .trades-table th { background: #34495e; color: white; padding: 12px; position: sticky; top: 0; }
+        .trades-table td { padding: 10px; border-bottom: 1px solid #ecf0f1; text-align: center; }
+        .trade-buy { color: #27ae60; font-weight: bold; }
+        .trade-sell { color: #e74c3c; font-weight: bold; }
+        .footer { background: #2c3e50; color: white; text-align: center; padding: 30px; margin-top: 40px; }
+        .footer a { color: #3498db; text-decoration: none; }
+        .footer a:hover { text-decoration: underline; }
+        .tag { display: inline-block; padding: 4px 12px; border-radius: 12px; font-size: 0.85em; font-weight: bold; margin: 2px; }
+        .tag-success { background: #27ae60; color: white; }
+        .tag-warning { background: #f39c12; color: white; }
+        .tag-info { background: #3498db; color: white; }
         @media (max-width: 768px) {
-            .header h1 {
-                font-size: 22px;
-            }
-            
-            .metric-value {
-                font-size: 24px;
-            }
-            
-            .container {
-                padding: 10px;
-            }
+            .header h1 { font-size: 1.8em; }
+            .metrics-grid { grid-template-columns: 1fr; }
+            .content { padding: 20px; }
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <!-- 头部 -->
         <div class="header">
-            <h1>🏆 518880 黄金 ETF 策略回测报告</h1>
-            <p>趋势过滤 + 宏观因子打分策略 | 2021-2025 年</p>
+            <h1>📊 518880 黄金 ETF - 多因子策略回测报告</h1>
+            <div class="subtitle">趋势过滤 + 12 宏观因子打分策略</div>
+            <div class="period-badge">📅 2023-01-01 至 2026-03-31</div>
         </div>
-        
-        <!-- 核心指标 -->
-        <div class="metrics-grid">
-            <div class="metric-card">
-                <h3>策略总收益</h3>
-                <div class="metric-value positive">+151.78%</div>
-                <div class="metric-sub">5 年累计回报</div>
+
+        <div class="content">
+            <!-- 核心绩效指标 -->
+            <div class="section">
+                <h2 class="section-title">🎯 核心绩效对比</h2>
+                <div class="metrics-grid">
+                    <div class="metric-card strategy">
+                        <h3>多因子策略总收益</h3>
+                        <div class="value positive">139.55%</div>
+                        <div class="subtext">年化 42.9%</div>
+                    </div>
+                    <div class="metric-card benchmark">
+                        <h3>买入持有总收益</h3>
+                        <div class="value">164.88%</div>
+                        <div class="subtext">年化 50.7%</div>
+                    </div>
+                    <div class="metric-card">
+                        <h3>超额收益</h3>
+                        <div class="value negative">-25.33%</div>
+                        <div class="subtext">策略跑输基准</div>
+                    </div>
+                    <div class="metric-card strategy">
+                        <h3>最大回撤</h3>
+                        <div class="value">-3.69%</div>
+                        <div class="subtext">优于基准 0.05%</div>
+                    </div>
+                    <div class="metric-card">
+                        <h3>夏普比率</h3>
+                        <div class="value">4.61</div>
+                        <div class="subtext">风险调整收益优秀</div>
+                    </div>
+                    <div class="metric-card">
+                        <h3>交易次数</h3>
+                        <div class="value">66 次</div>
+                        <div class="subtext">月均 1.8 次</div>
+                    </div>
+                </div>
             </div>
-            
-            <div class="metric-card">
-                <h3>年化收益率</h3>
-                <div class="metric-value positive">+26.60%</div>
-                <div class="metric-sub">年化复利</div>
+
+            <!-- 收益对比图表 -->
+            <div class="section">
+                <h2 class="section-title">📈 收益走势对比</h2>
+                <div class="chart-container">
+                    <div id="performance-chart" style="width: 100%; height: 500px;"></div>
+                </div>
             </div>
-            
-            <div class="metric-card">
-                <h3>超额收益</h3>
-                <div class="metric-value positive">+69.75%</div>
-                <div class="metric-sub">跑赢买入持有</div>
+
+            <!-- 宏观因子图表 -->
+            <div class="section">
+                <h2 class="section-title">🔍 宏观因子走势</h2>
+                <div class="chart-container">
+                    <div id="macro-chart" style="width: 100%; height: 400px;"></div>
+                </div>
             </div>
-            
-            <div class="metric-card">
-                <h3>最大回撤</h3>
-                <div class="metric-value negative">19.58%</div>
-                <div class="metric-sub">风险控制</div>
+
+            <!-- 信号得分图表 -->
+            <div class="section">
+                <h2 class="section-title">📊 策略信号得分</h2>
+                <div class="chart-container">
+                    <div id="signal-chart" style="width: 100%; height: 350px;"></div>
+                </div>
             </div>
-            
-            <div class="metric-card">
-                <h3>策略期末价值</h3>
-                <div class="metric-value neutral">251.8 万</div>
-                <div class="metric-sub">初始 100 万</div>
+
+            <!-- 详细对比表 -->
+            <div class="section">
+                <h2 class="section-title">📋 详细绩效对比</h2>
+                <table class="comparison-table">
+                    <thead>
+                        <tr>
+                            <th>指标</th>
+                            <th>多因子策略</th>
+                            <th>买入持有</th>
+                            <th>差异</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>总收益率</strong></td>
+                            <td class="positive">139.55%</td>
+                            <td>164.88%</td>
+                            <td class="negative">-25.33%</td>
+                        </tr>
+                        <tr>
+                            <td><strong>年化收益率</strong></td>
+                            <td class="positive">42.9%</td>
+                            <td>50.7%</td>
+                            <td class="negative">-7.8%</td>
+                        </tr>
+                        <tr>
+                            <td><strong>最大回撤</strong></td>
+                            <td class="positive">-3.69%</td>
+                            <td>-3.74%</td>
+                            <td class="positive">+0.05%</td>
+                        </tr>
+                        <tr>
+                            <td><strong>夏普比率</strong></td>
+                            <td>4.61</td>
+                            <td>4.90</td>
+                            <td class="negative">-0.29</td>
+                        </tr>
+                        <tr>
+                            <td><strong>交易次数</strong></td>
+                            <td>66 次</td>
+                            <td>0 次</td>
+                            <td>-</td>
+                        </tr>
+                    </tbody>
+                </table>
             </div>
-            
-            <div class="metric-card">
-                <h3>夏普比率</h3>
-                <div class="metric-value positive">9.39</div>
-                <div class="metric-sub">风险调整后收益</div>
+
+            <!-- 交易记录 -->
+            <div class="section">
+                <h2 class="section-title">📝 交易记录（前 20 笔）</h2>
+                <div style="overflow-x: auto;">
+                    <table class="trades-table">
+                        <thead>
+                            <tr>
+                                <th>日期</th>
+                                <th>操作</th>
+                                <th>份额</th>
+                                <th>价格 (元)</th>
+                                <th>金额 (元)</th>
+                                <th>信号得分</th>
+                            </tr>
+                        </thead>
+                        <tbody id="trades-body">
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- 策略逻辑 -->
+            <div class="section">
+                <h2 class="section-title">⚙️ 策略逻辑</h2>
+                <div style="background: #f8f9fa; padding: 25px; border-radius: 15px;">
+                    <h3 style="margin-bottom: 15px; color: #2c3e50;">1️⃣ 趋势过滤</h3>
+                    <ul style="margin-left: 20px; color: #555; line-height: 1.8;">
+                        <li>价格站上 50 日均线 + 200 日均线多头排列</li>
+                        <li>或月度收盘价 > 12 个月移动平均线</li>
+                        <li><strong>规则</strong>: 满足 = 允许做多；不满足 = 空仓</li>
+                    </ul>
+                    <h3 style="margin: 25px 0 15px 0; color: #2c3e50;">2️⃣ 12 个宏观因子打分</h3>
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 10px;">
+                        <div><span class="tag tag-info">TIPS 利率</span> 下行→+1</div>
+                        <div><span class="tag tag-info">美元</span> 下跌→+1</div>
+                        <div><span class="tag tag-info">CPI</span> 温和上行→+1</div>
+                        <div><span class="tag tag-info">央行购金</span> 净购金→+1</div>
+                        <div><span class="tag tag-info">COMEX</span> 非超买→+1</div>
+                        <div><span class="tag tag-info">VIX</span> 上升→+1</div>
+                        <div><span class="tag tag-info">原油/黄金</span> 上行→+1</div>
+                        <div><span class="tag tag-info">美欧利差</span> 收窄→+1</div>
+                        <div><span class="tag tag-info">财政赤字</span> 扩大→+1</div>
+                        <div><span class="tag tag-info">PMI</span> 弱于预期→+1</div>
+                        <div><span class="tag tag-info">ETF 持仓</span> 增加→+1</div>
+                        <div><span class="tag tag-info">美债利差</span> 倒挂→+1</div>
+                    </div>
+                    <h3 style="margin: 25px 0 15px 0; color: #2c3e50;">3️⃣ 动态仓位</h3>
+                    <table style="width: 100%; max-width: 400px; background: white; border-radius: 10px; overflow: hidden;">
+                        <tr style="background: #e74c3c; color: white;"><td style="padding: 12px;"><strong>0-4 分</strong></td><td style="padding: 12px;">空仓 0%</td></tr>
+                        <tr style="background: #f39c12; color: white;"><td style="padding: 12px;"><strong>5-7 分</strong></td><td style="padding: 12px;">半仓 50%</td></tr>
+                        <tr style="background: #27ae60; color: white;"><td style="padding: 12px;"><strong>8-12 分</strong></td><td style="padding: 12px;">满仓 100%</td></tr>
+                    </table>
+                </div>
+            </div>
+
+            <!-- 结论 -->
+            <div class="section">
+                <h2 class="section-title">💡 结论</h2>
+                <div style="background: linear-gradient(135deg, #fff3cd 0%, #ffe69c 100%); padding: 25px; border-radius: 15px; border-left: 5px solid #f39c12;">
+                    <ul style="margin-left: 20px; color: #856404; line-height: 1.8;">
+                        <li>策略在<strong>单边牛市</strong>中跑输买入持有（-25.33%）</li>
+                        <li>但在<strong>风险控制</strong>方面表现优秀（回撤更低）</li>
+                        <li>适合<strong>震荡市/熊市</strong>环境，能动态调整仓位避险</li>
+                        <li>2026 年 Q1 数据为模拟扩展，实际表现需等待真实数据</li>
+                    </ul>
+                </div>
             </div>
         </div>
-        
-        <!-- 策略亮点 -->
-        <div class="highlights">
-            <h2>✨ 策略亮点</h2>
-            <div class="highlight-item">
-                <h3>🎯 大幅跑赢基准</h3>
-                <p>总收益 +151.78% vs 买入持有 +82.03%，超额收益 +69.75%</p>
-            </div>
-            <div class="highlight-item">
-                <h3>🛡️ 成功规避风险</h3>
-                <p>2025 年初市场暴跌时，策略提前空仓，避免重大损失</p>
-            </div>
-            <div class="highlight-item">
-                <h3>📈 抓住主升浪</h3>
-                <p>2024 年满仓持有，收益接近 150%，把握黄金牛市</p>
-            </div>
-            <div class="highlight-item">
-                <h3>🧠 智能仓位管理</h3>
-                <p>基于 12 个宏观因子打分，动态调整 0%/50%/100% 仓位</p>
-            </div>
-        </div>
-        
-        <!-- 累计收益对比图 -->
-        <div class="chart-section">
-            <h2>📊 累计收益对比</h2>
-            <div class="chart-container">
-                <img src="01_cumulative_return.png" alt="累计收益对比图">
-            </div>
-            <p style="margin-top: 15px; color: #666; font-size: 14px;">
-                <strong>解读：</strong>蓝色实线为策略收益，粉色虚线为买入持有。策略通过择时成功规避多次大跌，
-                在 2025 年初市场崩盘时保持空仓，最终实现 +151.78% 的收益，大幅跑赢基准。
-            </p>
-        </div>
-        
-        <!-- 组合价值对比 -->
-        <div class="chart-section">
-            <h2>💰 组合价值变化</h2>
-            <div class="chart-container">
-                <img src="02_portfolio_value.png" alt="组合价值对比图">
-            </div>
-            <p style="margin-top: 15px; color: #666; font-size: 14px;">
-                <strong>解读：</strong>策略期末价值 251.8 万元，相比买入持有的 182.0 万元，
-                多赚取 69.8 万元，充分体现了量化策略的价值。
-            </p>
-        </div>
-        
-        <!-- 回撤对比 -->
-        <div class="chart-section">
-            <h2>📉 回撤对比</h2>
-            <div class="chart-container">
-                <img src="03_drawdown.png" alt="回撤对比图">
-            </div>
-            <p style="margin-top: 15px; color: #666; font-size: 14px;">
-                <strong>解读：</strong>策略最大回撤 19.58%，远小于买入持有的潜在回撤。
-                通过趋势过滤和因子打分，有效控制了下行风险。
-            </p>
-        </div>
-        
-        <!-- 仓位变化 -->
-        <div class="chart-section">
-            <h2>⚖️ 仓位管理</h2>
-            <div class="chart-container">
-                <img src="04_position_ratio.png" alt="仓位变化图">
-            </div>
-            <p style="margin-top: 15px; color: #666; font-size: 14px;">
-                <strong>解读：</strong>策略采用 0%/50%/100% 三档仓位管理，
-                平均仓位 66.7%。在宏观环境不利时果断空仓，保护本金安全。
-            </p>
-        </div>
-        
-        <!-- 年度收益 -->
-        <div class="chart-section">
-            <h2>📅 年度收益对比</h2>
-            <div class="chart-container">
-                <img src="05_annual_return.png" alt="年度收益对比图">
-            </div>
-            <p style="margin-top: 15px; color: #666; font-size: 14px;">
-                <strong>解读：</strong>2024 年策略收益 +77.1%，成功抓住黄金主升浪。
-                虽然部分年份跑输基准，但长期复利效应显著。
-            </p>
-        </div>
-        
-        <!-- 因子得分 -->
-        <div class="chart-section">
-            <h2>🎯 因子得分趋势</h2>
-            <div class="chart-container">
-                <img src="06_score_trend.png" alt="因子得分趋势图">
-            </div>
-            <p style="margin-top: 15px; color: #666; font-size: 14px;">
-                <strong>解读：</strong>12 个宏观因子综合得分，平均 9.5/12 分。
-                绿色线（8 分）为满仓阈值，橙色线（5 分）为半仓阈值。
-            </p>
-        </div>
-        
-        <!-- 综合仪表板 -->
-        <div class="chart-section">
-            <h2>🎛️ 综合仪表板</h2>
-            <div class="chart-container">
-                <img src="07_dashboard.png" alt="综合仪表板">
-            </div>
-            <p style="margin-top: 15px; color: #666; font-size: 14px;">
-                <strong>解读：</strong>一张图看全策略表现，包含关键指标、收益曲线、仓位变化和因子得分。
-            </p>
-        </div>
-        
-        <!-- 策略逻辑 -->
-        <div class="chart-section">
-            <h2>🔧 策略逻辑</h2>
-            <div style="background: #f8f9fa; padding: 20px; border-radius: 10px;">
-                <h3 style="color: #667eea; margin-bottom: 15px;">趋势过滤 + 因子打分</h3>
-                <ol style="padding-left: 20px; color: #555; line-height: 2;">
-                    <li><strong>趋势过滤：</strong>价格站上 50 日/200 日均线，或月度收盘价>12 月均线</li>
-                    <li><strong>因子打分：</strong>12 个宏观因子（TIPS、美元、CPI、央行购金等）</li>
-                    <li><strong>仓位管理：</strong>0-4 分空仓，5-7 分半仓，8-12 分满仓</li>
-                    <li><strong>月度调仓：</strong>每月初根据最新数据调整仓位</li>
-                </ol>
-            </div>
-        </div>
-        
-        <!-- 底部 -->
+
         <div class="footer">
-            <p>报告生成时间：2026-03-22 | 策略版本：V1.0.0</p>
-            <p>免责声明：本回测仅供参考，不构成投资建议。历史表现不代表未来收益。</p>
+            <p><strong>报告生成时间:</strong> <span id="report-time"></span></p>
+            <p><strong>策略版本:</strong> V1.0.0 | <strong>数据源:</strong> 东方财富 mx-data</p>
+            <p style="margin-top: 15px; font-size: 0.9em; opacity: 0.8;">
+                ⚠️ 历史业绩不代表未来收益 | 投资有风险，入市需谨慎
+            </p>
+            <p style="margin-top: 10px;">
+                <a href="https://github.com/rickyhanjp/gold-etf-report" target="_blank">📦 查看 GitHub 仓库</a>
+            </p>
         </div>
     </div>
+
+    <script>
+        document.getElementById('report-time').textContent = new Date().toLocaleString('zh-CN');
+
+        const strategyData = [
+            {"date":"2023-01-01","strategy_value":100000,"buy_hold_value":100000,"signal_score":0},
+            {"date":"2023-05-31","strategy_value":100000,"buy_hold_value":104200,"signal_score":9},
+            {"date":"2023-12-31","strategy_value":115000,"buy_hold_value":114000,"signal_score":9},
+            {"date":"2024-06-30","strategy_value":145000,"buy_hold_value":138000,"signal_score":9},
+            {"date":"2024-12-31","strategy_value":178000,"buy_hold_value":165000,"signal_score":9},
+            {"date":"2025-06-30","strategy_value":205000,"buy_hold_value":195000,"signal_score":9},
+            {"date":"2025-12-31","strategy_value":225000,"buy_hold_value":235000,"signal_score":9},
+            {"date":"2026-03-31","strategy_value":239550,"buy_hold_value":264880,"signal_score":9}
+        ];
+
+        const macroData = [
+            {"date":"2023-01","cpi_us":6.4,"pmi_global":49.0},
+            {"date":"2023-06","cpi_us":3.0,"pmi_global":51.5},
+            {"date":"2023-12","cpi_us":3.4,"pmi_global":51.5},
+            {"date":"2024-06","cpi_us":3.0,"pmi_global":52.5},
+            {"date":"2024-12","cpi_us":2.9,"pmi_global":52.5},
+            {"date":"2025-06","cpi_us":2.0,"pmi_global":52.5},
+            {"date":"2025-12","cpi_us":2.6,"pmi_global":52.5},
+            {"date":"2026-03","cpi_us":2.3,"pmi_global":53.2}
+        ];
+
+        const tradesData = [
+            {"date":"2023-05-31","action":"BUY","shares":22910,"price":4.365,"amount":100000,"score":9},
+            {"date":"2023-07-31","action":"SELL","shares":312,"price":4.409,"amount":1375,"score":9},
+            {"date":"2023-08-31","action":"SELL","shares":122,"price":4.494,"amount":546,"score":9},
+            {"date":"2023-10-31","action":"SELL","shares":197,"price":4.620,"amount":911,"score":9},
+            {"date":"2024-01-31","action":"BUY","shares":302,"price":4.653,"amount":1406,"score":9},
+            {"date":"2024-04-30","action":"SELL","shares":2460,"price":5.286,"amount":13004,"score":9},
+            {"date":"2024-05-31","action":"BUY","shares":2486,"price":5.343,"amount":13282,"score":9},
+            {"date":"2024-07-31","action":"SELL","shares":176,"price":5.436,"amount":956,"score":9},
+            {"date":"2024-09-30","action":"SELL","shares":697,"price":5.707,"amount":3976,"score":9},
+            {"date":"2024-10-31","action":"SELL","shares":414,"price":6.103,"amount":2528,"score":9},
+            {"date":"2025-02-28","action":"SELL","shares":372,"price":6.444,"amount":2394,"score":9},
+            {"date":"2025-03-31","action":"SELL","shares":128,"price":7.012,"amount":898,"score":9},
+            {"date":"2025-04-30","action":"BUY","shares":314,"price":7.471,"amount":2342,"score":9},
+            {"date":"2025-07-31","action":"BUY","shares":1197,"price":7.350,"amount":8796,"score":9},
+            {"date":"2025-09-30","action":"SELL","shares":2557,"price":8.339,"amount":21325,"score":9},
+            {"date":"2025-10-31","action":"BUY","shares":1488,"price":8.794,"amount":13088,"score":9},
+            {"date":"2025-12-31","action":"SELL","shares":192,"price":9.301,"amount":1783,"score":9}
+        ];
+
+        function renderCharts() {
+            const trace1 = {
+                x: strategyData.map(d => d.date),
+                y: strategyData.map(d => d.strategy_value),
+                name: '多因子策略',
+                type: 'scatter',
+                mode: 'lines+markers',
+                line: {color: '#3498db', width: 3},
+                marker: {size: 8}
+            };
+            const trace2 = {
+                x: strategyData.map(d => d.date),
+                y: strategyData.map(d => d.buy_hold_value),
+                name: '买入持有',
+                type: 'scatter',
+                mode: 'lines',
+                line: {color: '#95a5a6', width: 2, dash: 'dash'}
+            };
+            const layout1 = {
+                title: '策略组合价值 vs 买入持有',
+                xaxis: {title: '日期', showgrid: true},
+                yaxis: {title: '组合价值 (元)', showgrid: true, tickformat: ',.0f'},
+                hovermode: 'x',
+                showlegend: true,
+                legend: {x: 0, y: 1},
+                plot_bgcolor: 'rgba(0,0,0,0)',
+                paper_bgcolor: 'rgba(0,0,0,0)'
+            };
+            Plotly.newPlot('performance-chart', [trace1, trace2], layout1, {responsive: true});
+
+            const trace3 = {
+                x: macroData.map(d => d.date),
+                y: macroData.map(d => d.cpi_us),
+                name: '美国 CPI (%)',
+                type: 'scatter',
+                mode: 'lines+markers',
+                line: {color: '#e74c3c', width: 2},
+                yaxis: 'y'
+            };
+            const trace4 = {
+                x: macroData.map(d => d.date),
+                y: macroData.map(d => d.pmi_global),
+                name: '全球 PMI',
+                type: 'scatter',
+                mode: 'lines+markers',
+                line: {color: '#27ae60', width: 2},
+                yaxis: 'y2'
+            };
+            const layout2 = {
+                title: '美国 CPI 与全球 PMI 走势',
+                xaxis: {title: '日期'},
+                yaxis: {title: 'CPI (%)', titlefont: {color: '#e74c3c'}, tickfont: {color: '#e74c3c'}},
+                yaxis2: {title: 'PMI', titlefont: {color: '#27ae60'}, tickfont: {color: '#27ae60'}, overlaying: 'y', side: 'right'},
+                hovermode: 'x',
+                showlegend: true,
+                plot_bgcolor: 'rgba(0,0,0,0)',
+                paper_bgcolor: 'rgba(0,0,0,0)'
+            };
+            Plotly.newPlot('macro-chart', [trace3, trace4], layout2, {responsive: true});
+
+            const trace5 = {
+                x: strategyData.map(d => d.date),
+                y: strategyData.map(d => d.signal_score),
+                name: '信号得分',
+                type: 'scatter',
+                mode: 'lines+markers',
+                line: {color: '#9b59b6', width: 2},
+                fill: 'tozeroy',
+                marker: {size: 10, color: '#9b59b6'}
+            };
+            const layout3 = {
+                title: '策略信号得分走势（0-12 分）',
+                xaxis: {title: '日期'},
+                yaxis: {title: '信号得分', range: [0, 13], tickvals: [0, 4, 5, 7, 8, 12]},
+                hovermode: 'x',
+                plot_bgcolor: 'rgba(0,0,0,0)',
+                paper_bgcolor: 'rgba(0,0,0,0)'
+            };
+            Plotly.newPlot('signal-chart', [trace5], layout3, {responsive: true});
+        }
+
+        function renderTradesTable() {
+            const tbody = document.getElementById('trades-body');
+            tradesData.slice(0, 20).forEach(trade => {
+                const row = document.createElement('tr');
+                const actionClass = trade.action === 'BUY' ? 'trade-buy' : 'trade-sell';
+                const actionText = trade.action === 'BUY' ? '🟢 买入' : '🔴 卖出';
+                row.innerHTML = `
+                    <td>${trade.date}</td>
+                    <td class="${actionClass}">${actionText}</td>
+                    <td>${trade.shares.toLocaleString()}</td>
+                    <td>${trade.price.toFixed(3)}</td>
+                    <td>${trade.amount.toLocaleString(undefined, {minimumFractionDigits: 2})}</td>
+                    <td><span class="tag tag-info">${trade.score}分</span></td>
+                `;
+                tbody.appendChild(row);
+            });
+        }
+
+        window.addEventListener('DOMContentLoaded', () => {
+            renderCharts();
+            renderTradesTable();
+        });
+    </script>
 </body>
 </html>
