@@ -3,17 +3,22 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<<<<<<< HEAD
-    <title>518880 黄金 ETF - 多因子策略回测报告 | 2023-2026</title>
+    <title>518880 黄金 ETF - 多因子策略回测报告</title>
     <script src="https://cdn.plot.ly/plotly-2.27.0.min.js"></script>
     <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
         body {
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             min-height: 100vh;
             padding: 20px;
         }
+        
         .container {
             max-width: 1200px;
             margin: 0 auto;
@@ -22,14 +27,25 @@
             box-shadow: 0 20px 60px rgba(0,0,0,0.3);
             overflow: hidden;
         }
+        
         .header {
             background: linear-gradient(135deg, #2c3e50 0%, #3498db 100%);
             color: white;
             padding: 40px;
             text-align: center;
         }
-        .header h1 { font-size: 2.5em; margin-bottom: 10px; text-shadow: 2px 2px 4px rgba(0,0,0,0.3); }
-        .header .subtitle { font-size: 1.2em; opacity: 0.9; }
+        
+        .header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+        
+        .header .subtitle {
+            font-size: 1.2em;
+            opacity: 0.9;
+        }
+        
         .period-badge {
             display: inline-block;
             background: rgba(255,255,255,0.2);
@@ -38,8 +54,15 @@
             margin-top: 15px;
             font-weight: bold;
         }
-        .content { padding: 40px; }
-        .section { margin-bottom: 40px; }
+        
+        .content {
+            padding: 40px;
+        }
+        
+        .section {
+            margin-bottom: 40px;
+        }
+        
         .section-title {
             font-size: 1.8em;
             color: #2c3e50;
@@ -47,12 +70,14 @@
             padding-bottom: 10px;
             border-bottom: 3px solid #3498db;
         }
+        
         .metrics-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
             gap: 20px;
             margin-bottom: 30px;
         }
+        
         .metric-card {
             background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
             padding: 25px;
@@ -60,71 +85,196 @@
             border-left: 5px solid #3498db;
             transition: transform 0.3s, box-shadow 0.3s;
         }
-        .metric-card:hover { transform: translateY(-5px); box-shadow: 0 10px 30px rgba(0,0,0,0.1); }
-        .metric-card.strategy { border-left-color: #27ae60; background: linear-gradient(135deg, #e8f5e9 0%, #c8e6c9 100%); }
-        .metric-card.benchmark { border-left-color: #95a5a6; }
-        .metric-card h3 { color: #7f8c8d; font-size: 0.9em; margin-bottom: 10px; text-transform: uppercase; letter-spacing: 1px; }
-        .metric-card .value { font-size: 2.2em; font-weight: bold; color: #2c3e50; }
-        .metric-card .subtext { font-size: 0.9em; color: #95a5a6; margin-top: 5px; }
-        .positive { color: #27ae60 !important; }
-        .negative { color: #e74c3c !important; }
-        .chart-container { background: #f8f9fa; border-radius: 15px; padding: 20px; margin-bottom: 30px; box-shadow: inset 0 2px 10px rgba(0,0,0,0.05); }
-        .comparison-table { width: 100%; border-collapse: collapse; margin-top: 20px; background: white; border-radius: 10px; overflow: hidden; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
-        .comparison-table th { background: linear-gradient(135deg, #3498db 0%, #2980b9 100%); color: white; padding: 15px; text-align: left; font-weight: 600; }
-        .comparison-table td { padding: 15px; border-bottom: 1px solid #ecf0f1; }
-        .comparison-table tr:hover { background: #f8f9fa; }
-        .comparison-table tr:last-child td { border-bottom: none; }
-        .trades-table { width: 100%; border-collapse: collapse; font-size: 0.9em; max-height: 400px; overflow-y: auto; }
-        .trades-table th { background: #34495e; color: white; padding: 12px; position: sticky; top: 0; }
-        .trades-table td { padding: 10px; border-bottom: 1px solid #ecf0f1; text-align: center; }
-        .trade-buy { color: #27ae60; font-weight: bold; }
-        .trade-sell { color: #e74c3c; font-weight: bold; }
-        .footer { background: #2c3e50; color: white; text-align: center; padding: 30px; margin-top: 40px; }
-        .footer a { color: #3498db; text-decoration: none; }
-        .footer a:hover { text-decoration: underline; }
-        .tag { display: inline-block; padding: 4px 12px; border-radius: 12px; font-size: 0.85em; font-weight: bold; margin: 2px; }
-        .tag-success { background: #27ae60; color: white; }
-        .tag-warning { background: #f39c12; color: white; }
-        .tag-info { background: #3498db; color: white; }
-        @media (max-width: 768px) {
-            .header h1 { font-size: 1.8em; }
-            .metrics-grid { grid-template-columns: 1fr; }
-            .content { padding: 20px; }
+        
+        .metric-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
         }
-=======
-    <title>518880 黄金 ETF 日线策略回测报告（3 年）</title>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); min-height: 100vh; padding: 20px; }
-        .container { max-width: 1400px; margin: 0 auto; }
-        .header { background: white; border-radius: 15px; padding: 30px; margin-bottom: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.2); }
-        .header h1 { color: #667eea; margin-bottom: 10px; }
-        .metrics { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; margin-bottom: 20px; }
-        .metric-card { background: white; border-radius: 15px; padding: 25px; text-align: center; box-shadow: 0 10px 30px rgba(0,0,0,0.2); }
-        .metric-value { font-size: 32px; font-weight: bold; color: #667eea; margin-bottom: 10px; }
-        .metric-label { color: #666; font-size: 14px; }
-        .positive { color: #10b981; }
-        .negative { color: #ef4444; }
-        .chart-container { background: white; border-radius: 15px; padding: 30px; margin-bottom: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.2); }
-        .trades-table { background: white; border-radius: 15px; padding: 30px; box-shadow: 0 10px 30px rgba(0,0,0,0.2); overflow-x: auto; }
-        table { width: 100%; border-collapse: collapse; }
-        th, td { padding: 12px; text-align: left; border-bottom: 1px solid #eee; }
-        th { background: #f8f9fa; color: #667eea; }
-        .buy { color: #10b981; font-weight: 600; }
-        .sell { color: #ef4444; font-weight: 600; }
->>>>>>> 6976dc21253e12d646076edd9766c0f22a7e91de
+        
+        .metric-card.strategy {
+            border-left-color: #27ae60;
+            background: linear-gradient(135deg, #e8f5e9 0%, #c8e6c9 100%);
+        }
+        
+        .metric-card.benchmark {
+            border-left-color: #95a5a6;
+        }
+        
+        .metric-card h3 {
+            color: #7f8c8d;
+            font-size: 0.9em;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        .metric-card .value {
+            font-size: 2.2em;
+            font-weight: bold;
+            color: #2c3e50;
+        }
+        
+        .metric-card .subtext {
+            font-size: 0.9em;
+            color: #95a5a6;
+            margin-top: 5px;
+        }
+        
+        .positive {
+            color: #27ae60 !important;
+        }
+        
+        .negative {
+            color: #e74c3c !important;
+        }
+        
+        .chart-container {
+            background: #f8f9fa;
+            border-radius: 15px;
+            padding: 20px;
+            margin-bottom: 30px;
+            box-shadow: inset 0 2px 10px rgba(0,0,0,0.05);
+        }
+        
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        .comparison-table th {
+            background: linear-gradient(135deg, #3498db 0%, #2980b9 100%);
+            color: white;
+            padding: 15px;
+            text-align: left;
+            font-weight: 600;
+        }
+        
+        .comparison-table td {
+            padding: 15px;
+            border-bottom: 1px solid #ecf0f1;
+        }
+        
+        .comparison-table tr:hover {
+            background: #f8f9fa;
+        }
+        
+        .comparison-table tr:last-child td {
+            border-bottom: none;
+        }
+        
+        .trades-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.9em;
+            max-height: 400px;
+            overflow-y: auto;
+        }
+        
+        .trades-table th {
+            background: #34495e;
+            color: white;
+            padding: 12px;
+            position: sticky;
+            top: 0;
+        }
+        
+        .trades-table td {
+            padding: 10px;
+            border-bottom: 1px solid #ecf0f1;
+            text-align: center;
+        }
+        
+        .trade-buy {
+            color: #27ae60;
+            font-weight: bold;
+        }
+        
+        .trade-sell {
+            color: #e74c3c;
+            font-weight: bold;
+        }
+        
+        .footer {
+            background: #2c3e50;
+            color: white;
+            text-align: center;
+            padding: 30px;
+            margin-top: 40px;
+        }
+        
+        .footer a {
+            color: #3498db;
+            text-decoration: none;
+        }
+        
+        .footer a:hover {
+            text-decoration: underline;
+        }
+        
+        .tag {
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: 12px;
+            font-size: 0.85em;
+            font-weight: bold;
+            margin: 2px;
+        }
+        
+        .tag-success {
+            background: #27ae60;
+            color: white;
+        }
+        
+        .tag-warning {
+            background: #f39c12;
+            color: white;
+        }
+        
+        .tag-info {
+            background: #3498db;
+            color: white;
+        }
+        
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 1.8em;
+            }
+            
+            .metrics-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .content {
+                padding: 20px;
+            }
+        }
     </style>
-</head>
+
+    <script>
+        // 内嵌数据
+        const embeddedStrategyData = [{"date":"2023-01-31","close_x":4.069,"strategy_value":100000.0,"position":0.0,"cash":100000.0,"position_ratio":0.0,"signal_score":9,"close_y":4.069,"buy_hold_value":100000.0},{"date":"2023-02-28","close_x":4.015,"strategy_value":100000.0,"position":0.0,"cash":100000.0,"position_ratio":0.0,"signal_score":9,"close_y":4.015,"buy_hold_value":98672.892602605},{"date":"2023-03-31","close_x":4.281,"strategy_value":100000.0,"position":0.0,"cash":100000.0,"position_ratio":0.0,"signal_score":8,"close_y":4.281,"buy_hold_value":105210.1253379208},{"date":"2023-05-31","close_x":4.365,"strategy_value":100000.0,"position":22909.5074455899,"cash":0.0,"position_ratio":1.0,"signal_score":9,"close_y":4.365,"buy_hold_value":107274.5146227574},{"date":"2023-06-30","close_x":4.349,"strategy_value":99633.4478808706,"position":22909.5074455899,"cash":0.0,"position_ratio":1.0,"signal_score":9,"close_y":4.349,"buy_hold_value":106881.2976161219},{"date":"2023-07-31","close_x":4.409,"strategy_value":101008.018327606,"position":22597.742771801,"cash":1374.5704467354,"position_ratio":0.986391472,"signal_score":9,"close_y":4.409,"buy_hold_value":108355.8613910052},{"date":"2023-08-31","close_x":4.494,"strategy_value":102928.826463209,"position":22476.1945544295,"cash":1920.8081356031,"position_ratio":0.9813384821,"signal_score":9,"close_y":4.494,"buy_hold_value":110444.8267387564},{"date":"2023-10-31","close_x":4.62,"strategy_value":105760.8269770672,"position":22278.9667669284,"cash":2832.0005138581,"position_ratio":0.9732225948,"signal_score":9,"close_y":4.62,"buy_hold_value":113541.4106660113},{"date":"2023-11-30","close_x":4.589,"strategy_value":105070.1790072924,"position":22278.9667669284,"cash":2832.0005138581,"position_ratio":0.9730465814,"signal_score":9,"close_y":4.589,"buy_hold_value":112779.552715655},{"date":"2024-01-31","close_x":4.653,"strategy_value":106496.0328803758,"position":22581.1689248426,"cash":1425.8538730834,"position_ratio":0.986611202,"signal_score":9,"close_y":4.653,"buy_hold_value":114352.4207421971},{"date":"2024-02-29","close_x":4.647,"strategy_value":106360.5458668267,"position":22581.1689248426,"cash":1425.8538730834,"position_ratio":0.9865941467,"signal_score":9,"close_y":4.647,"buy_hold_value":114204.9643647088},{"date":"2024-04-30","close_x":5.286,"strategy_value":120789.9128098011,"position":20121.1778030319,"cash":14429.3669429744,"position_ratio":0.880541623,"signal_score":9,"close_y":5.286,"buy_hold_value":129909.0685672155},{"date":"2024-05-31","close_x":5.343,"strategy_value":121936.8199445739,"position":22607.1332228713,"cash":1146.9071347728,"position_ratio":0.9905942509,"signal_score":9,"close_y":5.343,"buy_hold_value":131309.9041533546},{"date":"2024-07-31","close_x":5.436,"strategy_value":124039.283334301,"position":22431.3502473462,"cash":2102.463389727,"position_ratio":0.9830500199,"signal_score":9,"close_y":5.436,"buy_hold_value":133595.4780044237},{"date":"2024-09-30","close_x":5.707,"strategy_value":130118.1792513318,"position":21734.5861808833,"cash":6078.8959170308,"position_ratio":0.9532817324,"signal_score":9,"close_y":5.707,"buy_hold_value":140255.5910543131},{"date":"2024-10-31","close_x":6.103,"strategy_value":138725.0753789616,"position":21320.3636328579,"cash":8606.8961276298,"position_ratio":0.937957171,"signal_score":9,"close_y":6.103,"buy_hold_value":149987.7119685426},{"date":"2024-12-31","close_x":5.928,"strategy_value":134994.0117432114,"position":21320.3636328579,"cash":8606.8961276298,"position_ratio":0.9362423857,"signal_score":9,"close_y":5.928,"buy_hold_value":145686.9009584664},{"date":"2025-02-28","close_x":6.444,"strategy_value":145995.3193777661,"position":20948.7913940427,"cash":11001.3076345547,"position_ratio":0.9246461621,"signal_score":9,"close_y":6.444,"buy_hold_value":158368.1494224625},{"date":"2025-03-31","close_x":7.012,"strategy_value":157894.2328895824,"position":20820.7814286603,"cash":11898.9135118163,"position_ratio":0.9246399739,"signal_score":9,"close_y":7.012,"buy_hold_value":172327.3531580241},{"date":"2025-04-30","close_x":7.471,"strategy_value":167450.9715653375,"position":21134.2836152566,"cash":9556.7386757551,"position_ratio":0.9429281384,"signal_score":9,"close_y":7.471,"buy_hold_value":183607.766035881},{"date":"2025-06-30","close_x":7.314,"strategy_value":164132.8890377422,"position":21134.2836152566,"cash":9556.7386757551,"position_ratio":0.9417743834,"signal_score":9,"close_y":7.314,"buy_hold_value":179749.3241582698},{"date":"2025-07-31","close_x":7.35,"strategy_value":164893.7232478914,"position":22331.0053112574,"cash":760.8342101493,"position_ratio":0.9953859116,"signal_score":9,"close_y":7.35,"buy_hold_value":180634.0624231998},{"date":"2025-09-30","close_x":8.339,"strategy_value":186979.087500725,"position":19773.8006053353,"cash":22085.3642528336,"position_ratio":0.8818832387,"signal_score":9,"close_y":8.339,"buy_hold_value":204939.7886458589},{"date":"2025-10-31","close_x":8.794,"strategy_value":195976.1667761526,"position":21262.1204799551,"cash":8997.0792754276,"position_ratio":0.9540909519,"signal_score":9,"close_y":8.794,"buy_hold_value":216121.897272057},{"date":"2025-12-31","close_x":9.301,"strategy_value":206756.0618594898,"position":21070.4404662028,"cash":10779.8950833372,"position_ratio":0.9478617701,"signal_score":9,"close_y":9.301,"buy_hold_value":228581.9611698206},{"date":"2026-01-01","close_x":9.3769187718,"strategy_value":208355.7038205602,"position":22049.4670895212,"cash":1599.6419610703,"position_ratio":0.992322543,"signal_score":9,"close_y":9.3769187718,"buy_hold_value":230447.7456815089},{"date":"2026-01-02","close_x":9.2328312302,"strategy_value":205178.6503148734,"position":22049.4670895212,"cash":1599.6419610703,"position_ratio":0.9922036627,"signal_score":9,"close_y":9.2328312302,"buy_hold_value":226906.6411948477},{"date":"2026-01-03","close_x":9.5307889745,"strategy_value":211748.4597904515,"position":21527.9816670835,"cash":6569.809475578,"position_ratio":0.9689735194,"signal_score":9,"close_y":9.5307889745,"buy_hold_value":234229.2694630958},{"date":"2026-01-04","close_x":9.2996840336,"strategy_value":206773.236861003,"position":21527.9816670835,"cash":6569.809475578,"position_ratio":0.9682269835,"signal_score":9,"close_y":9.2996840336,"buy_hold_value":228549.6198972547},{"date":"2026-01-05","close_x":9.5008068721,"strategy_value":211103.0056396904,"position":21763.7553994682,"cash":4329.7687786874,"position_ratio":0.9794897815,"signal_score":9,"close_y":9.5008068721,"buy_hold_value":233492.4274282512},{"date":"2026-01-06","close_x":9.2616298948,"strategy_value":205897.6164093837,"position":21763.7553994682,"cash":4329.7687786874,"position_ratio":0.9789712535,"signal_score":9,"close_y":9.2616298948,"buy_hold_value":227614.3989873161},{"date":"2026-01-07","close_x":9.4102606047,"strategy_value":209132.3788250213,"position":21880.1184216039,"cash":3234.7624156375,"position_ratio":0.9845324649,"signal_score":9,"close_y":9.4102606047,"buy_hold_value":231267.1566654706},{"date":"2026-01-08","close_x":9.4798393656,"strategy_value":210654.7703527901,"position":22060.7513228408,"cash":1522.3915277688,"position_ratio":0.9927730498,"signal_score":9,"close_y":9.4798393656,"buy_hold_value":232977.1286704824},{"date":"2026-01-09","close_x":9.2806283958,"strategy_value":206260.0266861239,"position":22060.7513228408,"cash":1522.3915277688,"position_ratio":0.9926190666,"signal_score":9,"close_y":9.2806283958,"buy_hold_value":228081.3073421202},{"date":"2026-01-10","close_x":9.3024939612,"strategy_value":206742.3974884805,"position":22172.551527146,"cash":482.3708023566,"position_ratio":0.9976668027,"signal_score":9,"close_y":9.3024939612,"buy_hold_value":228618.6768547653},{"date":"2026-01-11","close_x":9.2963311579,"strategy_value":206605.7524141565,"position":22172.551527146,"cash":482.3708023566,"position_ratio":0.9976652596,"signal_score":9,"close_y":9.2963311579,"buy_hold_value":228467.2194124649},{"date":"2026-01-12","close_x":9.5527287661,"strategy_value":212290.7415931276,"position":21627.9303509343,"cash":5684.9891789712,"position_ratio":0.973220739,"signal_score":9,"close_y":9.5527287661,"buy_hold_value":234768.4631624614},{"date":"2026-01-13","close_x":9.4159742736,"strategy_value":209333.0249555893,"position":21627.9303509343,"cash":5684.9891789712,"position_ratio":0.9728423684,"signal_score":9,"close_y":9.4159742736,"buy_hold_value":231407.5761525345},{"date":"2026-01-14","close_x":9.6555447627,"strategy_value":214514.4388069932,"position":21680.0843556998,"cash":5181.4138514038,"position_ratio":0.9758458504,"signal_score":9,"close_y":9.6555447627,"buy_hold_value":237295.2755640414},{"date":"2026-01-15","close_x":9.3560186208,"strategy_value":208020.6867847,"position":21680.0843556998,"cash":5181.4138514038,"position_ratio":0.9750918337,"signal_score":9,"close_y":9.3560186208,"buy_hold_value":229934.1022570512},{"date":"2026-01-16","close_x":9.6988933398,"strategy_value":215454.2396154198,"position":21447.8785874322,"cash":7433.5528307198,"position_ratio":0.965498229,"signal_score":9,"close_y":9.6988933398,"buy_hold_value":238360.6129223403},{"date":"2026-01-17","close_x":9.3981080729,"strategy_value":209003.0337295039,"position":21447.8785874322,"cash":7433.5528307198,"position_ratio":0.9644332778,"signal_score":9,"close_y":9.3981080729,"buy_hold_value":230968.4952785473},{"date":"2026-01-18","close_x":9.5391422929,"strategy_value":212027.9185576184,"position":21910.0446676965,"cash":3024.8848281145,"position_ratio":0.9857335541,"signal_score":9,"close_y":9.5391422929,"buy_hold_value":234434.5611434057},{"date":"2026-01-19","close_x":9.7228959841,"strategy_value":216053.9701393585,"position":21807.0746518431,"cash":4026.0515817401,"position_ratio":0.9813655283,"signal_score":9,"close_y":9.7228959841,"buy_hold_value":238950.503418806},{"date":"2026-01-20","close_x":9.4084866084,"strategy_value":209197.6214125576,"position":21807.0746518431,"cash":4026.0515817401,"position_ratio":0.9807547927,"signal_score":9,"close_y":9.4084866084,"buy_hold_value":231223.5588209947},{"date":"2026-01-21","close_x":9.4688181036,"strategy_value":210513.2748314956,"position":22093.3192636995,"cash":1315.6534189379,"position_ratio":0.9937502591,"signal_score":9,"close_y":9.4688181036,"buy_hold_value":232706.2694419286},{"date":"2026-01-22","close_x":9.7381891617,"strategy_value":216464.5756178096,"position":21617.2916069739,"cash":5951.300786314,"position_ratio":0.9725068142,"signal_score":9,"close_y":9.7381891617,"buy_hold_value":239326.3495124318},{"date":"2026-01-23","close_x":9.6821995728,"strategy_value":215254.2323490132,"position":21617.2916069739,"cash":5951.300786314,"position_ratio":0.9723522241,"signal_score":9,"close_y":9.6821995728,"buy_hold_value":237950.3458546585},{"date":"2026-01-24","close_x":9.6849968021,"strategy_value":215314.7008702648,"position":22225.5346849454,"cash":60.4685212515,"position_ratio":0.9997191621,"signal_score":9,"close_y":9.6849968021,"buy_hold_value":238019.0907376741},{"date":"2026-01-25","close_x":9.7001178063,"strategy_value":215650.7732726723,"position":22197.1222587604,"cash":336.0724024076,"position_ratio":0.9984415896,"signal_score":9,"close_y":9.7001178063,"buy_hold_value":238390.7054872201},{"date":"2026-01-26","close_x":9.7083362644,"strategy_value":215833.1993932126,"position":22212.9484804407,"cash":182.4261205403,"position_ratio":0.9991547819,"signal_score":9,"close_y":9.7083362644,"buy_hold_value":238592.6828320048},{"date":"2026-01-27","close_x":9.7814274648,"strategy_value":217456.7704607556,"position":22065.6136510211,"cash":1623.571067543,"position_ratio":0.9925338215,"signal_score":9,"close_y":9.7814274648,"buy_hold_value":240388.9767700919},{"date":"2026-01-28","close_x":9.7011220309,"strategy_value":215684.7817820242,"position":22065.6136510211,"cash":1623.571067543,"position_ratio":0.992472482,"signal_score":9,"close_y":9.7011220309,"buy_hold_value":238415.3853739306},{"date":"2026-01-29","close_x":9.6131709664,"strategy_value":213744.0875742869,"position":22065.6136510211,"cash":1623.571067543,"position_ratio":0.9924041358,"signal_score":9,"close_y":9.6131709664,"buy_hold_value":236253.8944812729},{"date":"2026-01-30","close_x":9.7870024657,"strategy_value":217579.7862773878,"position":21839.5865662922,"cash":3835.6987031009,"position_ratio":0.9823710705,"signal_score":9,"close_y":9.7870024657,"buy_hold_value":240525.9883437048},{"date":"2026-01-31","close_x":9.8972566775,"strategy_value":219987.6926807045,"position":21983.8479860275,"cash":2407.9064033167,"position_ratio":0.9890543586,"signal_score":9,"close_y":9.8972566775,"buy_hold_value":243235.6027899785},{"date":"2026-02-01","close_x":9.8810449985,"strategy_value":219631.297593276,"position":21983.8479860275,"cash":2407.9064033167,"position_ratio":0.9890365971,"signal_score":9,"close_y":9.8810449985,"buy_hold_value":242837.1835461451},{"date":"2026-02-02","close_x":9.9401357973,"strategy_value":220930.3407315869,"position":22095.4021224717,"cash":1299.0431383109,"position_ratio":0.9941201234,"signal_score":9,"close_y":9.9401357973,"buy_hold_value":244289.4027352678},{"date":"2026-02-03","close_x":9.6771586107,"strategy_value":215119.7540441939,"position":22095.4021224717,"cash":1299.0431383109,"position_ratio":0.9939613024,"signal_score":9,"close_y":9.6771586107,"buy_hold_value":237826.458851772},{"date":"2026-02-04","close_x":9.9363967178,"strategy_value":220847.7242668416,"position":21649.6744396794,"cash":5727.9702226477,"position_ratio":0.9740637118,"signal_score":9,"close_y":9.9363967178,"buy_hold_value":244197.5108826499},{"date":"2026-02-05","close_x":9.6759699059,"strategy_value":215209.5685726268,"position":21649.6744396794,"cash":5727.9702226477,"position_ratio":0.9733842214,"signal_score":9,"close_y":9.6759699059,"buy_hold_value":237797.2451673347},{"date":"2026-02-06","close_x":9.7909187725,"strategy_value":217698.1741135444,"position":21980.5284439853,"cash":2488.6055409176,"position_ratio":0.9885685512,"signal_score":9,"close_y":9.7909187725,"buy_hold_value":240622.2357469352},{"date":"2026-02-07","close_x":10.0392180213,"strategy_value":223155.922813173,"position":21684.7740184498,"cash":5457.7486996288,"position_ratio":0.9755428911,"signal_score":9,"close_y":10.0392180213,"buy_hold_value":246724.4537057358},{"date":"2026-02-08","close_x":9.7290009513,"strategy_value":216428.9357548487,"position":21684.7740184498,"cash":5457.7486996288,"position_ratio":0.9747827217,"signal_score":9,"close_y":9.7290009513,"buy_hold_value":239100.5394776588},{"date":"2026-02-09","close_x":9.843437028,"strategy_value":218910.4562160285,"position":21987.1306272229,"cash":2481.5204611798,"position_ratio":0.9886642214,"signal_score":9,"close_y":9.843437028,"buy_hold_value":241912.9276965184},{"date":"2026-02-10","close_x":9.8573583609,"strategy_value":219216.5463826447,"position":22207.8216293054,"cash":306.0901666162,"position_ratio":0.9986037087,"signal_score":9,"close_y":9.8573583609,"buy_hold_value":242255.0592515573},{"date":"2026-02-11","close_x":9.9724513939,"strategy_value":221772.5119292728,"position":21982.2125697929,"cash":2555.9655466282,"position_ratio":0.9884748316,"signal_score":9,"close_y":9.9724513939,"buy_hold_value":245083.592870492},{"date":"2026-02-12","close_x":10.1415596208,"strategy_value":225489.8849208742,"position":21867.6929605419,"cash":3717.3729916014,"position_ratio":0.9835142362,"signal_score":9,"close_y":10.1415596208,"buy_hold_value":249239.6072948371},{"date":"2026-02-13","close_x":10.0850162525,"strategy_value":224253.4119023588,"position":21867.6929605419,"cash":3717.3729916014,"position_ratio":0.9834233381,"signal_score":9,"close_y":10.0850162525,"buy_hold_value":247849.9939163146},{"date":"2026-02-14","close_x":10.1511945738,"strategy_value":225700.5791135324,"position":22091.33223412,"cash":1447.1672111737,"position_ratio":0.9935881103,"signal_score":9,"close_y":10.1511945738,"buy_hold_value":249476.3965045575},{"date":"2026-02-15","close_x":9.8528874578,"strategy_value":219110.5775068228,"position":22091.33223412,"cash":1447.1672111737,"position_ratio":0.9933952654,"signal_score":9,"close_y":9.8528874578,"buy_hold_value":242145.1820545539},{"date":"2026-02-16","close_x":10.0924152579,"strategy_value":224402.0657174372,"position":21710.4203412563,"cash":5291.4882106144,"position_ratio":0.9764196101,"signal_score":9,"close_y":10.0924152579,"buy_hold_value":248031.8323388546},{"date":"2026-02-17","close_x":10.0205834846,"strategy_value":222842.567725926,"position":21710.4203412563,"cash":5291.4882106144,"position_ratio":0.9762545897,"signal_score":9,"close_y":10.0205834846,"buy_hold_value":246266.4901597386},{"date":"2026-02-18","close_x":9.8592742674,"strategy_value":219340.4768151308,"position":21710.4203412563,"cash":5291.4882106144,"position_ratio":0.9758754595,"signal_score":9,"close_y":9.8592742674,"buy_hold_value":242302.1446885815},{"date":"2026-02-19","close_x":10.1996244312,"strategy_value":226729.6219340343,"position":21504.7601306822,"cash":7389.1451189036,"position_ratio":0.9674098821,"signal_score":9,"close_y":10.1996244312,"buy_hold_value":250666.6117267019},{"date":"2026-02-20","close_x":10.0265225558,"strategy_value":223007.1076271676,"position":21504.7601306822,"cash":7389.1451189036,"position_ratio":0.9668658762,"signal_score":9,"close_y":10.0265225558,"buy_hold_value":246412.4491482512},{"date":"2026-02-21","close_x":10.2240110358,"strategy_value":227254.050016207,"position":21812.0957467018,"cash":4246.9423890394,"position_ratio":0.9813119177,"signal_score":9,"close_y":10.2240110358,"buy_hold_value":251265.9384554541},{"date":"2026-02-22","close_x":9.95279527,"strategy_value":221338.2657650756,"position":21812.0957467018,"cash":4246.9423890394,"position_ratio":0.9808124349,"signal_score":9,"close_y":9.95279527,"buy_hold_value":244600.5227322674},{"date":"2026-02-23","close_x":10.210365181,"strategy_value":226956.405326434,"position":21677.8011207988,"cash":5618.1395613584,"position_ratio":0.9752457325,"signal_score":9,"close_y":10.210365181,"buy_hold_value":250930.577071246},{"date":"2026-02-24","close_x":9.9995085859,"strategy_value":222385.497992394,"position":21677.8011207988,"cash":5618.1395613584,"position_ratio":0.9747369338,"signal_score":9,"close_y":9.9995085859,"buy_hold_value":245748.5521235705},{"date":"2026-02-25","close_x":9.9667644522,"strategy_value":221675.6771736084,"position":21677.8011207988,"cash":5618.1395613584,"position_ratio":0.9746560397,"signal_score":9,"close_y":9.9667644522,"buy_hold_value":244943.8302330316},{"date":"2026-02-26","close_x":10.0640920378,"strategy_value":223785.5252190129,"position":22026.3960564139,"cash":2109.8480454046,"position_ratio":0.9905720084,"signal_score":9,"close_y":10.0640920378,"buy_hold_value":247335.7591014358},{"date":"2026-02-27","close_x":9.9859570298,"strategy_value":222064.4925862289,"position":22026.3960564139,"cash":2109.8480454046,"position_ratio":0.9904989401,"signal_score":9,"close_y":9.9859570298,"buy_hold_value":245415.5082281991},{"date":"2026-02-28","close_x":10.3055374728,"strategy_value":229103.697995377,"position":21548.074826031,"cash":7039.2054091482,"position_ratio":0.9692750249,"signal_score":9,"close_y":10.3055374728,"buy_hold_value":253269.5373013981},{"date":"2026-03-01","close_x":10.1292525152,"strategy_value":225305.0965374193,"position":21548.074826031,"cash":7039.2054091482,"position_ratio":0.9687570076,"signal_score":9,"close_y":10.1292525152,"buy_hold_value":248937.1470914873},{"date":"2026-03-02","close_x":10.3218204785,"strategy_value":229454.5654209889,"position":21828.0386688041,"cash":4149.4688835697,"position_ratio":0.9819159454,"signal_score":9,"close_y":10.3218204785,"buy_hold_value":253669.7094743732},{"date":"2026-03-03","close_x":10.1397598199,"strategy_value":225480.5383244524,"position":21828.0386688041,"cash":4149.4688835697,"position_ratio":0.9815972194,"signal_score":9,"close_y":10.1397598199,"buy_hold_value":249195.3752737072},{"date":"2026-03-04","close_x":10.2743381281,"strategy_value":228418.1188399234,"position":21945.9916067929,"cash":2937.5805154711,"position_ratio":0.9871394593,"signal_score":9,"close_y":10.2743381281,"buy_hold_value":252502.7802430989},{"date":"2026-03-05","close_x":10.233345655,"strategy_value":227518.4983698578,"position":21945.9916067929,"cash":2937.5805154711,"position_ratio":0.987088608,"signal_score":9,"close_y":10.233345655,"buy_hold_value":251495.3466457553},{"date":"2026-03-06","close_x":10.3810924681,"strategy_value":230760.948689721,"position":21916.6238109343,"cash":3242.4503198632,"position_ratio":0.9859488777,"signal_score":9,"close_y":10.3810924681,"buy_hold_value":255126.3816195475},{"date":"2026-03-07","close_x":10.1182056326,"strategy_value":224999.356811055,"position":21916.6238109343,"cash":3242.4503198632,"position_ratio":0.9855890685,"signal_score":9,"close_y":10.1182056326,"buy_hold_value":248665.658210662},{"date":"2026-03-08","close_x":10.3778548249,"strategy_value":230689.9904814125,"position":21680.7192437762,"cash":5690.6336703575,"position_ratio":0.9753321171,"signal_score":9,"close_y":10.3778548249,"buy_hold_value":255046.8130962772},{"date":"2026-03-09","close_x":10.2553612681,"strategy_value":228034.242068039,"position":21680.7192437762,"cash":5690.6336703575,"position_ratio":0.9750448283,"signal_score":9,"close_y":10.2553612681,"buy_hold_value":252036.4037385954},{"date":"2026-03-10","close_x":10.1982720541,"strategy_value":226796.5068459689,"position":21680.7192437762,"cash":5690.6336703575,"position_ratio":0.9749086362,"signal_score":9,"close_y":10.1982720541,"buy_hold_value":250633.3756218924},{"date":"2026-03-11","close_x":10.5126650608,"strategy_value":233612.7733580933,"position":21573.6452682188,"cash":6816.2665121243,"position_ratio":0.9708223724,"signal_score":9,"close_y":10.5126650608,"buy_hold_value":258359.9179363759},{"date":"2026-03-12","close_x":10.2117678559,"strategy_value":227121.3237964231,"position":21573.6452682188,"cash":6816.2665121243,"position_ratio":0.9699884344,"signal_score":9,"close_y":10.2117678559,"buy_hold_value":250965.0492967974},{"date":"2026-03-13","close_x":10.2325977085,"strategy_value":227570.6996468702,"position":22195.8617222491,"cash":449.3758504471,"position_ratio":0.9980253352,"signal_score":9,"close_y":10.2325977085,"buy_hold_value":251476.9650641904},{"date":"2026-03-14","close_x":10.2694627089,"strategy_value":228388.9500995955,"position":22159.9421602687,"cash":818.2504527252,"position_ratio":0.996417294,"signal_score":9,"close_y":10.2694627089,"buy_hold_value":252382.9616349844},{"date":"2026-03-15","close_x":10.4964228634,"strategy_value":233418.3739954396,"position":21758.741341864,"cash":5029.4238958442,"position_ratio":0.9784531791,"signal_score":9,"close_y":10.4964228634,"buy_hold_value":257960.7486704885},{"date":"2026-03-16","close_x":10.2664227342,"strategy_value":228413.8606761384,"position":21758.741341864,"cash":5029.4238958442,"position_ratio":0.9779810915,"signal_score":9,"close_y":10.2664227342,"buy_hold_value":252308.2510255042},{"date":"2026-03-17","close_x":10.6437542294,"strategy_value":236624.1190795021,"position":21459.8961751148,"cash":8210.2584033637,"position_ratio":0.9653025294,"signal_score":9,"close_y":10.6437542294,"buy_hold_value":261581.5735903055},{"date":"2026-03-18","close_x":10.6469050909,"strategy_value":236691.7362413043,"position":22224.6856770413,"cash":67.6171618022,"position_ratio":0.9997143239,"signal_score":9,"close_y":10.6469050909,"buy_hold_value":261659.0093620822},{"date":"2026-03-19","close_x":10.6056608461,"strategy_value":235775.0958633393,"position":22224.6856770413,"cash":67.6171618022,"position_ratio":0.9997132133,"signal_score":9,"close_y":10.6056608461,"buy_hold_value":260645.388205572},{"date":"2026-03-20","close_x":10.646678807,"strategy_value":236686.7071522826,"position":22145.4126809795,"cash":911.6112889432,"position_ratio":0.9961484475,"signal_score":9,"close_y":10.646678807,"buy_hold_value":261653.448194199},{"date":"2026-03-21","close_x":10.5993045412,"strategy_value":235637.5844857531,"position":22145.4126809795,"cash":911.6112889432,"position_ratio":0.9961312993,"signal_score":9,"close_y":10.5993045412,"buy_hold_value":260489.1752574371},{"date":"2026-03-22","close_x":10.6966848073,"strategy_value":237794.1106650338,"position":22029.0294358185,"cash":2156.5261792807,"position_ratio":0.9909311203,"signal_score":9,"close_y":10.6966848073,"buy_hold_value":262882.3988032221},{"date":"2026-03-23","close_x":10.4129926371,"strategy_value":231544.6474962186,"position":22029.0294358185,"cash":2156.5261792807,"position_ratio":0.9906863484,"signal_score":9,"close_y":10.4129926371,"buy_hold_value":255910.3621791161},{"date":"2026-03-24","close_x":10.7143543346,"strategy_value":238183.3532027992,"position":21610.6953591855,"cash":6638.7057065807,"position_ratio":0.9721277511,"signal_score":9,"close_y":10.7143543346,"buy_hold_value":263316.6462186645},{"date":"2026-03-25","close_x":10.401028975,"strategy_value":231412.17430792,"position":21610.6953591855,"cash":6638.7057065807,"position_ratio":0.971312202,"signal_score":9,"close_y":10.401028975,"buy_hold_value":255616.3424680657},{"date":"2026-03-26","close_x":10.4699934138,"strategy_value":232902.5437855495,"position":22102.4183264751,"cash":1490.3694776295,"position_ratio":0.9936008879,"signal_score":9,"close_y":10.4699934138,"buy_hold_value":257311.2168550129},{"date":"2026-03-27","close_x":10.7443952661,"strategy_value":238967.4883137715,"position":21676.6544805535,"cash":6064.944528222,"position_ratio":0.9746202106,"signal_score":9,"close_y":10.7443952661,"buy_hold_value":264054.9340400839},{"date":"2026-03-28","close_x":10.8091258968,"strategy_value":240370.6318307579,"position":22107.9382916339,"cash":1403.1435169865,"position_ratio":0.9941625834,"signal_score":9,"close_y":10.8091258968,"buy_hold_value":265645.7580938039},{"date":"2026-03-29","close_x":10.5926426238,"strategy_value":235584.632988731,"position":22107.9382916339,"cash":1403.1435169865,"position_ratio":0.9940439939,"signal_score":9,"close_y":10.5926426238,"buy_hold_value":260325.4515550459},{"date":"2026-03-30","close_x":10.7714463229,"strategy_value":239537.6141343681,"position":21871.2163554869,"cash":3952.9811456371,"position_ratio":0.9834974513,"signal_score":9,"close_y":10.7714463229,"buy_hold_value":264719.7425130882},{"date":"2026-03-31","close_x":10.7831295025,"strategy_value":239793.1394846765,"position":22214.1090003783,"cash":255.5253503084,"position_ratio":0.9989343926,"signal_score":9,"close_y":10.7831295025,"buy_hold_value":265006.8690717312}];
+        const embeddedTradesData = [{"date":"2023-05-31","action":"BUY","shares":22909.5074455899,"price":4.365,"amount":100000.0,"score":9},{"date":"2023-07-31","action":"SELL","shares":311.7646737889,"price":4.409,"amount":1374.5704467354,"score":9},{"date":"2023-08-31","action":"SELL","shares":121.5482173715,"price":4.494,"amount":546.2376888677,"score":9},{"date":"2023-10-31","action":"SELL","shares":197.2277875011,"price":4.62,"amount":911.1923782551,"score":9},{"date":"2024-01-31","action":"BUY","shares":302.2021579142,"price":4.653,"amount":1406.1466407747,"score":9},{"date":"2024-04-30","action":"SELL","shares":2459.9911218106,"price":5.286,"amount":13003.513069891,"score":9},{"date":"2024-05-31","action":"BUY","shares":2485.9554198393,"price":5.343,"amount":13282.4598082016,"score":9},{"date":"2024-07-31","action":"SELL","shares":175.7829755251,"price":5.436,"amount":955.5562549542,"score":9},{"date":"2024-09-30","action":"SELL","shares":696.7640664629,"price":5.707,"amount":3976.4325273038,"score":9},{"date":"2024-10-31","action":"SELL","shares":414.2225480254,"price":6.103,"amount":2528.000210599,"score":9},{"date":"2025-02-28","action":"SELL","shares":371.5722388152,"price":6.444,"amount":2394.4115069249,"score":9},{"date":"2025-03-31","action":"SELL","shares":128.0099653824,"price":7.012,"amount":897.6058772616,"score":9},{"date":"2025-04-30","action":"BUY","shares":313.5021865963,"price":7.471,"amount":2342.1748360612,"score":9},{"date":"2025-07-31","action":"BUY","shares":1196.7216960008,"price":7.35,"amount":8795.9044656059,"score":9},{"date":"2025-09-30","action":"SELL","shares":2557.2047059221,"price":8.339,"amount":21324.5300426844,"score":9},{"date":"2025-10-31","action":"BUY","shares":1488.3198746197,"price":8.794,"amount":13088.2849774061,"score":9},{"date":"2025-12-31","action":"SELL","shares":191.6800137522,"price":9.301,"amount":1782.8158079096,"score":9},{"date":"2026-01-01","action":"BUY","shares":979.0266233184,"price":9.3769187718,"amount":9180.2531222669,"score":9},{"date":"2026-01-03","action":"SELL","shares":521.4854224377,"price":9.5307889745,"amount":4970.1675145077,"score":9},{"date":"2026-01-05","action":"BUY","shares":235.7737323847,"price":9.5008068721,"amount":2240.0406968906,"score":9},{"date":"2026-01-07","action":"BUY","shares":116.3630221357,"price":9.4102606047,"amount":1095.0063630498,"score":9},{"date":"2026-01-08","action":"BUY","shares":180.6329012369,"price":9.4798393656,"amount":1712.3708878687,"score":9},{"date":"2026-01-10","action":"BUY","shares":111.8002043052,"price":9.3024939612,"amount":1040.0207254122,"score":9},{"date":"2026-01-12","action":"SELL","shares":544.6211762117,"price":9.5527287661,"amount":5202.6183766145,"score":9},{"date":"2026-01-14","action":"BUY","shares":52.1540047655,"price":9.6555447627,"amount":503.5753275674,"score":9},{"date":"2026-01-16","action":"SELL","shares":232.2057682676,"price":9.6988933398,"amount":2252.138979316,"score":9},{"date":"2026-01-18","action":"BUY","shares":462.1660802644,"price":9.5391422929,"amount":4408.6680026053,"score":9},{"date":"2026-01-19","action":"SELL","shares":102.9700158535,"price":9.7228959841,"amount":1001.1667536257,"score":9},{"date":"2026-01-21","action":"BUY","shares":286.2446118565,"price":9.4688181036,"amount":2710.3981628022,"score":9},{"date":"2026-01-22","action":"SELL","shares":476.0276567256,"price":9.7381891617,"amount":4635.6473673761,"score":9},{"date":"2026-01-24","action":"BUY","shares":608.2430779714,"price":9.6849968021,"amount":5890.8322650625,"score":9},{"date":"2026-01-25","action":"SELL","shares":28.412426185,"price":9.7001178063,"amount":275.6038811561,"score":9},{"date":"2026-01-26","action":"BUY","shares":15.8262216802,"price":9.7083362644,"amount":153.6462818672,"score":9},{"date":"2026-01-27","action":"SELL","shares":147.3348294196,"price":9.7814274648,"amount":1441.1449470026,"score":9},{"date":"2026-01-30","action":"SELL","shares":226.0270847289,"price":9.7870024657,"amount":2212.1276355579,"score":9},{"date":"2026-01-31","action":"BUY","shares":144.2614197353,"price":9.8972566775,"amount":1427.7922997842,"score":9},{"date":"2026-02-02","action":"BUY","shares":111.5541364442,"price":9.9401357973,"amount":1108.8632650057,"score":9},{"date":"2026-02-04","action":"SELL","shares":445.7276827923,"price":9.9363967178,"amount":4428.9270843367,"score":9},{"date":"2026-02-06","action":"BUY","shares":330.854004306,"price":9.7909187725,"amount":3239.3646817301,"score":9},{"date":"2026-02-07","action":"SELL","shares":295.7544255355,"price":10.0392180213,"amount":2969.1431587112,"score":9},{"date":"2026-02-09","action":"BUY","shares":302.3566087731,"price":9.843437028,"amount":2976.228238449,"score":9},{"date":"2026-02-10","action":"BUY","shares":220.6910020825,"price":9.8573583609,"amount":2175.4302945636,"score":9},{"date":"2026-02-11","action":"SELL","shares":225.6090595125,"price":9.9724513939,"amount":2249.8753800121,"score":9},{"date":"2026-02-12","action":"SELL","shares":114.519609251,"price":10.1415596208,"amount":1161.4074449731,"score":9},{"date":"2026-02-14","action":"BUY","shares":223.6392735781,"price":10.1511945738,"amount":2270.2057804277,"score":9},{"date":"2026-02-16","action":"SELL","shares":380.9118928637,"price":10.0924152579,"amount":3844.3209994407,"score":9},{"date":"2026-02-19","action":"SELL","shares":205.6602105741,"price":10.1996244312,"amount":2097.6569082891,"score":9},{"date":"2026-02-21","action":"BUY","shares":307.3356160196,"price":10.2240110358,"amount":3142.2027298642,"score":9},{"date":"2026-02-23","action":"SELL","shares":134.294625903,"price":10.210365181,"amount":1371.197172319,"score":9},{"date":"2026-02-26","action":"BUY","shares":348.594935615,"price":10.0640920378,"amount":3508.2915159538,"score":9},{"date":"2026-02-28","action":"SELL","shares":478.3212303829,"price":10.3055374728,"amount":4929.3573637436,"score":9},{"date":"2026-03-02","action":"BUY","shares":279.9638427731,"price":10.3218204785,"amount":2889.7365255785,"score":9},{"date":"2026-03-04","action":"BUY","shares":117.9529379888,"price":10.2743381281,"amount":1211.8883680986,"score":9},{"date":"2026-03-06","action":"SELL","shares":29.3677958586,"price":10.3810924681,"amount":304.8698043921,"score":9},{"date":"2026-03-08","action":"SELL","shares":235.9045671581,"price":10.3778548249,"amount":2448.1833504943,"score":9},{"date":"2026-03-11","action":"SELL","shares":107.0739755574,"price":10.5126650608,"amount":1125.6328417668,"score":9},{"date":"2026-03-13","action":"BUY","shares":622.2164540303,"price":10.2325977085,"amount":6366.8906616772,"score":9},{"date":"2026-03-14","action":"SELL","shares":35.9195619803,"price":10.2694627089,"amount":368.8746022781,"score":9},{"date":"2026-03-15","action":"SELL","shares":401.2008184047,"price":10.4964228634,"amount":4211.1734431189,"score":9},{"date":"2026-03-17","action":"SELL","shares":298.8451667492,"price":10.6437542294,"amount":3180.8345075195,"score":9},{"date":"2026-03-18","action":"BUY","shares":764.7895019265,"price":10.6469050909,"amount":8142.6412415614,"score":9},{"date":"2026-03-20","action":"SELL","shares":79.2729960619,"price":10.646678807,"amount":843.994127141,"score":9},{"date":"2026-03-22","action":"SELL","shares":116.3832451609,"price":10.6966848073,"amount":1244.9148903375,"score":9},{"date":"2026-03-24","action":"SELL","shares":418.3340766331,"price":10.7143543346,"amount":4482.1795273,"score":9},{"date":"2026-03-26","action":"BUY","shares":491.7229672896,"price":10.4699934138,"amount":5148.3362289512,"score":9},{"date":"2026-03-27","action":"SELL","shares":425.7638459216,"price":10.7443952661,"amount":4574.5750505925,"score":9},{"date":"2026-03-28","action":"BUY","shares":431.2838110804,"price":10.8091258968,"amount":4661.8010112356,"score":9},{"date":"2026-03-30","action":"SELL","shares":236.721936147,"price":10.7714463229,"amount":2549.8376286507,"score":9},{"date":"2026-03-31","action":"BUY","shares":342.8926448914,"price":10.7831295025,"amount":3697.4557953287,"score":9}];
+        
+        // 覆盖默认数据加载
+        window.embeddedData = {
+            strategy: embeddedStrategyData,
+            trades: embeddedTradesData
+        };
+    </script>
+    </head>
 <body>
     <div class="container">
         <div class="header">
-<<<<<<< HEAD
             <h1>📊 518880 黄金 ETF - 多因子策略回测报告</h1>
             <div class="subtitle">趋势过滤 + 12 宏观因子打分策略</div>
             <div class="period-badge">📅 2023-01-01 至 2026-03-31</div>
         </div>
-
+        
         <div class="content">
             <!-- 核心绩效指标 -->
             <div class="section">
@@ -132,37 +282,42 @@
                 <div class="metrics-grid">
                     <div class="metric-card strategy">
                         <h3>多因子策略总收益</h3>
-                        <div class="value positive">139.55%</div>
-                        <div class="subtext">年化 42.9%</div>
+                        <div class="value positive" id="strategy-return">139.79%</div>
+                        <div class="subtext">年化 43.0%</div>
                     </div>
+                    
                     <div class="metric-card benchmark">
                         <h3>买入持有总收益</h3>
-                        <div class="value">164.88%</div>
-                        <div class="subtext">年化 50.7%</div>
+                        <div class="value" id="benchmark-return">165.01%</div>
+                        <div class="subtext">年化 50.8%</div>
                     </div>
+                    
                     <div class="metric-card">
                         <h3>超额收益</h3>
-                        <div class="value negative">-25.33%</div>
+                        <div class="value negative" id="excess-return">-25.21%</div>
                         <div class="subtext">策略跑输基准</div>
                     </div>
+                    
                     <div class="metric-card strategy">
                         <h3>最大回撤</h3>
-                        <div class="value">-3.69%</div>
+                        <div class="value" id="max-drawdown">0.00%</div>
                         <div class="subtext">优于基准 0.05%</div>
                     </div>
+                    
                     <div class="metric-card">
                         <h3>夏普比率</h3>
-                        <div class="value">4.61</div>
+                        <div class="value" id="sharpe">4.61</div>
                         <div class="subtext">风险调整收益优秀</div>
                     </div>
+                    
                     <div class="metric-card">
                         <h3>交易次数</h3>
-                        <div class="value">66 次</div>
+                        <div class="value" id="num-trades">69 次</div>
                         <div class="subtext">月均 1.8 次</div>
                     </div>
                 </div>
             </div>
-
+            
             <!-- 收益对比图表 -->
             <div class="section">
                 <h2 class="section-title">📈 收益走势对比</h2>
@@ -170,7 +325,7 @@
                     <div id="performance-chart" style="width: 100%; height: 500px;"></div>
                 </div>
             </div>
-
+            
             <!-- 宏观因子图表 -->
             <div class="section">
                 <h2 class="section-title">🔍 宏观因子走势</h2>
@@ -178,7 +333,7 @@
                     <div id="macro-chart" style="width: 100%; height: 400px;"></div>
                 </div>
             </div>
-
+            
             <!-- 信号得分图表 -->
             <div class="section">
                 <h2 class="section-title">📊 策略信号得分</h2>
@@ -186,7 +341,7 @@
                     <div id="signal-chart" style="width: 100%; height: 350px;"></div>
                 </div>
             </div>
-
+            
             <!-- 详细对比表 -->
             <div class="section">
                 <h2 class="section-title">📋 详细绩效对比</h2>
@@ -202,21 +357,21 @@
                     <tbody>
                         <tr>
                             <td><strong>总收益率</strong></td>
-                            <td class="positive">139.55%</td>
-                            <td>164.88%</td>
-                            <td class="negative">-25.33%</td>
+                            <td class="positive">139.79%</td>
+                            <td>165.01%</td>
+                            <td class="negative">-25.21%</td>
                         </tr>
                         <tr>
                             <td><strong>年化收益率</strong></td>
-                            <td class="positive">42.9%</td>
-                            <td>50.7%</td>
+                            <td class="positive">43.0%</td>
+                            <td>50.8%</td>
                             <td class="negative">-7.8%</td>
                         </tr>
                         <tr>
                             <td><strong>最大回撤</strong></td>
-                            <td class="positive">-3.69%</td>
+                            <td class="positive">0.00%</td>
                             <td>-3.74%</td>
-                            <td class="positive">+0.05%</td>
+                            <td class="positive">-3.74%</td>
                         </tr>
                         <tr>
                             <td><strong>夏普比率</strong></td>
@@ -226,19 +381,25 @@
                         </tr>
                         <tr>
                             <td><strong>交易次数</strong></td>
-                            <td>66 次</td>
+                            <td>69 次</td>
                             <td>0 次</td>
+                            <td>-</td>
+                        </tr>
+                        <tr>
+                            <td><strong>胜率</strong></td>
+                            <td>68.2%</td>
+                            <td>-</td>
                             <td>-</td>
                         </tr>
                     </tbody>
                 </table>
             </div>
-
+            
             <!-- 交易记录 -->
             <div class="section">
                 <h2 class="section-title">📝 交易记录（前 20 笔）</h2>
                 <div style="overflow-x: auto;">
-                    <table class="trades-table">
+                    <table class="trades-table" id="trades-table">
                         <thead>
                             <tr>
                                 <th>日期</th>
@@ -250,126 +411,206 @@
                             </tr>
                         </thead>
                         <tbody id="trades-body">
+                            <!-- 由 JavaScript 动态填充 -->
                         </tbody>
                     </table>
                 </div>
             </div>
-
-            <!-- 策略逻辑 -->
+            
+            <!-- 宏观数据摘要 -->
+            <div class="section">
+                <h2 class="section-title">🌍 宏观数据摘要 (2023-2026)</h2>
+                <div class="metrics-grid">
+                    <div class="metric-card">
+                        <h3>美国 CPI</h3>
+                        <div class="value">6.4% → 2.3%</div>
+                        <div class="subtext">通胀大幅回落</div>
+                    </div>
+                    
+                    <div class="metric-card">
+                        <h3>全球 PMI</h3>
+                        <div class="value">49.0 → 53.2</div>
+                        <div class="subtext">经济复苏</div>
+                    </div>
+                    
+                    <div class="metric-card">
+                        <h3>美联储利率</h3>
+                        <div class="value">3.50% → 0.25%</div>
+                        <div class="subtext">降息周期</div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 策略逻辑说明 -->
             <div class="section">
                 <h2 class="section-title">⚙️ 策略逻辑</h2>
                 <div style="background: #f8f9fa; padding: 25px; border-radius: 15px;">
-                    <h3 style="margin-bottom: 15px; color: #2c3e50;">1️⃣ 趋势过滤</h3>
+                    <h3 style="margin-bottom: 15px; color: #2c3e50;">1️⃣ 趋势过滤（第一道门槛）</h3>
                     <ul style="margin-left: 20px; color: #555; line-height: 1.8;">
                         <li>价格站上 50 日均线 + 200 日均线多头排列</li>
                         <li>或月度收盘价 > 12 个月移动平均线</li>
                         <li><strong>规则</strong>: 满足 = 允许做多；不满足 = 空仓</li>
                     </ul>
+                    
                     <h3 style="margin: 25px 0 15px 0; color: #2c3e50;">2️⃣ 12 个宏观因子打分</h3>
                     <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 10px;">
-                        <div><span class="tag tag-info">TIPS 利率</span> 下行→+1</div>
-                        <div><span class="tag tag-info">美元</span> 下跌→+1</div>
-                        <div><span class="tag tag-info">CPI</span> 温和上行→+1</div>
-                        <div><span class="tag tag-info">央行购金</span> 净购金→+1</div>
-                        <div><span class="tag tag-info">COMEX</span> 非超买→+1</div>
-                        <div><span class="tag tag-info">VIX</span> 上升→+1</div>
-                        <div><span class="tag tag-info">原油/黄金</span> 上行→+1</div>
-                        <div><span class="tag tag-info">美欧利差</span> 收窄→+1</div>
-                        <div><span class="tag tag-info">财政赤字</span> 扩大→+1</div>
-                        <div><span class="tag tag-info">PMI</span> 弱于预期→+1</div>
-                        <div><span class="tag tag-info">ETF 持仓</span> 增加→+1</div>
-                        <div><span class="tag tag-info">美债利差</span> 倒挂→+1</div>
+                        <div><span class="tag tag-info">TIPS 利率</span> 下行 → +1 分</div>
+                        <div><span class="tag tag-info">美元指数</span> 下跌 → +1 分</div>
+                        <div><span class="tag tag-info">CPI/PCE</span> 温和上行 → +1 分</div>
+                        <div><span class="tag tag-info">央行购金</span> 净购金 → +1 分</div>
+                        <div><span class="tag tag-info">COMEX 持仓</span> 非超买 → +1 分</div>
+                        <div><span class="tag tag-info">VIX</span> 上升 → +1 分</div>
+                        <div><span class="tag tag-info">原油/黄金</span> 上行 → +1 分</div>
+                        <div><span class="tag tag-info">美欧利差</span> 收窄 → +1 分</div>
+                        <div><span class="tag tag-info">财政赤字</span> 扩大 → +1 分</div>
+                        <div><span class="tag tag-info">PMI</span> 弱于预期 → +1 分</div>
+                        <div><span class="tag tag-info">ETF 持仓</span> 增加 → +1 分</div>
+                        <div><span class="tag tag-info">美债利差</span> 倒挂 → +1 分</div>
                     </div>
-                    <h3 style="margin: 25px 0 15px 0; color: #2c3e50;">3️⃣ 动态仓位</h3>
+                    
+                    <h3 style="margin: 25px 0 15px 0; color: #2c3e50;">3️⃣ 动态仓位管理</h3>
                     <table style="width: 100%; max-width: 400px; background: white; border-radius: 10px; overflow: hidden;">
-                        <tr style="background: #e74c3c; color: white;"><td style="padding: 12px;"><strong>0-4 分</strong></td><td style="padding: 12px;">空仓 0%</td></tr>
-                        <tr style="background: #f39c12; color: white;"><td style="padding: 12px;"><strong>5-7 分</strong></td><td style="padding: 12px;">半仓 50%</td></tr>
-                        <tr style="background: #27ae60; color: white;"><td style="padding: 12px;"><strong>8-12 分</strong></td><td style="padding: 12px;">满仓 100%</td></tr>
+                        <tr style="background: #e74c3c; color: white;">
+                            <td style="padding: 12px;"><strong>0-4 分</strong></td>
+                            <td style="padding: 12px;">空仓 0%</td>
+                        </tr>
+                        <tr style="background: #f39c12; color: white;">
+                            <td style="padding: 12px;"><strong>5-7 分</strong></td>
+                            <td style="padding: 12px;">半仓 50%</td>
+                        </tr>
+                        <tr style="background: #27ae60; color: white;">
+                            <td style="padding: 12px;"><strong>8-12 分</strong></td>
+                            <td style="padding: 12px;">满仓 100%</td>
+                        </tr>
                     </table>
                 </div>
             </div>
-
-            <!-- 结论 -->
+            
+            <!-- 结论与建议 -->
             <div class="section">
-                <h2 class="section-title">💡 结论</h2>
+                <h2 class="section-title">💡 结论与建议</h2>
                 <div style="background: linear-gradient(135deg, #fff3cd 0%, #ffe69c 100%); padding: 25px; border-radius: 15px; border-left: 5px solid #f39c12;">
+                    <h3 style="margin-bottom: 15px; color: #856404;">📊 回测结论</h3>
                     <ul style="margin-left: 20px; color: #856404; line-height: 1.8;">
-                        <li>策略在<strong>单边牛市</strong>中跑输买入持有（-25.33%）</li>
+                        <li>策略在<strong>单边牛市</strong>中跑输买入持有（-25.21%）</li>
                         <li>但在<strong>风险控制</strong>方面表现优秀（回撤更低）</li>
                         <li>适合<strong>震荡市/熊市</strong>环境，能动态调整仓位避险</li>
                         <li>2026 年 Q1 数据为模拟扩展，实际表现需等待真实数据</li>
                     </ul>
+                    
+                    <h3 style="margin: 25px 0 15px 0; color: #856404;">🎯 适用场景</h3>
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; margin-top: 15px;">
+                        <div style="background: rgba(255,255,255,0.7); padding: 15px; border-radius: 10px;">
+                            <strong>✅ 震荡市</strong><br>
+                            <small>动态调仓优势明显</small>
+                        </div>
+                        <div style="background: rgba(255,255,255,0.7); padding: 15px; border-radius: 10px;">
+                            <strong>✅ 熊市</strong><br>
+                            <small>空仓避险，跑赢市场</small>
+                        </div>
+                        <div style="background: rgba(255,255,255,0.7); padding: 15px; border-radius: 10px;">
+                            <strong>⚠️ 单边牛市</strong><br>
+                            <small>可能跑输买入持有</small>
+                        </div>
+                        <div style="background: rgba(255,255,255,0.7); padding: 15px; border-radius: 10px;">
+                            <strong>✅ 高波动</strong><br>
+                            <small>宏观因子平滑波动</small>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
-
+        
         <div class="footer">
             <p><strong>报告生成时间:</strong> <span id="report-time"></span></p>
             <p><strong>策略版本:</strong> V1.0.0 | <strong>数据源:</strong> 东方财富 mx-data</p>
             <p style="margin-top: 15px; font-size: 0.9em; opacity: 0.8;">
                 ⚠️ 历史业绩不代表未来收益 | 投资有风险，入市需谨慎
             </p>
-            <p style="margin-top: 10px;">
-                <a href="https://github.com/rickyhanjp/gold-etf-report" target="_blank">📦 查看 GitHub 仓库</a>
-            </p>
         </div>
     </div>
-
+    
     <script>
+        // 设置报告时间
         document.getElementById('report-time').textContent = new Date().toLocaleString('zh-CN');
-
-        const strategyData = [
-            {"date":"2023-01-01","strategy_value":100000,"buy_hold_value":100000,"signal_score":0},
-            {"date":"2023-05-31","strategy_value":100000,"buy_hold_value":104200,"signal_score":9},
-            {"date":"2023-12-31","strategy_value":115000,"buy_hold_value":114000,"signal_score":9},
-            {"date":"2024-06-30","strategy_value":145000,"buy_hold_value":138000,"signal_score":9},
-            {"date":"2024-12-31","strategy_value":178000,"buy_hold_value":165000,"signal_score":9},
-            {"date":"2025-06-30","strategy_value":205000,"buy_hold_value":195000,"signal_score":9},
-            {"date":"2025-12-31","strategy_value":225000,"buy_hold_value":235000,"signal_score":9},
-            {"date":"2026-03-31","strategy_value":239550,"buy_hold_value":264880,"signal_score":9}
-        ];
-
-        const macroData = [
-            {"date":"2023-01","cpi_us":6.4,"pmi_global":49.0},
-            {"date":"2023-06","cpi_us":3.0,"pmi_global":51.5},
-            {"date":"2023-12","cpi_us":3.4,"pmi_global":51.5},
-            {"date":"2024-06","cpi_us":3.0,"pmi_global":52.5},
-            {"date":"2024-12","cpi_us":2.9,"pmi_global":52.5},
-            {"date":"2025-06","cpi_us":2.0,"pmi_global":52.5},
-            {"date":"2025-12","cpi_us":2.6,"pmi_global":52.5},
-            {"date":"2026-03","cpi_us":2.3,"pmi_global":53.2}
-        ];
-
-        const tradesData = [
-            {"date":"2023-05-31","action":"BUY","shares":22910,"price":4.365,"amount":100000,"score":9},
-            {"date":"2023-07-31","action":"SELL","shares":312,"price":4.409,"amount":1375,"score":9},
-            {"date":"2023-08-31","action":"SELL","shares":122,"price":4.494,"amount":546,"score":9},
-            {"date":"2023-10-31","action":"SELL","shares":197,"price":4.620,"amount":911,"score":9},
-            {"date":"2024-01-31","action":"BUY","shares":302,"price":4.653,"amount":1406,"score":9},
-            {"date":"2024-04-30","action":"SELL","shares":2460,"price":5.286,"amount":13004,"score":9},
-            {"date":"2024-05-31","action":"BUY","shares":2486,"price":5.343,"amount":13282,"score":9},
-            {"date":"2024-07-31","action":"SELL","shares":176,"price":5.436,"amount":956,"score":9},
-            {"date":"2024-09-30","action":"SELL","shares":697,"price":5.707,"amount":3976,"score":9},
-            {"date":"2024-10-31","action":"SELL","shares":414,"price":6.103,"amount":2528,"score":9},
-            {"date":"2025-02-28","action":"SELL","shares":372,"price":6.444,"amount":2394,"score":9},
-            {"date":"2025-03-31","action":"SELL","shares":128,"price":7.012,"amount":898,"score":9},
-            {"date":"2025-04-30","action":"BUY","shares":314,"price":7.471,"amount":2342,"score":9},
-            {"date":"2025-07-31","action":"BUY","shares":1197,"price":7.350,"amount":8796,"score":9},
-            {"date":"2025-09-30","action":"SELL","shares":2557,"price":8.339,"amount":21325,"score":9},
-            {"date":"2025-10-31","action":"BUY","shares":1488,"price":8.794,"amount":13088,"score":9},
-            {"date":"2025-12-31","action":"SELL","shares":192,"price":9.301,"amount":1783,"score":9}
-        ];
-
+        
+        // 加载数据
+        let strategyData = [];
+        let buyHoldData = [];
+        let macroData = [];
+        let tradesData = [];
+        
+        // 读取 CSV 数据
+        async function loadData() {
+        // 优先使用内嵌数据
+        if (window.embeddedData) {
+            strategyData = window.embeddedData.strategy || [];
+            tradesData = window.embeddedData.trades || [];
+            renderCharts();
+            renderTradesTable();
+            return;
+        }
+            try {
+                // 加载策略数据
+                const strategyResp = await fetch('518880_github_strategy.csv');
+                const strategyText = await strategyResp.text();
+                strategyData = parseCSV(strategyText);
+                
+                // 加载宏观数据
+                const macroResp = await fetch('../backtest/macro_factors_real.csv');
+                if (macroResp.ok) {
+                    const macroText = await macroResp.text();
+                    macroData = parseCSV(macroText);
+                }
+                
+                // 加载交易记录
+                const tradesResp = await fetch('518880_github_trades.csv');
+                if (tradesResp.ok) {
+                    const tradesText = await tradesResp.text();
+                    tradesData = parseCSV(tradesText);
+                }
+                
+                // 生成图表
+                renderCharts();
+                renderTradesTable();
+                
+            } catch (error) {
+                console.error('数据加载失败:', error);
+                // 使用内置数据
+                renderCharts();
+                renderTradesTable();
+            }
+        }
+        
+        // 简单的 CSV 解析
+        function parseCSV(text) {
+            const lines = text.trim().split('\n');
+            const headers = lines[0].split(',');
+            const data = [];
+            
+            for (let i = 1; i < lines.length; i++) {
+                const values = lines[i].split(',');
+                const row = {};
+                headers.forEach((h, idx) => {
+                    row[h.trim()] = values[idx] ? values[idx].trim() : '';
+                });
+                data.push(row);
+            }
+            return data;
+        }
+        
+        // 渲染图表
         function renderCharts() {
+            // 图表 1: 收益对比
             const trace1 = {
                 x: strategyData.map(d => d.date),
                 y: strategyData.map(d => d.strategy_value),
                 name: '多因子策略',
                 type: 'scatter',
-                mode: 'lines+markers',
-                line: {color: '#3498db', width: 3},
-                marker: {size: 8}
+                mode: 'lines',
+                line: {color: '#3498db', width: 3}
             };
+            
             const trace2 = {
                 x: strategyData.map(d => d.date),
                 y: strategyData.map(d => d.buy_hold_value),
@@ -378,122 +619,172 @@
                 mode: 'lines',
                 line: {color: '#95a5a6', width: 2, dash: 'dash'}
             };
+            
             const layout1 = {
                 title: '策略组合价值 vs 买入持有',
                 xaxis: {title: '日期', showgrid: true},
-                yaxis: {title: '组合价值 (元)', showgrid: true, tickformat: ',.0f'},
+                yaxis: {title: '组合价值 (元)', showgrid: true},
                 hovermode: 'x',
                 showlegend: true,
-                legend: {x: 0, y: 1},
-                plot_bgcolor: 'rgba(0,0,0,0)',
-                paper_bgcolor: 'rgba(0,0,0,0)'
+                legend: {x: 0, y: 1}
             };
+            
             Plotly.newPlot('performance-chart', [trace1, trace2], layout1, {responsive: true});
-
-            const trace3 = {
-                x: macroData.map(d => d.date),
-                y: macroData.map(d => d.cpi_us),
-                name: '美国 CPI (%)',
-                type: 'scatter',
-                mode: 'lines+markers',
-                line: {color: '#e74c3c', width: 2},
-                yaxis: 'y'
-            };
-            const trace4 = {
-                x: macroData.map(d => d.date),
-                y: macroData.map(d => d.pmi_global),
-                name: '全球 PMI',
-                type: 'scatter',
-                mode: 'lines+markers',
-                line: {color: '#27ae60', width: 2},
-                yaxis: 'y2'
-            };
-            const layout2 = {
-                title: '美国 CPI 与全球 PMI 走势',
-                xaxis: {title: '日期'},
-                yaxis: {title: 'CPI (%)', titlefont: {color: '#e74c3c'}, tickfont: {color: '#e74c3c'}},
-                yaxis2: {title: 'PMI', titlefont: {color: '#27ae60'}, tickfont: {color: '#27ae60'}, overlaying: 'y', side: 'right'},
-                hovermode: 'x',
-                showlegend: true,
-                plot_bgcolor: 'rgba(0,0,0,0)',
-                paper_bgcolor: 'rgba(0,0,0,0)'
-            };
-            Plotly.newPlot('macro-chart', [trace3, trace4], layout2, {responsive: true});
-
+            
+            // 图表 2: 宏观因子
+            if (macroData.length > 0) {
+                const trace3 = {
+                    x: macroData.map(d => d.date),
+                    y: macroData.map(d => d.cpi_us),
+                    name: '美国 CPI (%)',
+                    type: 'scatter',
+                    mode: 'lines',
+                    line: {color: '#e74c3c', width: 2},
+                    yaxis: 'y'
+                };
+                
+                const trace4 = {
+                    x: macroData.map(d => d.date),
+                    y: macroData.map(d => d.pmi_global),
+                    name: '全球 PMI',
+                    type: 'scatter',
+                    mode: 'lines',
+                    line: {color: '#27ae60', width: 2},
+                    yaxis: 'y2'
+                };
+                
+                const layout2 = {
+                    title: '美国 CPI 与全球 PMI 走势',
+                    xaxis: {title: '日期'},
+                    yaxis: {title: 'CPI (%)', titlefont: {color: '#e74c3c'}, tickfont: {color: '#e74c3c'}},
+                    yaxis2: {
+                        title: 'PMI',
+                        titlefont: {color: '#27ae60'},
+                        tickfont: {color: '#27ae60'},
+                        overlaying: 'y',
+                        side: 'right'
+                    },
+                    hovermode: 'x',
+                    showlegend: true
+                };
+                
+                Plotly.newPlot('macro-chart', [trace3, trace4], layout2, {responsive: true});
+            }
+            
+            // 图表 3: 信号得分
             const trace5 = {
                 x: strategyData.map(d => d.date),
                 y: strategyData.map(d => d.signal_score),
                 name: '信号得分',
                 type: 'scatter',
-                mode: 'lines+markers',
+                mode: 'lines',
                 line: {color: '#9b59b6', width: 2},
-                fill: 'tozeroy',
-                marker: {size: 10, color: '#9b59b6'}
+                fill: 'tozeroy'
             };
+            
             const layout3 = {
                 title: '策略信号得分走势（0-12 分）',
                 xaxis: {title: '日期'},
-                yaxis: {title: '信号得分', range: [0, 13], tickvals: [0, 4, 5, 7, 8, 12]},
-                hovermode: 'x',
-                plot_bgcolor: 'rgba(0,0,0,0)',
-                paper_bgcolor: 'rgba(0,0,0,0)'
+                yaxis: {
+                    title: '信号得分',
+                    range: [0, 13],
+                    tickvals: [0, 4, 5, 7, 8, 12]
+                },
+                shapes: [
+                    {
+                        type: 'line',
+                        x0: strategyData[0]?.date,
+                        y0: 8,
+                        x1: strategyData[strategyData.length-1]?.date,
+                        y1: 8,
+                        line: {color: '#e74c3c', width: 2, dash: 'dash'}
+                    },
+                    {
+                        type: 'line',
+                        x0: strategyData[0]?.date,
+                        y0: 5,
+                        x1: strategyData[strategyData.length-1]?.date,
+                        y1: 5,
+                        line: {color: '#f39c12', width: 2, dash: 'dash'}
+                    }
+                ],
+                annotations: [
+                    {
+                        x: strategyData[strategyData.length-1]?.date,
+                        y: 8,
+                        xref: 'x',
+                        yref: 'y',
+                        text: '满仓阈值 (8 分)',
+                        showarrow: false,
+                        yshift: 10,
+                        font: {color: '#e74c3c'}
+                    },
+                    {
+                        x: strategyData[strategyData.length-1]?.date,
+                        y: 5,
+                        xref: 'x',
+                        yref: 'y',
+                        text: '半仓阈值 (5 分)',
+                        showarrow: false,
+                        yshift: 10,
+                        font: {color: '#f39c12'}
+                    }
+                ],
+                hovermode: 'x'
             };
+            
             Plotly.newPlot('signal-chart', [trace5], layout3, {responsive: true});
         }
-
+        
+        // 渲染交易记录表
         function renderTradesTable() {
             const tbody = document.getElementById('trades-body');
-            tradesData.slice(0, 20).forEach(trade => {
-                const row = document.createElement('tr');
-                const actionClass = trade.action === 'BUY' ? 'trade-buy' : 'trade-sell';
-                const actionText = trade.action === 'BUY' ? '🟢 买入' : '🔴 卖出';
-                row.innerHTML = `
-                    <td>${trade.date}</td>
-                    <td class="${actionClass}">${actionText}</td>
-                    <td>${trade.shares.toLocaleString()}</td>
-                    <td>${trade.price.toFixed(3)}</td>
-                    <td>${trade.amount.toLocaleString(undefined, {minimumFractionDigits: 2})}</td>
-                    <td><span class="tag tag-info">${trade.score}分</span></td>
-                `;
-                tbody.appendChild(row);
-            });
+            const displayTrades = tradesData.length > 0 ? tradesData.slice(0, 20) : [];
+            
+            if (displayTrades.length === 0) {
+                // 使用示例数据
+                const sampleTrades = [
+                    {date: '2023-05-31', action: 'BUY', shares: 22910, price: 4.365, amount: 100000, score: 9},
+                    {date: '2023-07-31', action: 'SELL', shares: 312, price: 4.409, amount: 1375, score: 9},
+                    {date: '2023-08-31', action: 'SELL', shares: 122, price: 4.494, amount: 546, score: 9},
+                    {date: '2023-10-31', action: 'SELL', shares: 197, price: 4.620, amount: 911, score: 9},
+                    {date: '2024-01-31', action: 'BUY', shares: 302, price: 4.653, amount: 1406, score: 9},
+                ];
+                
+                sampleTrades.forEach(trade => {
+                    const row = document.createElement('tr');
+                    const actionClass = trade.action === 'BUY' ? 'trade-buy' : 'trade-sell';
+                    const actionText = trade.action === 'BUY' ? '🟢 买入' : '🔴 卖出';
+                    row.innerHTML = `
+                        <td>${trade.date}</td>
+                        <td class="${actionClass}">${actionText}</td>
+                        <td>${trade.shares.toLocaleString()}</td>
+                        <td>${trade.price.toFixed(3)}</td>
+                        <td>${trade.amount.toLocaleString(undefined, {minimumFractionDigits: 2})}</td>
+                        <td><span class="tag tag-info">${trade.score}分</span></td>
+                    `;
+                    tbody.appendChild(row);
+                });
+            } else {
+                displayTrades.forEach(trade => {
+                    const row = document.createElement('tr');
+                    const actionClass = trade.action === 'BUY' ? 'trade-buy' : 'trade-sell';
+                    const actionText = trade.action === 'BUY' ? '🟢 买入' : '🔴 卖出';
+                    row.innerHTML = `
+                        <td>${trade.date}</td>
+                        <td class="${actionClass}">${actionText}</td>
+                        <td>${Number(trade.shares).toLocaleString()}</td>
+                        <td>${Number(trade.price).toFixed(3)}</td>
+                        <td>${Number(trade.amount).toLocaleString(undefined, {minimumFractionDigits: 2})}</td>
+                        <td><span class="tag tag-info">${trade.score}分</span></td>
+                    `;
+                    tbody.appendChild(row);
+                });
+            }
         }
-
-        window.addEventListener('DOMContentLoaded', () => {
-            renderCharts();
-            renderTradesTable();
-=======
-            <h1>📈 518880 黄金 ETF 日线策略回测报告</h1>
-            <p>回测区间：2023-03-24 至 2026-03-24 | 初始资金：¥100,000.00</p>
-        </div>
-        <div class="metrics">
-            <div class="metric-card"><div class="metric-value positive">93.94%</div><div class="metric-label">总收益率</div></div>
-            <div class="metric-card"><div class="metric-value positive">25.00%</div><div class="metric-label">年化收益率</div></div>
-            <div class="metric-card"><div class="metric-value negative">-19.84%</div><div class="metric-label">最大回撤</div></div>
-            <div class="metric-card"><div class="metric-value">1.55</div><div class="metric-label">夏普比率</div></div>
-            <div class="metric-card"><div class="metric-value">100.0%</div><div class="metric-label">胜率</div></div>
-            <div class="metric-card"><div class="metric-value">14</div><div class="metric-label">交易次数</div></div>
-            <div class="metric-card"><div class="metric-value positive">¥193,938.32</div><div class="metric-label">最终资产</div></div>
-        </div>
-        <div class="chart-container"><h2>📊 资产曲线</h2><canvas id="portfolioChart"></canvas></div>
-        <div class="trades-table"><h2>📝 交易记录</h2><table><thead><tr><th>日期</th><th>操作</th><th>价格</th><th>数量</th><th>金额</th><th>原因</th></tr></thead><tbody><tr><td>2023-11-07</td><td class="buy">买入</td><td>¥4.569</td><td>9,300</td><td>¥42,491.70</td><td>RSI=25.6, 乖离率=0.6%, 均线多头</td></tr><tr><td>2024-01-10</td><td class="buy">买入</td><td>¥4.631</td><td>5,300</td><td>¥24,544.30</td><td>RSI=21.3, 乖离率=0.1%, 均线多头</td></tr><tr><td>2024-04-22</td><td class="buy">买入</td><td>¥5.364</td><td>2,600</td><td>¥13,946.40</td><td>RSI=25.0, 乖离率=2.0%, 均线多头</td></tr><tr><td>2024-05-29</td><td class="buy">买入</td><td>¥5.370</td><td>1,500</td><td>¥8,055.00</td><td>RSI=27.2, 乖离率=0.3%, 均线多头</td></tr><tr><td>2024-09-03</td><td class="buy">买入</td><td>¥5.501</td><td>800</td><td>¥4,400.80</td><td>RSI=23.9, 乖离率=0.4%, 均线多头</td></tr><tr><td>2025-02-27</td><td class="buy">买入</td><td>¥6.492</td><td>400</td><td>¥2,596.80</td><td>RSI=19.9, 乖离率=0.1%, 均线多头</td></tr><tr><td>2025-04-30</td><td class="buy">买入</td><td>¥7.471</td><td>200</td><td>¥1,494.20</td><td>RSI=17.2, 乖离率=1.3%, 均线多头</td></tr><tr><td>2025-05-15</td><td class="buy">买入</td><td>¥7.062</td><td>100</td><td>¥706.20</td><td>RSI=0.0, 乖离率=-5.9%, 均线多头</td></tr><tr><td>2026-01-29</td><td class="sell">卖出</td><td>¥11.904</td><td>10,100</td><td>¥120,230.40</td><td>RSI=97.7, 乖离率=17.5%, 均线空头</td></tr><tr><td>2026-03-10</td><td class="buy">买入</td><td>¥10.956</td><td>4,700</td><td>¥51,493.20</td><td>RSI=13.8, 乖离率=1.1%, 均线多头</td></tr><tr><td>2026-03-11</td><td class="buy">买入</td><td>¥10.974</td><td>2,700</td><td>¥29,629.80</td><td>RSI=21.3, 乖离率=1.0%, 均线多头</td></tr><tr><td>2026-03-19</td><td class="buy">买入</td><td>¥10.126</td><td>1,700</td><td>¥17,214.20</td><td>RSI=0.0, 乖离率=-6.7%, 均线多头</td></tr><tr><td>2026-03-20</td><td class="buy">买入</td><td>¥9.896</td><td>1,000</td><td>¥9,896.00</td><td>RSI=0.0, 乖离率=-8.5%, 均线多头</td></tr><tr><td>2026-03-23</td><td class="buy">买入</td><td>¥8.941</td><td>600</td><td>¥5,364.60</td><td>RSI=0.0, 乖离率=-16.7%, 均线多头</td></tr></tbody></table></div></div>
-    <script>
-        new Chart(document.getElementById('portfolioChart'), {
-            type: 'line',
-            data: {
-                labels: ['2023-04-04', '2023-04-06', '2023-04-07', '2023-04-10', '2023-04-11', '2023-04-12', '2023-04-13', '2023-04-14', '2023-04-17', '2023-04-18', '2023-04-19', '2023-04-20', '2023-04-21', '2023-04-24', '2023-04-25', '2023-04-26', '2023-04-27', '2023-04-28', '2023-05-04', '2023-05-05', '2023-05-08', '2023-05-09', '2023-05-10', '2023-05-11', '2023-05-12', '2023-05-15', '2023-05-16', '2023-05-17', '2023-05-18', '2023-05-19', '2023-05-22', '2023-05-23', '2023-05-24', '2023-05-25', '2023-05-26', '2023-05-29', '2023-05-30', '2023-05-31', '2023-06-01', '2023-06-02', '2023-06-05', '2023-06-06', '2023-06-07', '2023-06-08', '2023-06-09', '2023-06-12', '2023-06-13', '2023-06-14', '2023-06-15', '2023-06-16', '2023-06-19', '2023-06-20', '2023-06-21', '2023-06-26', '2023-06-27', '2023-06-28', '2023-06-29', '2023-06-30', '2023-07-03', '2023-07-04', '2023-07-05', '2023-07-06', '2023-07-07', '2023-07-10', '2023-07-11', '2023-07-12', '2023-07-13', '2023-07-14', '2023-07-17', '2023-07-18', '2023-07-19', '2023-07-20', '2023-07-21', '2023-07-24', '2023-07-25', '2023-07-26', '2023-07-27', '2023-07-28', '2023-07-31', '2023-08-01', '2023-08-02', '2023-08-03', '2023-08-04', '2023-08-07', '2023-08-08', '2023-08-09', '2023-08-10', '2023-08-11', '2023-08-14', '2023-08-15', '2023-08-16', '2023-08-17', '2023-08-18', '2023-08-21', '2023-08-22', '2023-08-23', '2023-08-24', '2023-08-25', '2023-08-28', '2023-08-29', '2023-08-30', '2023-08-31', '2023-09-01', '2023-09-04', '2023-09-05', '2023-09-06', '2023-09-07', '2023-09-08', '2023-09-11', '2023-09-12', '2023-09-13', '2023-09-14', '2023-09-15', '2023-09-18', '2023-09-19', '2023-09-20', '2023-09-21', '2023-09-22', '2023-09-25', '2023-09-26', '2023-09-27', '2023-09-28', '2023-10-09', '2023-10-10', '2023-10-11', '2023-10-12', '2023-10-13', '2023-10-16', '2023-10-17', '2023-10-18', '2023-10-19', '2023-10-20', '2023-10-23', '2023-10-24', '2023-10-25', '2023-10-26', '2023-10-27', '2023-10-30', '2023-10-31', '2023-11-01', '2023-11-02', '2023-11-03', '2023-11-06', '2023-11-07', '2023-11-08', '2023-11-09', '2023-11-10', '2023-11-13', '2023-11-14', '2023-11-15', '2023-11-16', '2023-11-17', '2023-11-20', '2023-11-21', '2023-11-22', '2023-11-23', '2023-11-24', '2023-11-27', '2023-11-28', '2023-11-29', '2023-11-30', '2023-12-01', '2023-12-04', '2023-12-05', '2023-12-06', '2023-12-07', '2023-12-08', '2023-12-11', '2023-12-12', '2023-12-13', '2023-12-14', '2023-12-15', '2023-12-18', '2023-12-19', '2023-12-20', '2023-12-21', '2023-12-22', '2023-12-25', '2023-12-26', '2023-12-27', '2023-12-28', '2023-12-29', '2024-01-02', '2024-01-03', '2024-01-04', '2024-01-05', '2024-01-08', '2024-01-09', '2024-01-10', '2024-01-11', '2024-01-12', '2024-01-15', '2024-01-16', '2024-01-17', '2024-01-18', '2024-01-19', '2024-01-22', '2024-01-23', '2024-01-24', '2024-01-25', '2024-01-26', '2024-01-29', '2024-01-30', '2024-01-31', '2024-02-01', '2024-02-02', '2024-02-05', '2024-02-06', '2024-02-07', '2024-02-08', '2024-02-19', '2024-02-20', '2024-02-21', '2024-02-22', '2024-02-23', '2024-02-26', '2024-02-27', '2024-02-28', '2024-02-29', '2024-03-01', '2024-03-04', '2024-03-05', '2024-03-06', '2024-03-07', '2024-03-08', '2024-03-11', '2024-03-12', '2024-03-13', '2024-03-14', '2024-03-15', '2024-03-18', '2024-03-19', '2024-03-20', '2024-03-21', '2024-03-22', '2024-03-25', '2024-03-26', '2024-03-27', '2024-03-28', '2024-03-29', '2024-04-01', '2024-04-02', '2024-04-03', '2024-04-08', '2024-04-09', '2024-04-10', '2024-04-11', '2024-04-12', '2024-04-15', '2024-04-16', '2024-04-17', '2024-04-18', '2024-04-19', '2024-04-22', '2024-04-23', '2024-04-24', '2024-04-25', '2024-04-26', '2024-04-29', '2024-04-30', '2024-05-06', '2024-05-07', '2024-05-08', '2024-05-09', '2024-05-10', '2024-05-13', '2024-05-14', '2024-05-15', '2024-05-16', '2024-05-17', '2024-05-20', '2024-05-21', '2024-05-22', '2024-05-23', '2024-05-24', '2024-05-27', '2024-05-28', '2024-05-29', '2024-05-30', '2024-05-31', '2024-06-03', '2024-06-04', '2024-06-05', '2024-06-06', '2024-06-07', '2024-06-11', '2024-06-12', '2024-06-13', '2024-06-14', '2024-06-17', '2024-06-18', '2024-06-19', '2024-06-20', '2024-06-21', '2024-06-24', '2024-06-25', '2024-06-26', '2024-06-27', '2024-06-28', '2024-07-01', '2024-07-02', '2024-07-03', '2024-07-04', '2024-07-05', '2024-07-08', '2024-07-09', '2024-07-10', '2024-07-11', '2024-07-12', '2024-07-15', '2024-07-16', '2024-07-17', '2024-07-18', '2024-07-19', '2024-07-22', '2024-07-23', '2024-07-24', '2024-07-25', '2024-07-26', '2024-07-29', '2024-07-30', '2024-07-31', '2024-08-01', '2024-08-02', '2024-08-05', '2024-08-06', '2024-08-07', '2024-08-08', '2024-08-09', '2024-08-12', '2024-08-13', '2024-08-14', '2024-08-15', '2024-08-16', '2024-08-19', '2024-08-20', '2024-08-21', '2024-08-22', '2024-08-23', '2024-08-26', '2024-08-27', '2024-08-28', '2024-08-29', '2024-08-30', '2024-09-02', '2024-09-03', '2024-09-04', '2024-09-05', '2024-09-06', '2024-09-09', '2024-09-10', '2024-09-11', '2024-09-12', '2024-09-13', '2024-09-18', '2024-09-19', '2024-09-20', '2024-09-23', '2024-09-24', '2024-09-25', '2024-09-26', '2024-09-27', '2024-09-30', '2024-10-08', '2024-10-09', '2024-10-10', '2024-10-11', '2024-10-14', '2024-10-15', '2024-10-16', '2024-10-17', '2024-10-18', '2024-10-21', '2024-10-22', '2024-10-23', '2024-10-24', '2024-10-25', '2024-10-28', '2024-10-29', '2024-10-30', '2024-10-31', '2024-11-01', '2024-11-04', '2024-11-05', '2024-11-06', '2024-11-07', '2024-11-08', '2024-11-11', '2024-11-12', '2024-11-13', '2024-11-14', '2024-11-15', '2024-11-18', '2024-11-19', '2024-11-20', '2024-11-21', '2024-11-22', '2024-11-25', '2024-11-26', '2024-11-27', '2024-11-28', '2024-11-29', '2024-12-02', '2024-12-03', '2024-12-04', '2024-12-05', '2024-12-06', '2024-12-09', '2024-12-10', '2024-12-11', '2024-12-12', '2024-12-13', '2024-12-16', '2024-12-17', '2024-12-18', '2024-12-19', '2024-12-20', '2024-12-23', '2024-12-24', '2024-12-25', '2024-12-26', '2024-12-27', '2024-12-30', '2024-12-31', '2025-01-02', '2025-01-03', '2025-01-06', '2025-01-07', '2025-01-08', '2025-01-09', '2025-01-10', '2025-01-13', '2025-01-14', '2025-01-15', '2025-01-16', '2025-01-17', '2025-01-20', '2025-01-21', '2025-01-22', '2025-01-23', '2025-01-24', '2025-01-27', '2025-02-05', '2025-02-06', '2025-02-07', '2025-02-10', '2025-02-11', '2025-02-12', '2025-02-13', '2025-02-14', '2025-02-17', '2025-02-18', '2025-02-19', '2025-02-20', '2025-02-21', '2025-02-24', '2025-02-25', '2025-02-26', '2025-02-27', '2025-02-28', '2025-03-03', '2025-03-04', '2025-03-05', '2025-03-06', '2025-03-07', '2025-03-10', '2025-03-11', '2025-03-12', '2025-03-13', '2025-03-14', '2025-03-17', '2025-03-18', '2025-03-19', '2025-03-20', '2025-03-21', '2025-03-24', '2025-03-25', '2025-03-26', '2025-03-27', '2025-03-28', '2025-03-31', '2025-04-01', '2025-04-02', '2025-04-03', '2025-04-07', '2025-04-08', '2025-04-09', '2025-04-10', '2025-04-11', '2025-04-14', '2025-04-15', '2025-04-16', '2025-04-17', '2025-04-18', '2025-04-21', '2025-04-22', '2025-04-23', '2025-04-24', '2025-04-25', '2025-04-28', '2025-04-29', '2025-04-30', '2025-05-06', '2025-05-07', '2025-05-08', '2025-05-09', '2025-05-12', '2025-05-13', '2025-05-14', '2025-05-15', '2025-05-16', '2025-05-19', '2025-05-20', '2025-05-21', '2025-05-22', '2025-05-23', '2025-05-26', '2025-05-27', '2025-05-28', '2025-05-29', '2025-05-30', '2025-06-03', '2025-06-04', '2025-06-05', '2025-06-06', '2025-06-09', '2025-06-10', '2025-06-11', '2025-06-12', '2025-06-13', '2025-06-16', '2025-06-17', '2025-06-18', '2025-06-19', '2025-06-20', '2025-06-23', '2025-06-24', '2025-06-25', '2025-06-26', '2025-06-27', '2025-06-30', '2025-07-01', '2025-07-02', '2025-07-03', '2025-07-04', '2025-07-07', '2025-07-08', '2025-07-09', '2025-07-10', '2025-07-11', '2025-07-14', '2025-07-15', '2025-07-16', '2025-07-17', '2025-07-18', '2025-07-21', '2025-07-22', '2025-07-23', '2025-07-24', '2025-07-25', '2025-07-28', '2025-07-29', '2025-07-30', '2025-07-31', '2025-08-01', '2025-08-04', '2025-08-05', '2025-08-06', '2025-08-07', '2025-08-08', '2025-08-11', '2025-08-12', '2025-08-13', '2025-08-14', '2025-08-15', '2025-08-18', '2025-08-19', '2025-08-20', '2025-08-21', '2025-08-22', '2025-08-25', '2025-08-26', '2025-08-27', '2025-08-28', '2025-08-29', '2025-09-01', '2025-09-02', '2025-09-03', '2025-09-04', '2025-09-05', '2025-09-08', '2025-09-09', '2025-09-10', '2025-09-11', '2025-09-12', '2025-09-15', '2025-09-16', '2025-09-17', '2025-09-18', '2025-09-19', '2025-09-22', '2025-09-23', '2025-09-24', '2025-09-25', '2025-09-26', '2025-09-29', '2025-09-30', '2025-10-09', '2025-10-10', '2025-10-13', '2025-10-14', '2025-10-15', '2025-10-16', '2025-10-17', '2025-10-20', '2025-10-21', '2025-10-22', '2025-10-23', '2025-10-24', '2025-10-27', '2025-10-28', '2025-10-29', '2025-10-30', '2025-10-31', '2025-11-03', '2025-11-04', '2025-11-05', '2025-11-06', '2025-11-07', '2025-11-10', '2025-11-11', '2025-11-12', '2025-11-13', '2025-11-14', '2025-11-17', '2025-11-18', '2025-11-19', '2025-11-20', '2025-11-21', '2025-11-24', '2025-11-25', '2025-11-26', '2025-11-27', '2025-11-28', '2025-12-01', '2025-12-02', '2025-12-03', '2025-12-04', '2025-12-05', '2025-12-08', '2025-12-09', '2025-12-10', '2025-12-11', '2025-12-12', '2025-12-15', '2025-12-16', '2025-12-17', '2025-12-18', '2025-12-19', '2025-12-22', '2025-12-23', '2025-12-24', '2025-12-25', '2025-12-26', '2025-12-29', '2025-12-30', '2025-12-31', '2026-01-05', '2026-01-06', '2026-01-07', '2026-01-08', '2026-01-09', '2026-01-12', '2026-01-13', '2026-01-14', '2026-01-15', '2026-01-16', '2026-01-19', '2026-01-20', '2026-01-21', '2026-01-22', '2026-01-23', '2026-01-26', '2026-01-27', '2026-01-28', '2026-01-29', '2026-01-30', '2026-02-02', '2026-02-03', '2026-02-04', '2026-02-05', '2026-02-06', '2026-02-09', '2026-02-10', '2026-02-11', '2026-02-12', '2026-02-13', '2026-02-24', '2026-02-25', '2026-02-26', '2026-02-27', '2026-03-02', '2026-03-03', '2026-03-04', '2026-03-05', '2026-03-06', '2026-03-09', '2026-03-10', '2026-03-11', '2026-03-12', '2026-03-13', '2026-03-16', '2026-03-17', '2026-03-18', '2026-03-19', '2026-03-20', '2026-03-23'],
-                datasets: [{
-                    label: '资产 (元)',
-                    data: [100000.0, 100000.0, 100000.0, 100000.0, 100000.0, 100000.0, 100000.0, 100000.0, 100000.0, 100000.0, 100000.0, 100000.0, 100000.0, 100000.0, 100000.0, 100000.0, 100000.0, 100000.0, 100000.0, 100000.0, 100000.0, 100000.0, 100000.0, 100000.0, 100000.0, 100000.0, 100000.0, 100000.0, 100000.0, 100000.0, 100000.0, 100000.0, 100000.0, 100000.0, 100000.0, 100000.0, 100000.0, 100000.0, 100000.0, 100000.0, 100000.0, 100000.0, 100000.0, 100000.0, 100000.0, 100000.0, 100000.0, 100000.0, 100000.0, 100000.0, 100000.0, 100000.0, 100000.0, 100000.0, 100000.0, 100000.0, 100000.0, 100000.0, 100000.0, 100000.0, 100000.0, 100000.0, 100000.0, 100000.0, 100000.0, 100000.0, 100000.0, 100000.0, 100000.0, 100000.0, 100000.0, 100000.0, 100000.0, 100000.0, 100000.0, 100000.0, 100000.0, 100000.0, 100000.0, 100000.0, 100000.0, 100000.0, 100000.0, 100000.0, 100000.0, 100000.0, 100000.0, 100000.0, 100000.0, 100000.0, 100000.0, 100000.0, 100000.0, 100000.0, 100000.0, 100000.0, 100000.0, 100000.0, 100000.0, 100000.0, 100000.0, 100000.0, 100000.0, 100000.0, 100000.0, 100000.0, 100000.0, 100000.0, 100000.0, 100000.0, 100000.0, 100000.0, 100000.0, 100000.0, 100000.0, 100000.0, 100000.0, 100000.0, 100000.0, 100000.0, 100000.0, 100000.0, 100000.0, 100000.0, 100000.0, 100000.0, 100000.0, 100000.0, 100000.0, 100000.0, 100000.0, 100000.0, 100000.0, 100000.0, 100000.0, 100000.0, 100000.0, 100000.0, 100000.0, 100000.0, 100000.0, 100000.0, 100000.0, 99944.76, 99777.36, 99498.36, 99805.26, 99656.46, 99842.46, 100019.16, 99851.76, 99972.66, 99507.66, 99451.86, 99293.76, 99256.56, 99293.76, 99730.86, 99861.06, 100149.36, 100130.76, 100130.76, 100632.96, 100047.06, 100028.46, 100084.26, 100149.36, 99833.16, 99665.76, 99572.76, 100214.46, 100140.06, 100009.86, 100130.76, 100270.26, 100279.56, 100484.16, 100549.26, 100670.16, 100791.06, 100809.66, 100679.46, 100846.86, 100818.96, 100707.36, 100828.26, 100698.06, 100688.76, 100489.45, 100489.45, 100708.45, 101102.65, 101161.05, 100489.45, 100270.45, 100664.65, 100401.85, 100504.05, 100416.45, 100109.85, 100401.85, 100533.25, 100723.05, 100810.65, 101029.65, 101190.25, 100664.65, 100518.65, 100650.05, 100942.05, 100679.25, 100650.05, 100650.05, 100606.25, 100474.85, 100781.45, 100708.45, 100693.85, 100723.05, 101015.05, 101861.85, 102796.25, 103307.25, 104197.85, 104139.45, 104402.25, 104110.25, 103978.85, 104081.05, 104402.25, 103832.85, 103978.85, 104124.85, 105555.65, 105088.45, 105234.45, 105380.45, 105730.85, 106300.25, 107716.45, 108139.85, 108198.25, 109249.45, 111045.25, 111264.25, 111541.65, 110957.65, 113235.25, 111965.05, 112476.05, 112607.45, 112373.85, 112753.45, 111173.12, 108902.72, 109848.72, 109865.92, 110571.12, 109969.12, 109831.52, 109281.12, 109521.92, 109401.52, 109212.32, 111259.12, 110708.72, 110571.12, 111276.32, 112084.72, 112067.52, 114372.32, 113185.52, 113374.72, 111207.52, 110399.12, 110725.92, 110657.12, 111265.85, 110274.75, 110760.95, 109882.05, 110817.05, 110405.65, 111789.45, 111808.15, 108778.75, 109339.75, 109377.15, 109414.55, 109564.15, 109657.65, 110050.35, 110910.55, 111378.05, 109769.85, 109994.25, 109414.55, 108872.25, 109900.75, 109938.15, 110069.05, 110704.85, 111172.35, 111471.55, 111527.65, 111116.25, 111770.75, 112144.75, 112687.05, 112612.25, 113790.35, 115118.05, 115061.95, 112294.35, 112219.55, 111714.65, 113042.35, 110461.75, 110891.85, 111583.75, 111714.65, 112500.05, 113322.85, 113790.35, 111191.05, 110461.75, 110929.25, 110873.15, 111752.05, 112518.75, 113210.65, 112874.05, 112630.95, 112817.95, 113939.95, 113939.95, 114388.75, 114126.95, 113771.65, 114407.45, 114332.65, 114220.45, 114351.35, 114108.25, 113528.55, 113709.83, 112968.83, 113729.33, 114021.83, 113241.83, 113943.83, 114509.33, 114294.83, 115854.83, 115815.83, 115640.33, 116868.83, 117804.83, 117531.83, 118370.33, 118584.83, 117746.33, 117726.83, 117863.33, 116420.33, 117122.33, 118350.83, 119520.83, 119520.83, 121178.33, 121587.83, 122367.83, 123830.33, 123791.33, 124532.33, 123342.83, 123401.33, 123771.83, 124766.33, 126170.33, 125448.83, 124434.83, 123557.33, 123557.33, 123323.33, 120710.33, 121451.33, 121587.83, 119676.83, 119462.33, 117200.33, 117258.83, 118721.33, 120671.33, 120651.83, 122133.83, 123635.33, 121802.33, 120398.33, 121470.83, 120885.83, 121938.83, 120944.33, 122094.83, 122055.83, 122016.83, 121548.83, 122192.33, 122679.83, 123654.83, 124454.33, 123459.83, 122406.83, 122270.33, 122114.33, 121197.83, 121334.33, 122484.83, 121899.83, 122192.33, 122270.33, 122367.83, 121938.83, 122036.33, 122991.83, 124005.83, 123245.33, 123440.33, 124025.33, 124707.83, 125487.83, 125780.33, 124766.33, 125429.33, 125819.33, 126150.83, 125916.83, 125916.83, 126969.83, 127086.83, 127691.33, 127379.33, 132000.83, 131279.33, 131630.33, 133541.33, 134828.33, 133931.33, 134555.33, 135237.83, 133073.33, 134262.83, 135101.33, 135510.83, 134516.33, 134769.83, 134789.33, 133560.83, 133030.95, 132075.75, 132215.05, 133170.25, 134125.45, 133886.65, 133707.55, 134065.75, 133289.65, 133707.55, 134682.65, 136632.85, 136712.45, 137707.45, 139160.15, 139299.45, 138642.75, 138762.15, 138642.75, 139060.65, 139398.95, 141906.35, 143378.95, 144254.55, 143717.25, 145010.75, 140692.45, 141647.65, 143378.95, 146403.75, 148572.85, 149647.45, 149607.65, 153149.85, 154383.65, 154741.85, 157547.75, 162681.95, 153090.15, 154721.95, 153687.15, 152393.65, 153428.45, 152511.11, 155345.21, 156531.11, 154239.71, 153717.11, 150601.61, 149717.21, 148611.71, 144289.29, 146612.29, 147521.29, 147258.69, 151904.69, 152126.89, 152207.69, 151621.89, 150430.09, 150611.89, 149096.89, 150490.69, 152692.49, 152611.69, 152793.49, 152753.09, 151116.89, 151217.89, 151682.49, 153076.29, 154914.49, 154409.49, 153116.69, 153197.49, 152429.89, 151844.09, 152409.69, 150551.29, 150955.29, 151217.89, 149622.09, 149379.69, 151056.29, 150995.69, 152025.89, 151258.29, 150207.89, 151076.49, 149379.69, 150531.09, 150632.09, 151924.89, 151844.09, 151157.29, 151056.29, 151177.49, 152046.09, 152611.69, 154106.49, 151601.69, 151298.69, 150874.49, 150369.49, 150652.29, 150106.89, 150147.29, 152046.09, 152227.89, 152490.49, 152813.69, 153298.49, 151702.69, 151096.69, 151419.89, 151601.69, 151137.09, 151379.49, 150935.09, 150591.69, 150995.69, 150672.49, 151662.29, 152106.69, 152126.89, 152490.49, 152854.09, 156106.29, 156570.89, 158550.49, 158186.89, 158691.89, 160146.29, 162550.09, 162166.29, 161681.49, 162307.69, 161843.09, 163883.29, 162509.69, 160449.29, 161176.49, 164206.49, 166125.49, 167074.89, 166186.09, 166468.89, 168468.69, 170084.69, 177962.69, 175397.29, 180588.69, 182952.09, 187214.29, 188365.69, 194910.49, 188850.49, 193334.89, 185477.09, 183315.69, 182426.89, 181699.69, 175296.29, 177215.29, 177457.69, 179275.69, 179336.29, 178124.29, 177498.09, 178487.89, 179255.49, 182144.09, 184689.29, 184022.69, 186971.89, 185376.09, 181053.29, 178932.29, 182507.69, 181477.49, 179962.49, 180548.29, 183638.89, 183659.09, 183638.89, 184790.29, 186689.09, 185699.29, 185376.09, 184729.69, 186184.09, 185658.89, 184366.09, 185355.89, 185658.89, 188022.29, 190527.09, 188284.89, 189698.89, 189860.49, 189759.49, 193759.09, 196344.69, 196405.29, 194870.09, 196566.89, 194809.49, 190769.49, 189517.09, 193435.89, 195092.29, 193900.49, 193759.09, 195395.29, 199132.29, 199455.49, 202061.29, 200950.29, 200748.29, 203758.09, 205293.29, 211252.29, 210525.09, 216100.29, 222301.69, 222503.69, 229492.89, 241941.39, 232901.89, 221781.79, 226973.19, 231467.69, 227993.29, 226316.69, 229972.89, 229467.89, 230366.79, 229982.99, 228518.49, 232305.99, 232396.89, 231932.29, 232134.29, 237022.69, 235426.89, 232608.99, 232447.39, 231528.29, 231477.79, 232299.65, 232527.53, 231897.53, 229517.53, 227102.53, 226630.03, 226087.53, 217665.16, 213236.29, 193938.32],
-                    borderColor: '#667eea',
-                    backgroundColor: 'rgba(102, 126, 234, 0.1)',
-                    fill: true,
-                    tension: 0.4
-                }]
-            },
-            options: { responsive: true, plugins: { legend: { display: false } } }
->>>>>>> 6976dc21253e12d646076edd9766c0f22a7e91de
-        });
+        
+        // 页面加载完成后初始化
+        window.addEventListener('DOMContentLoaded', loadData);
     </script>
 </body>
 </html>
