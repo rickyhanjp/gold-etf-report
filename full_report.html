@@ -1,0 +1,653 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>ETF 轮动策略 v2.0 - 完整回测报告 (2023-2026)</title>
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; background-color: #f5f5f5; }
+        .container { max-width: 1400px; margin: 0 auto; background: white; padding: 30px; border-radius: 10px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
+        h1 { color: #2E8B57; text-align: center; }
+        h2 { color: #4169E1; border-bottom: 2px solid #4169E1; padding-bottom: 10px; }
+        .stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; margin: 30px 0; }
+        .stat-card { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 20px; border-radius: 10px; text-align: center; }
+        .stat-value { font-size: 2em; font-weight: bold; }
+        .stat-label { font-size: 0.9em; opacity: 0.9; }
+        .chart { margin: 30px 0; }
+        table { width: 100%; border-collapse: collapse; margin: 20px 0; }
+        th, td { padding: 12px; text-align: center; border-bottom: 1px solid #ddd; }
+        th { background-color: #2E8B57; color: white; }
+        tr:hover { background-color: #f5f5f5; }
+        .positive { color: green; }
+        .negative { color: red; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>📊 ETF 轮动策略 v2.0 - 完整回测报告</h1>
+        <p style="text-align: center; color: #666;">回测区间：2023-01-03 至 2026-03-27 (3.2 年)</p>
+        
+        <h2>📈 核心绩效指标</h2>
+        <div class="stats">
+            <div class="stat-card">
+                <div class="stat-value" style="color: #90EE90;">+144.44%</div>
+                <div class="stat-label">累计收益</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-value" style="color: #FFD700;">34.60%</div>
+                <div class="stat-label">年化收益</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-value" style="color: #FFB6C1;">-22.33%</div>
+                <div class="stat-label">最大回撤</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-value" style="color: #87CEEB;">1.157</div>
+                <div class="stat-label">夏普比率</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-value" style="color: #DDA0DD;">27.31%</div>
+                <div class="stat-label">波动率</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-value" style="color: #F0E68C;">169</div>
+                <div class="stat-label">交易次数</div>
+            </div>
+        </div>
+        
+        <h2>📊 净值曲线</h2>
+        <div class="chart" id="nav-curve"></div>
+        
+        <h2>📉 回撤曲线</h2>
+        <div class="chart" id="drawdown-curve"></div>
+        
+        <h2>📊 年度收益</h2>
+        <div class="chart" id="yearly-returns"></div>
+        
+        <h2>🎯 ETF 持仓偏好</h2>
+        <div class="chart" id="etf-allocation"></div>
+        
+        <h2>📝 交易明细</h2>
+        <div style="overflow-x: auto;">
+            <table>
+                <thead>
+                    <tr>
+                        <th>日期</th>
+                        <th>类型</th>
+                        <th>ETF 代码</th>
+                        <th>ETF 名称</th>
+                        <th>价格</th>
+                        <th>份额</th>
+                        <th>金额</th>
+                        <th>原因</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    
+                    <tr>
+                        <td>2023-02-13</td>
+                        <td>🟢 买入</td>
+                        <td>159915</td>
+                        <td>创业板 ETF</td>
+                        <td>¥2.497</td>
+                        <td>38,026</td>
+                        <td>¥95,000</td>
+                        <td>轮动</td>
+                    </tr>
+                    
+                    <tr>
+                        <td>2023-02-14</td>
+                        <td>🔴 卖出</td>
+                        <td>159915</td>
+                        <td>创业板 ETF</td>
+                        <td>¥2.488</td>
+                        <td>38,026</td>
+                        <td>¥94,592</td>
+                        <td>轮动</td>
+                    </tr>
+                    
+                    <tr>
+                        <td>2023-02-14</td>
+                        <td>🟢 买入</td>
+                        <td>513100</td>
+                        <td>纳指 ETF</td>
+                        <td>¥0.872</td>
+                        <td>108,452</td>
+                        <td>¥94,585</td>
+                        <td>轮动</td>
+                    </tr>
+                    
+                    <tr>
+                        <td>2023-03-03</td>
+                        <td>🔴 卖出</td>
+                        <td>513100</td>
+                        <td>纳指 ETF</td>
+                        <td>¥0.848</td>
+                        <td>108,452</td>
+                        <td>¥91,984</td>
+                        <td>轮动</td>
+                    </tr>
+                    
+                    <tr>
+                        <td>2023-03-03</td>
+                        <td>🟢 买入</td>
+                        <td>511010</td>
+                        <td>国债 ETF</td>
+                        <td>¥126.424</td>
+                        <td>728</td>
+                        <td>¥92,088</td>
+                        <td>轮动</td>
+                    </tr>
+                    
+                    <tr>
+                        <td>2023-03-06</td>
+                        <td>🔴 卖出</td>
+                        <td>511010</td>
+                        <td>国债 ETF</td>
+                        <td>¥126.261</td>
+                        <td>728</td>
+                        <td>¥91,941</td>
+                        <td>轮动</td>
+                    </tr>
+                    
+                    <tr>
+                        <td>2023-03-06</td>
+                        <td>🟢 买入</td>
+                        <td>513100</td>
+                        <td>纳指 ETF</td>
+                        <td>¥0.872</td>
+                        <td>105,399</td>
+                        <td>¥91,923</td>
+                        <td>轮动</td>
+                    </tr>
+                    
+                    <tr>
+                        <td>2023-03-09</td>
+                        <td>🔴 卖出</td>
+                        <td>513100</td>
+                        <td>纳指 ETF</td>
+                        <td>¥0.867</td>
+                        <td>105,399</td>
+                        <td>¥91,395</td>
+                        <td>轮动</td>
+                    </tr>
+                    
+                    <tr>
+                        <td>2023-03-09</td>
+                        <td>🟢 买入</td>
+                        <td>511010</td>
+                        <td>国债 ETF</td>
+                        <td>¥126.702</td>
+                        <td>721</td>
+                        <td>¥91,396</td>
+                        <td>轮动</td>
+                    </tr>
+                    
+                    <tr>
+                        <td>2023-03-10</td>
+                        <td>🔴 卖出</td>
+                        <td>511010</td>
+                        <td>国债 ETF</td>
+                        <td>¥126.497</td>
+                        <td>721</td>
+                        <td>¥91,221</td>
+                        <td>轮动</td>
+                    </tr>
+                    
+                    <tr>
+                        <td>2023-03-10</td>
+                        <td>🟢 买入</td>
+                        <td>518880</td>
+                        <td>黄金 ETF</td>
+                        <td>¥4.065</td>
+                        <td>22,429</td>
+                        <td>¥91,204</td>
+                        <td>轮动</td>
+                    </tr>
+                    
+                    <tr>
+                        <td>2023-04-03</td>
+                        <td>🔴 卖出</td>
+                        <td>518880</td>
+                        <td>黄金 ETF</td>
+                        <td>¥4.217</td>
+                        <td>22,429</td>
+                        <td>¥94,579</td>
+                        <td>轮动</td>
+                    </tr>
+                    
+                    <tr>
+                        <td>2023-04-03</td>
+                        <td>🟢 买入</td>
+                        <td>513100</td>
+                        <td>纳指 ETF</td>
+                        <td>¥0.921</td>
+                        <td>102,457</td>
+                        <td>¥94,384</td>
+                        <td>轮动</td>
+                    </tr>
+                    
+                    <tr>
+                        <td>2023-04-10</td>
+                        <td>🔴 卖出</td>
+                        <td>513100</td>
+                        <td>纳指 ETF</td>
+                        <td>¥0.909</td>
+                        <td>102,457</td>
+                        <td>¥93,143</td>
+                        <td>轮动</td>
+                    </tr>
+                    
+                    <tr>
+                        <td>2023-04-10</td>
+                        <td>🟢 买入</td>
+                        <td>518880</td>
+                        <td>黄金 ETF</td>
+                        <td>¥4.291</td>
+                        <td>21,706</td>
+                        <td>¥93,179</td>
+                        <td>轮动</td>
+                    </tr>
+                    
+                    <tr>
+                        <td>2023-04-14</td>
+                        <td>🔴 卖出</td>
+                        <td>518880</td>
+                        <td>黄金 ETF</td>
+                        <td>¥4.362</td>
+                        <td>21,706</td>
+                        <td>¥94,678</td>
+                        <td>轮动</td>
+                    </tr>
+                    
+                    <tr>
+                        <td>2023-04-14</td>
+                        <td>🟢 买入</td>
+                        <td>513100</td>
+                        <td>纳指 ETF</td>
+                        <td>¥0.911</td>
+                        <td>103,794</td>
+                        <td>¥94,576</td>
+                        <td>轮动</td>
+                    </tr>
+                    
+                    <tr>
+                        <td>2023-04-20</td>
+                        <td>🔴 卖出</td>
+                        <td>513100</td>
+                        <td>纳指 ETF</td>
+                        <td>¥0.911</td>
+                        <td>103,794</td>
+                        <td>¥94,566</td>
+                        <td>轮动</td>
+                    </tr>
+                    
+                    <tr>
+                        <td>2023-04-20</td>
+                        <td>🟢 买入</td>
+                        <td>510300</td>
+                        <td>沪深 300ETF</td>
+                        <td>¥3.827</td>
+                        <td>24,697</td>
+                        <td>¥94,540</td>
+                        <td>轮动</td>
+                    </tr>
+                    
+                    <tr>
+                        <td>2023-04-21</td>
+                        <td>🔴 卖出</td>
+                        <td>510300</td>
+                        <td>沪深 300ETF</td>
+                        <td>¥3.746</td>
+                        <td>24,697</td>
+                        <td>¥92,521</td>
+                        <td>轮动</td>
+                    </tr>
+                    
+                    <tr>
+                        <td>2023-04-21</td>
+                        <td>🟢 买入</td>
+                        <td>513100</td>
+                        <td>纳指 ETF</td>
+                        <td>¥0.909</td>
+                        <td>101,845</td>
+                        <td>¥92,596</td>
+                        <td>轮动</td>
+                    </tr>
+                    
+                    <tr>
+                        <td>2023-04-26</td>
+                        <td>🔴 卖出</td>
+                        <td>513100</td>
+                        <td>纳指 ETF</td>
+                        <td>¥0.903</td>
+                        <td>101,845</td>
+                        <td>¥91,976</td>
+                        <td>轮动</td>
+                    </tr>
+                    
+                    <tr>
+                        <td>2023-04-26</td>
+                        <td>🟢 买入</td>
+                        <td>518880</td>
+                        <td>黄金 ETF</td>
+                        <td>¥4.327</td>
+                        <td>21,249</td>
+                        <td>¥91,981</td>
+                        <td>轮动</td>
+                    </tr>
+                    
+                    <tr>
+                        <td>2023-04-28</td>
+                        <td>🔴 卖出</td>
+                        <td>518880</td>
+                        <td>黄金 ETF</td>
+                        <td>¥4.294</td>
+                        <td>21,249</td>
+                        <td>¥91,239</td>
+                        <td>轮动</td>
+                    </tr>
+                    
+                    <tr>
+                        <td>2023-04-28</td>
+                        <td>🟢 买入</td>
+                        <td>513100</td>
+                        <td>纳指 ETF</td>
+                        <td>¥0.924</td>
+                        <td>98,733</td>
+                        <td>¥91,250</td>
+                        <td>轮动</td>
+                    </tr>
+                    
+                    <tr>
+                        <td>2023-05-04</td>
+                        <td>🔴 卖出</td>
+                        <td>513100</td>
+                        <td>纳指 ETF</td>
+                        <td>¥0.917</td>
+                        <td>98,733</td>
+                        <td>¥90,547</td>
+                        <td>轮动</td>
+                    </tr>
+                    
+                    <tr>
+                        <td>2023-05-04</td>
+                        <td>🟢 买入</td>
+                        <td>518880</td>
+                        <td>黄金 ETF</td>
+                        <td>¥4.399</td>
+                        <td>20,577</td>
+                        <td>¥90,556</td>
+                        <td>轮动</td>
+                    </tr>
+                    
+                    <tr>
+                        <td>2023-05-12</td>
+                        <td>🔴 卖出</td>
+                        <td>518880</td>
+                        <td>黄金 ETF</td>
+                        <td>¥4.361</td>
+                        <td>20,577</td>
+                        <td>¥89,732</td>
+                        <td>轮动</td>
+                    </tr>
+                    
+                    <tr>
+                        <td>2023-05-12</td>
+                        <td>🟢 买入</td>
+                        <td>513100</td>
+                        <td>纳指 ETF</td>
+                        <td>¥0.947</td>
+                        <td>94,747</td>
+                        <td>¥89,747</td>
+                        <td>轮动</td>
+                    </tr>
+                    
+                    <tr>
+                        <td>2023-07-28</td>
+                        <td>🔴 卖出</td>
+                        <td>513100</td>
+                        <td>纳指 ETF</td>
+                        <td>¥1.133</td>
+                        <td>94,747</td>
+                        <td>¥107,336</td>
+                        <td>轮动</td>
+                    </tr>
+                    
+                    <tr>
+                        <td>2023-07-28</td>
+                        <td>🟢 买入</td>
+                        <td>510300</td>
+                        <td>沪深 300ETF</td>
+                        <td>¥3.792</td>
+                        <td>28,059</td>
+                        <td>¥106,426</td>
+                        <td>轮动</td>
+                    </tr>
+                    
+                    <tr>
+                        <td>2023-07-31</td>
+                        <td>🔴 卖出</td>
+                        <td>510300</td>
+                        <td>沪深 300ETF</td>
+                        <td>¥3.800</td>
+                        <td>28,059</td>
+                        <td>¥106,630</td>
+                        <td>轮动</td>
+                    </tr>
+                    
+                    <tr>
+                        <td>2023-07-31</td>
+                        <td>🟢 买入</td>
+                        <td>513100</td>
+                        <td>纳指 ETF</td>
+                        <td>¥1.150</td>
+                        <td>92,646</td>
+                        <td>¥106,589</td>
+                        <td>轮动</td>
+                    </tr>
+                    
+                    <tr>
+                        <td>2023-08-02</td>
+                        <td>🔴 卖出</td>
+                        <td>513100</td>
+                        <td>纳指 ETF</td>
+                        <td>¥1.136</td>
+                        <td>92,646</td>
+                        <td>¥105,234</td>
+                        <td>轮动</td>
+                    </tr>
+                    
+                    <tr>
+                        <td>2023-08-02</td>
+                        <td>🟢 买入</td>
+                        <td>510300</td>
+                        <td>沪深 300ETF</td>
+                        <td>¥3.761</td>
+                        <td>27,983</td>
+                        <td>¥105,271</td>
+                        <td>轮动</td>
+                    </tr>
+                    
+                    <tr>
+                        <td>2023-08-15</td>
+                        <td>🔴 卖出</td>
+                        <td>510300</td>
+                        <td>沪深 300ETF</td>
+                        <td>¥3.635</td>
+                        <td>27,983</td>
+                        <td>¥101,731</td>
+                        <td>轮动</td>
+                    </tr>
+                    
+                    <tr>
+                        <td>2023-08-15</td>
+                        <td>🟢 买入</td>
+                        <td>513100</td>
+                        <td>纳指 ETF</td>
+                        <td>¥1.125</td>
+                        <td>90,521</td>
+                        <td>¥101,879</td>
+                        <td>轮动</td>
+                    </tr>
+                    
+                    <tr>
+                        <td>2023-08-16</td>
+                        <td>🔴 卖出</td>
+                        <td>513100</td>
+                        <td>纳指 ETF</td>
+                        <td>¥1.111</td>
+                        <td>90,521</td>
+                        <td>¥100,560</td>
+                        <td>轮动</td>
+                    </tr>
+                    
+                    <tr>
+                        <td>2023-08-16</td>
+                        <td>🟢 买入</td>
+                        <td>511010</td>
+                        <td>国债 ETF</td>
+                        <td>¥129.886</td>
+                        <td>774</td>
+                        <td>¥100,597</td>
+                        <td>轮动</td>
+                    </tr>
+                    
+                    <tr>
+                        <td>2023-08-24</td>
+                        <td>🔴 卖出</td>
+                        <td>511010</td>
+                        <td>国债 ETF</td>
+                        <td>¥129.654</td>
+                        <td>774</td>
+                        <td>¥100,388</td>
+                        <td>轮动</td>
+                    </tr>
+                    
+                    <tr>
+                        <td>2023-08-24</td>
+                        <td>🟢 买入</td>
+                        <td>513100</td>
+                        <td>纳指 ETF</td>
+                        <td>¥1.135</td>
+                        <td>88,394</td>
+                        <td>¥100,369</td>
+                        <td>轮动</td>
+                    </tr>
+                    
+                    <tr>
+                        <td>2023-08-25</td>
+                        <td>🔴 卖出</td>
+                        <td>513100</td>
+                        <td>纳指 ETF</td>
+                        <td>¥1.090</td>
+                        <td>88,394</td>
+                        <td>¥96,342</td>
+                        <td>轮动</td>
+                    </tr>
+                    
+                    <tr>
+                        <td>2023-08-25</td>
+                        <td>🟢 买入</td>
+                        <td>511010</td>
+                        <td>国债 ETF</td>
+                        <td>¥129.851</td>
+                        <td>743</td>
+                        <td>¥96,516</td>
+                        <td>轮动</td>
+                    </tr>
+                    
+                    <tr>
+                        <td>2023-08-29</td>
+                        <td>🔴 卖出</td>
+                        <td>511010</td>
+                        <td>国债 ETF</td>
+                        <td>¥129.265</td>
+                        <td>743</td>
+                        <td>¥96,051</td>
+                        <td>轮动</td>
+                    </tr>
+                    
+                    <tr>
+                        <td>2023-08-29</td>
+                        <td>🟢 买入</td>
+                        <td>518880</td>
+                        <td>黄金 ETF</td>
+                        <td>¥4.466</td>
+                        <td>21,497</td>
+                        <td>¥96,047</td>
+                        <td>轮动</td>
+                    </tr>
+                    
+                    <tr>
+                        <td>2023-11-06</td>
+                        <td>🔴 卖出</td>
+                        <td>518880</td>
+                        <td>黄金 ETF</td>
+                        <td>¥4.582</td>
+                        <td>21,497</td>
+                        <td>¥98,511</td>
+                        <td>轮动</td>
+                    </tr>
+                    
+                    <tr>
+                        <td>2023-11-06</td>
+                        <td>🟢 买入</td>
+                        <td>159915</td>
+                        <td>创业板 ETF</td>
+                        <td>¥1.983</td>
+                        <td>49,586</td>
+                        <td>¥98,360</td>
+                        <td>轮动</td>
+                    </tr>
+                    
+                    <tr>
+                        <td>2023-11-07</td>
+                        <td>🔴 卖出</td>
+                        <td>159915</td>
+                        <td>创业板 ETF</td>
+                        <td>¥1.965</td>
+                        <td>49,586</td>
+                        <td>¥97,440</td>
+                        <td>轮动</td>
+                    </tr>
+                    
+                    <tr>
+                        <td>2023-11-07</td>
+                        <td>🟢 买入</td>
+                        <td>513100</td>
+                        <td>纳指 ETF</td>
+                        <td>¥1.111</td>
+                        <td>87,686</td>
+                        <td>¥97,458</td>
+                        <td>轮动</td>
+                    </tr>
+                    
+                    <tr>
+                        <td>2023-11-08</td>
+                        <td>🔴 卖出</td>
+                        <td>513100</td>
+                        <td>纳指 ETF</td>
+                        <td>¥1.119</td>
+                        <td>87,686</td>
+                        <td>¥98,110</td>
+                        <td>轮动</td>
+                    </tr>
+                    
+                </tbody>
+            </table>
+            <p style="text-align: center; color: #666;">... 更多交易记录请查看 trades_table.html</p>
+        </div>
+        
+        <p style="text-align: center; margin-top: 50px; color: #999; font-size: 0.9em;">
+            报告生成时间：2026-03-30 01:51:48 | 使用 Plotly 交互式图表
+        </p>
+    </div>
+    
+    <script>
+        // 这里可以嵌入 Plotly 图表数据
+        // 为简化，实际使用时可加载单独的 HTML 文件
+    </script>
+</body>
+</html>
