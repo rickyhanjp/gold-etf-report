@@ -1,15 +1,14 @@
-
 <!DOCTYPE html>
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>ETF 轮动策略 v2.0 - 完整回测报告 (2023-2026)</title>
+    <title>ETF 轮动策略 v3.0 - 完整回测报告 (2023-2026)</title>
     <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
     <style>
         body { font-family: Arial, sans-serif; margin: 20px; background-color: #f5f5f5; }
         .container { max-width: 1400px; margin: 0 auto; background: white; padding: 30px; border-radius: 10px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
         h1 { color: #2E8B57; text-align: center; }
-        h2 { color: #4169E1; border-bottom: 2px solid #4169E1; padding-bottom: 10px; }
+        h2 { color: #4169E1; border-bottom: 2px solid #4169E1; padding-bottom: 10px; margin-top: 40px; }
         .stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; margin: 30px 0; }
         .stat-card { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 20px; border-radius: 10px; text-align: center; }
         .stat-value { font-size: 2em; font-weight: bold; }
@@ -21,11 +20,12 @@
         tr:hover { background-color: #f5f5f5; }
         .positive { color: green; }
         .negative { color: red; }
+        .chart-container { background: white; border-radius: 8px; padding: 20px; box-shadow: 0 1px 3px rgba(0,0,0,0.1); }
     </style>
 </head>
 <body>
     <div class="container">
-        <h1>📊 ETF 轮动策略 v2.0 - 完整回测报告</h1>
+        <h1>📊 ETF 轮动策略 v3.0 - 完整回测报告</h1>
         <p style="text-align: center; color: #666;">回测区间：2023-01-03 至 2026-03-27 (3.2 年)</p>
         
         <h2>📈 核心绩效指标</h2>
@@ -57,18 +57,26 @@
         </div>
         
         <h2>📊 净值曲线</h2>
-        <div class="chart" id="nav-curve"></div>
+        <div class="chart-container">
+            <div id="nav-curve" class="chart"></div>
+        </div>
         
         <h2>📉 回撤曲线</h2>
-        <div class="chart" id="drawdown-curve"></div>
+        <div class="chart-container">
+            <div id="drawdown-curve" class="chart"></div>
+        </div>
         
         <h2>📊 年度收益</h2>
-        <div class="chart" id="yearly-returns"></div>
+        <div class="chart-container">
+            <div id="yearly-returns" class="chart"></div>
+        </div>
         
         <h2>🎯 ETF 持仓偏好</h2>
-        <div class="chart" id="etf-allocation"></div>
+        <div class="chart-container">
+            <div id="etf-allocation" class="chart"></div>
+        </div>
         
-        <h2>📝 交易明细</h2>
+        <h2>📝 交易明细（从新到旧）</h2>
         <div style="overflow-x: auto;">
             <table>
                 <thead>
@@ -86,544 +94,1195 @@
                 <tbody>
                     
                     <tr>
-                        <td>2023-02-13</td>
+                        <td>2026-03-27</td>
                         <td>🟢 买入</td>
                         <td>159915</td>
                         <td>创业板 ETF</td>
-                        <td>¥2.497</td>
-                        <td>38,026</td>
-                        <td>¥95,000</td>
+                        <td>¥3.296</td>
+                        <td>70,514</td>
+                        <td>¥232,508</td>
                         <td>轮动</td>
                     </tr>
-                    
                     <tr>
-                        <td>2023-02-14</td>
+                        <td>2026-03-27</td>
+                        <td>🔴 卖出</td>
+                        <td>511010</td>
+                        <td>国债 ETF</td>
+                        <td>¥140.236</td>
+                        <td>1,658</td>
+                        <td>¥232,554</td>
+                        <td>轮动</td>
+                    </tr>
+                    <tr>
+                        <td>2026-03-26</td>
+                        <td>🟢 买入</td>
+                        <td>511010</td>
+                        <td>国债 ETF</td>
+                        <td>¥140.431</td>
+                        <td>1,658</td>
+                        <td>¥232,948</td>
+                        <td>轮动</td>
+                    </tr>
+                    <tr>
+                        <td>2026-03-26</td>
                         <td>🔴 卖出</td>
                         <td>159915</td>
                         <td>创业板 ETF</td>
-                        <td>¥2.488</td>
-                        <td>38,026</td>
-                        <td>¥94,592</td>
+                        <td>¥3.260</td>
+                        <td>71,426</td>
+                        <td>¥232,831</td>
                         <td>轮动</td>
                     </tr>
-                    
                     <tr>
-                        <td>2023-02-14</td>
-                        <td>🟢 买入</td>
-                        <td>513100</td>
-                        <td>纳指 ETF</td>
-                        <td>¥0.872</td>
-                        <td>108,452</td>
-                        <td>¥94,585</td>
-                        <td>轮动</td>
-                    </tr>
-                    
-                    <tr>
-                        <td>2023-03-03</td>
-                        <td>🔴 卖出</td>
-                        <td>513100</td>
-                        <td>纳指 ETF</td>
-                        <td>¥0.848</td>
-                        <td>108,452</td>
-                        <td>¥91,984</td>
-                        <td>轮动</td>
-                    </tr>
-                    
-                    <tr>
-                        <td>2023-03-03</td>
-                        <td>🟢 买入</td>
-                        <td>511010</td>
-                        <td>国债 ETF</td>
-                        <td>¥126.424</td>
-                        <td>728</td>
-                        <td>¥92,088</td>
-                        <td>轮动</td>
-                    </tr>
-                    
-                    <tr>
-                        <td>2023-03-06</td>
-                        <td>🔴 卖出</td>
-                        <td>511010</td>
-                        <td>国债 ETF</td>
-                        <td>¥126.261</td>
-                        <td>728</td>
-                        <td>¥91,941</td>
-                        <td>轮动</td>
-                    </tr>
-                    
-                    <tr>
-                        <td>2023-03-06</td>
-                        <td>🟢 买入</td>
-                        <td>513100</td>
-                        <td>纳指 ETF</td>
-                        <td>¥0.872</td>
-                        <td>105,399</td>
-                        <td>¥91,923</td>
-                        <td>轮动</td>
-                    </tr>
-                    
-                    <tr>
-                        <td>2023-03-09</td>
-                        <td>🔴 卖出</td>
-                        <td>513100</td>
-                        <td>纳指 ETF</td>
-                        <td>¥0.867</td>
-                        <td>105,399</td>
-                        <td>¥91,395</td>
-                        <td>轮动</td>
-                    </tr>
-                    
-                    <tr>
-                        <td>2023-03-09</td>
-                        <td>🟢 买入</td>
-                        <td>511010</td>
-                        <td>国债 ETF</td>
-                        <td>¥126.702</td>
-                        <td>721</td>
-                        <td>¥91,396</td>
-                        <td>轮动</td>
-                    </tr>
-                    
-                    <tr>
-                        <td>2023-03-10</td>
-                        <td>🔴 卖出</td>
-                        <td>511010</td>
-                        <td>国债 ETF</td>
-                        <td>¥126.497</td>
-                        <td>721</td>
-                        <td>¥91,221</td>
-                        <td>轮动</td>
-                    </tr>
-                    
-                    <tr>
-                        <td>2023-03-10</td>
-                        <td>🟢 买入</td>
-                        <td>518880</td>
-                        <td>黄金 ETF</td>
-                        <td>¥4.065</td>
-                        <td>22,429</td>
-                        <td>¥91,204</td>
-                        <td>轮动</td>
-                    </tr>
-                    
-                    <tr>
-                        <td>2023-04-03</td>
-                        <td>🔴 卖出</td>
-                        <td>518880</td>
-                        <td>黄金 ETF</td>
-                        <td>¥4.217</td>
-                        <td>22,429</td>
-                        <td>¥94,579</td>
-                        <td>轮动</td>
-                    </tr>
-                    
-                    <tr>
-                        <td>2023-04-03</td>
-                        <td>🟢 买入</td>
-                        <td>513100</td>
-                        <td>纳指 ETF</td>
-                        <td>¥0.921</td>
-                        <td>102,457</td>
-                        <td>¥94,384</td>
-                        <td>轮动</td>
-                    </tr>
-                    
-                    <tr>
-                        <td>2023-04-10</td>
-                        <td>🔴 卖出</td>
-                        <td>513100</td>
-                        <td>纳指 ETF</td>
-                        <td>¥0.909</td>
-                        <td>102,457</td>
-                        <td>¥93,143</td>
-                        <td>轮动</td>
-                    </tr>
-                    
-                    <tr>
-                        <td>2023-04-10</td>
-                        <td>🟢 买入</td>
-                        <td>518880</td>
-                        <td>黄金 ETF</td>
-                        <td>¥4.291</td>
-                        <td>21,706</td>
-                        <td>¥93,179</td>
-                        <td>轮动</td>
-                    </tr>
-                    
-                    <tr>
-                        <td>2023-04-14</td>
-                        <td>🔴 卖出</td>
-                        <td>518880</td>
-                        <td>黄金 ETF</td>
-                        <td>¥4.362</td>
-                        <td>21,706</td>
-                        <td>¥94,678</td>
-                        <td>轮动</td>
-                    </tr>
-                    
-                    <tr>
-                        <td>2023-04-14</td>
-                        <td>🟢 买入</td>
-                        <td>513100</td>
-                        <td>纳指 ETF</td>
-                        <td>¥0.911</td>
-                        <td>103,794</td>
-                        <td>¥94,576</td>
-                        <td>轮动</td>
-                    </tr>
-                    
-                    <tr>
-                        <td>2023-04-20</td>
-                        <td>🔴 卖出</td>
-                        <td>513100</td>
-                        <td>纳指 ETF</td>
-                        <td>¥0.911</td>
-                        <td>103,794</td>
-                        <td>¥94,566</td>
-                        <td>轮动</td>
-                    </tr>
-                    
-                    <tr>
-                        <td>2023-04-20</td>
-                        <td>🟢 买入</td>
-                        <td>510300</td>
-                        <td>沪深 300ETF</td>
-                        <td>¥3.827</td>
-                        <td>24,697</td>
-                        <td>¥94,540</td>
-                        <td>轮动</td>
-                    </tr>
-                    
-                    <tr>
-                        <td>2023-04-21</td>
-                        <td>🔴 卖出</td>
-                        <td>510300</td>
-                        <td>沪深 300ETF</td>
-                        <td>¥3.746</td>
-                        <td>24,697</td>
-                        <td>¥92,521</td>
-                        <td>轮动</td>
-                    </tr>
-                    
-                    <tr>
-                        <td>2023-04-21</td>
-                        <td>🟢 买入</td>
-                        <td>513100</td>
-                        <td>纳指 ETF</td>
-                        <td>¥0.909</td>
-                        <td>101,845</td>
-                        <td>¥92,596</td>
-                        <td>轮动</td>
-                    </tr>
-                    
-                    <tr>
-                        <td>2023-04-26</td>
-                        <td>🔴 卖出</td>
-                        <td>513100</td>
-                        <td>纳指 ETF</td>
-                        <td>¥0.903</td>
-                        <td>101,845</td>
-                        <td>¥91,976</td>
-                        <td>轮动</td>
-                    </tr>
-                    
-                    <tr>
-                        <td>2023-04-26</td>
-                        <td>🟢 买入</td>
-                        <td>518880</td>
-                        <td>黄金 ETF</td>
-                        <td>¥4.327</td>
-                        <td>21,249</td>
-                        <td>¥91,981</td>
-                        <td>轮动</td>
-                    </tr>
-                    
-                    <tr>
-                        <td>2023-04-28</td>
-                        <td>🔴 卖出</td>
-                        <td>518880</td>
-                        <td>黄金 ETF</td>
-                        <td>¥4.294</td>
-                        <td>21,249</td>
-                        <td>¥91,239</td>
-                        <td>轮动</td>
-                    </tr>
-                    
-                    <tr>
-                        <td>2023-04-28</td>
-                        <td>🟢 买入</td>
-                        <td>513100</td>
-                        <td>纳指 ETF</td>
-                        <td>¥0.924</td>
-                        <td>98,733</td>
-                        <td>¥91,250</td>
-                        <td>轮动</td>
-                    </tr>
-                    
-                    <tr>
-                        <td>2023-05-04</td>
-                        <td>🔴 卖出</td>
-                        <td>513100</td>
-                        <td>纳指 ETF</td>
-                        <td>¥0.917</td>
-                        <td>98,733</td>
-                        <td>¥90,547</td>
-                        <td>轮动</td>
-                    </tr>
-                    
-                    <tr>
-                        <td>2023-05-04</td>
-                        <td>🟢 买入</td>
-                        <td>518880</td>
-                        <td>黄金 ETF</td>
-                        <td>¥4.399</td>
-                        <td>20,577</td>
-                        <td>¥90,556</td>
-                        <td>轮动</td>
-                    </tr>
-                    
-                    <tr>
-                        <td>2023-05-12</td>
-                        <td>🔴 卖出</td>
-                        <td>518880</td>
-                        <td>黄金 ETF</td>
-                        <td>¥4.361</td>
-                        <td>20,577</td>
-                        <td>¥89,732</td>
-                        <td>轮动</td>
-                    </tr>
-                    
-                    <tr>
-                        <td>2023-05-12</td>
-                        <td>🟢 买入</td>
-                        <td>513100</td>
-                        <td>纳指 ETF</td>
-                        <td>¥0.947</td>
-                        <td>94,747</td>
-                        <td>¥89,747</td>
-                        <td>轮动</td>
-                    </tr>
-                    
-                    <tr>
-                        <td>2023-07-28</td>
-                        <td>🔴 卖出</td>
-                        <td>513100</td>
-                        <td>纳指 ETF</td>
-                        <td>¥1.133</td>
-                        <td>94,747</td>
-                        <td>¥107,336</td>
-                        <td>轮动</td>
-                    </tr>
-                    
-                    <tr>
-                        <td>2023-07-28</td>
-                        <td>🟢 买入</td>
-                        <td>510300</td>
-                        <td>沪深 300ETF</td>
-                        <td>¥3.792</td>
-                        <td>28,059</td>
-                        <td>¥106,426</td>
-                        <td>轮动</td>
-                    </tr>
-                    
-                    <tr>
-                        <td>2023-07-31</td>
-                        <td>🔴 卖出</td>
-                        <td>510300</td>
-                        <td>沪深 300ETF</td>
-                        <td>¥3.800</td>
-                        <td>28,059</td>
-                        <td>¥106,630</td>
-                        <td>轮动</td>
-                    </tr>
-                    
-                    <tr>
-                        <td>2023-07-31</td>
-                        <td>🟢 买入</td>
-                        <td>513100</td>
-                        <td>纳指 ETF</td>
-                        <td>¥1.150</td>
-                        <td>92,646</td>
-                        <td>¥106,589</td>
-                        <td>轮动</td>
-                    </tr>
-                    
-                    <tr>
-                        <td>2023-08-02</td>
-                        <td>🔴 卖出</td>
-                        <td>513100</td>
-                        <td>纳指 ETF</td>
-                        <td>¥1.136</td>
-                        <td>92,646</td>
-                        <td>¥105,234</td>
-                        <td>轮动</td>
-                    </tr>
-                    
-                    <tr>
-                        <td>2023-08-02</td>
-                        <td>🟢 买入</td>
-                        <td>510300</td>
-                        <td>沪深 300ETF</td>
-                        <td>¥3.761</td>
-                        <td>27,983</td>
-                        <td>¥105,271</td>
-                        <td>轮动</td>
-                    </tr>
-                    
-                    <tr>
-                        <td>2023-08-15</td>
-                        <td>🔴 卖出</td>
-                        <td>510300</td>
-                        <td>沪深 300ETF</td>
-                        <td>¥3.635</td>
-                        <td>27,983</td>
-                        <td>¥101,731</td>
-                        <td>轮动</td>
-                    </tr>
-                    
-                    <tr>
-                        <td>2023-08-15</td>
-                        <td>🟢 买入</td>
-                        <td>513100</td>
-                        <td>纳指 ETF</td>
-                        <td>¥1.125</td>
-                        <td>90,521</td>
-                        <td>¥101,879</td>
-                        <td>轮动</td>
-                    </tr>
-                    
-                    <tr>
-                        <td>2023-08-16</td>
-                        <td>🔴 卖出</td>
-                        <td>513100</td>
-                        <td>纳指 ETF</td>
-                        <td>¥1.111</td>
-                        <td>90,521</td>
-                        <td>¥100,560</td>
-                        <td>轮动</td>
-                    </tr>
-                    
-                    <tr>
-                        <td>2023-08-16</td>
-                        <td>🟢 买入</td>
-                        <td>511010</td>
-                        <td>国债 ETF</td>
-                        <td>¥129.886</td>
-                        <td>774</td>
-                        <td>¥100,597</td>
-                        <td>轮动</td>
-                    </tr>
-                    
-                    <tr>
-                        <td>2023-08-24</td>
-                        <td>🔴 卖出</td>
-                        <td>511010</td>
-                        <td>国债 ETF</td>
-                        <td>¥129.654</td>
-                        <td>774</td>
-                        <td>¥100,388</td>
-                        <td>轮动</td>
-                    </tr>
-                    
-                    <tr>
-                        <td>2023-08-24</td>
-                        <td>🟢 买入</td>
-                        <td>513100</td>
-                        <td>纳指 ETF</td>
-                        <td>¥1.135</td>
-                        <td>88,394</td>
-                        <td>¥100,369</td>
-                        <td>轮动</td>
-                    </tr>
-                    
-                    <tr>
-                        <td>2023-08-25</td>
-                        <td>🔴 卖出</td>
-                        <td>513100</td>
-                        <td>纳指 ETF</td>
-                        <td>¥1.090</td>
-                        <td>88,394</td>
-                        <td>¥96,342</td>
-                        <td>轮动</td>
-                    </tr>
-                    
-                    <tr>
-                        <td>2023-08-25</td>
-                        <td>🟢 买入</td>
-                        <td>511010</td>
-                        <td>国债 ETF</td>
-                        <td>¥129.851</td>
-                        <td>743</td>
-                        <td>¥96,516</td>
-                        <td>轮动</td>
-                    </tr>
-                    
-                    <tr>
-                        <td>2023-08-29</td>
-                        <td>🔴 卖出</td>
-                        <td>511010</td>
-                        <td>国债 ETF</td>
-                        <td>¥129.265</td>
-                        <td>743</td>
-                        <td>¥96,051</td>
-                        <td>轮动</td>
-                    </tr>
-                    
-                    <tr>
-                        <td>2023-08-29</td>
-                        <td>🟢 买入</td>
-                        <td>518880</td>
-                        <td>黄金 ETF</td>
-                        <td>¥4.466</td>
-                        <td>21,497</td>
-                        <td>¥96,047</td>
-                        <td>轮动</td>
-                    </tr>
-                    
-                    <tr>
-                        <td>2023-11-06</td>
-                        <td>🔴 卖出</td>
-                        <td>518880</td>
-                        <td>黄金 ETF</td>
-                        <td>¥4.582</td>
-                        <td>21,497</td>
-                        <td>¥98,511</td>
-                        <td>轮动</td>
-                    </tr>
-                    
-                    <tr>
-                        <td>2023-11-06</td>
+                        <td>2026-03-25</td>
                         <td>🟢 买入</td>
                         <td>159915</td>
                         <td>创业板 ETF</td>
-                        <td>¥1.983</td>
-                        <td>49,586</td>
-                        <td>¥98,360</td>
+                        <td>¥3.310</td>
+                        <td>71,426</td>
+                        <td>¥236,514</td>
                         <td>轮动</td>
                     </tr>
-                    
                     <tr>
-                        <td>2023-11-07</td>
+                        <td>2026-03-25</td>
+                        <td>🔴 卖出</td>
+                        <td>511010</td>
+                        <td>国债 ETF</td>
+                        <td>¥140.097</td>
+                        <td>1,688</td>
+                        <td>¥236,555</td>
+                        <td>轮动</td>
+                    </tr>
+                    <tr>
+                        <td>2026-03-23</td>
+                        <td>🟢 买入</td>
+                        <td>511010</td>
+                        <td>国债 ETF</td>
+                        <td>¥140.369</td>
+                        <td>1,688</td>
+                        <td>¥237,086</td>
+                        <td>轮动</td>
+                    </tr>
+                    <tr>
+                        <td>2026-03-23</td>
                         <td>🔴 卖出</td>
                         <td>159915</td>
                         <td>创业板 ETF</td>
-                        <td>¥1.965</td>
-                        <td>49,586</td>
-                        <td>¥97,440</td>
+                        <td>¥3.225</td>
+                        <td>73,403</td>
+                        <td>¥236,711</td>
                         <td>轮动</td>
                     </tr>
-                    
                     <tr>
-                        <td>2023-11-07</td>
+                        <td>2026-03-20</td>
+                        <td>🟢 买入</td>
+                        <td>159915</td>
+                        <td>创业板 ETF</td>
+                        <td>¥3.344</td>
+                        <td>73,403</td>
+                        <td>¥245,561</td>
+                        <td>轮动</td>
+                    </tr>
+                    <tr>
+                        <td>2026-03-20</td>
+                        <td>🔴 卖出</td>
+                        <td>511010</td>
+                        <td>国债 ETF</td>
+                        <td>¥140.142</td>
+                        <td>1,752</td>
+                        <td>¥245,606</td>
+                        <td>轮动</td>
+                    </tr>
+                    <tr>
+                        <td>2026-03-18</td>
+                        <td>🟢 买入</td>
+                        <td>511010</td>
+                        <td>国债 ETF</td>
+                        <td>¥140.387</td>
+                        <td>1,752</td>
+                        <td>¥246,110</td>
+                        <td>轮动</td>
+                    </tr>
+                    <tr>
+                        <td>2026-03-18</td>
+                        <td>🔴 卖出</td>
+                        <td>518880</td>
+                        <td>黄金 ETF</td>
+                        <td>¥10.595</td>
+                        <td>23,225</td>
+                        <td>¥246,084</td>
+                        <td>轮动</td>
+                    </tr>
+                    <tr>
+                        <td>2026-03-16</td>
+                        <td>🟢 买入</td>
+                        <td>518880</td>
+                        <td>黄金 ETF</td>
+                        <td>¥10.675</td>
+                        <td>23,225</td>
+                        <td>¥248,000</td>
+                        <td>轮动</td>
+                    </tr>
+                    <tr>
+                        <td>2026-03-16</td>
+                        <td>🔴 卖出</td>
+                        <td>511010</td>
+                        <td>国债 ETF</td>
+                        <td>¥139.967</td>
+                        <td>1,772</td>
+                        <td>¥248,025</td>
+                        <td>轮动</td>
+                    </tr>
+                    <tr>
+                        <td>2026-03-05</td>
+                        <td>🟢 买入</td>
+                        <td>511010</td>
+                        <td>国债 ETF</td>
+                        <td>¥140.439</td>
+                        <td>1,772</td>
+                        <td>¥248,937</td>
+                        <td>轮动</td>
+                    </tr>
+                    <tr>
+                        <td>2026-03-05</td>
+                        <td>🔴 卖出</td>
+                        <td>518880</td>
+                        <td>黄金 ETF</td>
+                        <td>¥10.953</td>
+                        <td>22,853</td>
+                        <td>¥250,319</td>
+                        <td>轮动</td>
+                    </tr>
+                    <tr>
+                        <td>2026-01-13</td>
+                        <td>🟢 买入</td>
+                        <td>518880</td>
+                        <td>黄金 ETF</td>
+                        <td>¥9.803</td>
+                        <td>22,853</td>
+                        <td>¥224,099</td>
+                        <td>轮动</td>
+                    </tr>
+                    <tr>
+                        <td>2026-01-13</td>
+                        <td>🔴 卖出</td>
+                        <td>159915</td>
+                        <td>创业板 ETF</td>
+                        <td>¥3.303</td>
+                        <td>67,968</td>
+                        <td>¥224,481</td>
+                        <td>轮动</td>
+                    </tr>
+                    <tr>
+                        <td>2025-12-29</td>
+                        <td>🟢 买入</td>
+                        <td>159915</td>
+                        <td>创业板 ETF</td>
+                        <td>¥3.208</td>
+                        <td>67,968</td>
+                        <td>¥218,124</td>
+                        <td>轮动</td>
+                    </tr>
+                    <tr>
+                        <td>2025-12-29</td>
+                        <td>🔴 卖出</td>
+                        <td>518880</td>
+                        <td>黄金 ETF</td>
+                        <td>¥9.553</td>
+                        <td>22,825</td>
+                        <td>¥218,061</td>
+                        <td>轮动</td>
+                    </tr>
+                    <tr>
+                        <td>2025-12-26</td>
+                        <td>🟢 买入</td>
+                        <td>518880</td>
+                        <td>黄金 ETF</td>
+                        <td>¥9.660</td>
+                        <td>22,825</td>
+                        <td>¥220,552</td>
+                        <td>轮动</td>
+                    </tr>
+                    <tr>
+                        <td>2025-12-26</td>
+                        <td>🔴 卖出</td>
+                        <td>159915</td>
+                        <td>创业板 ETF</td>
+                        <td>¥3.223</td>
+                        <td>68,451</td>
+                        <td>¥220,603</td>
+                        <td>轮动</td>
+                    </tr>
+                    <tr>
+                        <td>2025-12-25</td>
+                        <td>🟢 买入</td>
+                        <td>159915</td>
+                        <td>创业板 ETF</td>
+                        <td>¥3.225</td>
+                        <td>68,451</td>
+                        <td>¥220,837</td>
+                        <td>轮动</td>
+                    </tr>
+                    <tr>
+                        <td>2025-12-25</td>
+                        <td>🔴 卖出</td>
+                        <td>518880</td>
+                        <td>黄金 ETF</td>
+                        <td>¥9.556</td>
+                        <td>23,173</td>
+                        <td>¥221,454</td>
+                        <td>轮动</td>
+                    </tr>
+                    <tr>
+                        <td>2025-11-28</td>
+                        <td>🟢 买入</td>
+                        <td>518880</td>
+                        <td>黄金 ETF</td>
+                        <td>¥9.076</td>
+                        <td>23,173</td>
+                        <td>¥210,385</td>
+                        <td>轮动</td>
+                    </tr>
+                    <tr>
+                        <td>2025-11-28</td>
+                        <td>🔴 卖出</td>
+                        <td>513100</td>
+                        <td>纳指 ETF</td>
+                        <td>¥1.941</td>
+                        <td>108,450</td>
+                        <td>¥210,508</td>
+                        <td>轮动</td>
+                    </tr>
+                    <tr>
+                        <td>2025-11-26</td>
                         <td>🟢 买入</td>
                         <td>513100</td>
                         <td>纳指 ETF</td>
-                        <td>¥1.111</td>
-                        <td>87,686</td>
-                        <td>¥97,458</td>
+                        <td>¥1.929</td>
+                        <td>108,450</td>
+                        <td>¥209,255</td>
                         <td>轮动</td>
                     </tr>
-                    
+                    <tr>
+                        <td>2025-11-26</td>
+                        <td>🔴 卖出</td>
+                        <td>511010</td>
+                        <td>国债 ETF</td>
+                        <td>¥139.116</td>
+                        <td>1,504</td>
+                        <td>¥209,283</td>
+                        <td>轮动</td>
+                    </tr>
+                    <tr>
+                        <td>2025-11-19</td>
+                        <td>🟢 买入</td>
+                        <td>511010</td>
+                        <td>国债 ETF</td>
+                        <td>¥139.492</td>
+                        <td>1,504</td>
+                        <td>¥209,913</td>
+                        <td>轮动</td>
+                    </tr>
+                    <tr>
+                        <td>2025-11-19</td>
+                        <td>🔴 卖出</td>
+                        <td>513100</td>
+                        <td>纳指 ETF</td>
+                        <td>¥1.834</td>
+                        <td>96,048</td>
+                        <td>¥176,169</td>
+                        <td>轮动</td>
+                    </tr>
+                    <tr>
+                        <td>2025-10-27</td>
+                        <td>🟢 买入</td>
+                        <td>513100</td>
+                        <td>纳指 ETF</td>
+                        <td>¥1.958</td>
+                        <td>96,048</td>
+                        <td>¥188,115</td>
+                        <td>轮动</td>
+                    </tr>
+                    <tr>
+                        <td>2025-10-27</td>
+                        <td>🔴 卖出</td>
+                        <td>518880</td>
+                        <td>黄金 ETF</td>
+                        <td>¥8.905</td>
+                        <td>24,882</td>
+                        <td>¥221,580</td>
+                        <td>轮动</td>
+                    </tr>
+                    <tr>
+                        <td>2025-10-09</td>
+                        <td>🟢 买入</td>
+                        <td>518880</td>
+                        <td>黄金 ETF</td>
+                        <td>¥8.738</td>
+                        <td>24,882</td>
+                        <td>¥217,481</td>
+                        <td>轮动</td>
+                    </tr>
+                    <tr>
+                        <td>2025-10-09</td>
+                        <td>🔴 卖出</td>
+                        <td>159915</td>
+                        <td>创业板 ETF</td>
+                        <td>¥3.232</td>
+                        <td>68,501</td>
+                        <td>¥221,380</td>
+                        <td>轮动</td>
+                    </tr>
+                    <tr>
+                        <td>2025-06-25</td>
+                        <td>🟢 买入</td>
+                        <td>159915</td>
+                        <td>创业板 ETF</td>
+                        <td>¥2.111</td>
+                        <td>68,501</td>
+                        <td>¥144,657</td>
+                        <td>轮动</td>
+                    </tr>
+                    <tr>
+                        <td>2025-06-25</td>
+                        <td>🔴 卖出</td>
+                        <td>518880</td>
+                        <td>黄金 ETF</td>
+                        <td>¥7.385</td>
+                        <td>19,569</td>
+                        <td>¥144,514</td>
+                        <td>轮动</td>
+                    </tr>
+                    <tr>
+                        <td>2025-06-16</td>
+                        <td>🟢 买入</td>
+                        <td>518880</td>
+                        <td>黄金 ETF</td>
+                        <td>¥7.571</td>
+                        <td>19,569</td>
+                        <td>¥148,198</td>
+                        <td>轮动</td>
+                    </tr>
+                    <tr>
+                        <td>2025-06-16</td>
+                        <td>🔴 卖出</td>
+                        <td>513100</td>
+                        <td>纳指 ETF</td>
+                        <td>¥1.565</td>
+                        <td>94,694</td>
+                        <td>¥148,237</td>
+                        <td>轮动</td>
+                    </tr>
+                    <tr>
+                        <td>2025-05-20</td>
+                        <td>🟢 买入</td>
+                        <td>513100</td>
+                        <td>纳指 ETF</td>
+                        <td>¥1.566</td>
+                        <td>94,694</td>
+                        <td>¥148,294</td>
+                        <td>轮动</td>
+                    </tr>
+                    <tr>
+                        <td>2025-05-20</td>
+                        <td>🔴 卖出</td>
+                        <td>159915</td>
+                        <td>创业板 ETF</td>
+                        <td>¥2.016</td>
+                        <td>73,600</td>
+                        <td>¥148,378</td>
+                        <td>轮动</td>
+                    </tr>
+                    <tr>
+                        <td>2025-05-19</td>
+                        <td>🟢 买入</td>
+                        <td>159915</td>
+                        <td>创业板 ETF</td>
+                        <td>¥2.004</td>
+                        <td>73,600</td>
+                        <td>¥147,541</td>
+                        <td>轮动</td>
+                    </tr>
+                    <tr>
+                        <td>2025-05-19</td>
+                        <td>🔴 卖出</td>
+                        <td>513100</td>
+                        <td>纳指 ETF</td>
+                        <td>¥1.545</td>
+                        <td>95,561</td>
+                        <td>¥147,685</td>
+                        <td>轮动</td>
+                    </tr>
+                    <tr>
+                        <td>2025-05-13</td>
+                        <td>🟢 买入</td>
+                        <td>513100</td>
+                        <td>纳指 ETF</td>
+                        <td>¥1.524</td>
+                        <td>95,561</td>
+                        <td>¥145,633</td>
+                        <td>轮动</td>
+                    </tr>
+                    <tr>
+                        <td>2025-05-13</td>
+                        <td>🔴 卖出</td>
+                        <td>518880</td>
+                        <td>黄金 ETF</td>
+                        <td>¥7.325</td>
+                        <td>19,958</td>
+                        <td>¥146,190</td>
+                        <td>轮动</td>
+                    </tr>
+                    <tr>
+                        <td>2025-03-19</td>
+                        <td>🟢 买入</td>
+                        <td>518880</td>
+                        <td>黄金 ETF</td>
+                        <td>¥6.807</td>
+                        <td>19,958</td>
+                        <td>¥135,895</td>
+                        <td>轮动</td>
+                    </tr>
+                    <tr>
+                        <td>2025-03-19</td>
+                        <td>🔴 卖出</td>
+                        <td>510300</td>
+                        <td>沪深 300ETF</td>
+                        <td>¥3.894</td>
+                        <td>34,904</td>
+                        <td>¥135,923</td>
+                        <td>轮动</td>
+                    </tr>
+                    <tr>
+                        <td>2025-03-14</td>
+                        <td>🟢 买入</td>
+                        <td>510300</td>
+                        <td>沪深 300ETF</td>
+                        <td>¥3.899</td>
+                        <td>34,904</td>
+                        <td>¥136,131</td>
+                        <td>轮动</td>
+                    </tr>
+                    <tr>
+                        <td>2025-03-14</td>
+                        <td>🔴 卖出</td>
+                        <td>518880</td>
+                        <td>黄金 ETF</td>
+                        <td>¥6.666</td>
+                        <td>20,439</td>
+                        <td>¥136,255</td>
+                        <td>轮动</td>
+                    </tr>
+                    <tr>
+                        <td>2025-03-13</td>
+                        <td>🟢 买入</td>
+                        <td>518880</td>
+                        <td>黄金 ETF</td>
+                        <td>¥6.582</td>
+                        <td>20,439</td>
+                        <td>¥134,563</td>
+                        <td>轮动</td>
+                    </tr>
+                    <tr>
+                        <td>2025-03-13</td>
+                        <td>🔴 卖出</td>
+                        <td>510300</td>
+                        <td>沪深 300ETF</td>
+                        <td>¥3.790</td>
+                        <td>35,499</td>
+                        <td>¥134,550</td>
+                        <td>轮动</td>
+                    </tr>
+                    <tr>
+                        <td>2025-03-12</td>
+                        <td>🟢 买入</td>
+                        <td>510300</td>
+                        <td>沪深 300ETF</td>
+                        <td>¥3.818</td>
+                        <td>35,499</td>
+                        <td>¥135,571</td>
+                        <td>轮动</td>
+                    </tr>
+                    <tr>
+                        <td>2025-03-12</td>
+                        <td>🔴 卖出</td>
+                        <td>159915</td>
+                        <td>创业板 ETF</td>
+                        <td>¥2.147</td>
+                        <td>63,097</td>
+                        <td>¥135,461</td>
+                        <td>轮动</td>
+                    </tr>
+                    <tr>
+                        <td>2025-03-06</td>
+                        <td>🟢 买入</td>
+                        <td>159915</td>
+                        <td>创业板 ETF</td>
+                        <td>¥2.193</td>
+                        <td>63,097</td>
+                        <td>¥138,427</td>
+                        <td>轮动</td>
+                    </tr>
+                    <tr>
+                        <td>2025-03-06</td>
+                        <td>🔴 卖出</td>
+                        <td>518880</td>
+                        <td>黄金 ETF</td>
+                        <td>¥6.528</td>
+                        <td>21,212</td>
+                        <td>¥138,488</td>
+                        <td>轮动</td>
+                    </tr>
+                    <tr>
+                        <td>2025-03-04</td>
+                        <td>🟢 买入</td>
+                        <td>518880</td>
+                        <td>黄金 ETF</td>
+                        <td>¥6.505</td>
+                        <td>21,212</td>
+                        <td>¥138,043</td>
+                        <td>轮动</td>
+                    </tr>
+                    <tr>
+                        <td>2025-03-04</td>
+                        <td>🔴 卖出</td>
+                        <td>159915</td>
+                        <td>创业板 ETF</td>
+                        <td>¥2.147</td>
+                        <td>64,200</td>
+                        <td>¥137,828</td>
+                        <td>轮动</td>
+                    </tr>
+                    <tr>
+                        <td>2025-02-26</td>
+                        <td>🟢 买入</td>
+                        <td>159915</td>
+                        <td>创业板 ETF</td>
+                        <td>¥2.225</td>
+                        <td>64,200</td>
+                        <td>¥142,902</td>
+                        <td>轮动</td>
+                    </tr>
+                    <tr>
+                        <td>2025-02-26</td>
+                        <td>🔴 卖出</td>
+                        <td>518880</td>
+                        <td>黄金 ETF</td>
+                        <td>¥6.512</td>
+                        <td>21,935</td>
+                        <td>¥142,858</td>
+                        <td>轮动</td>
+                    </tr>
+                    <tr>
+                        <td>2025-02-25</td>
+                        <td>🟢 买入</td>
+                        <td>518880</td>
+                        <td>黄金 ETF</td>
+                        <td>¥6.589</td>
+                        <td>21,935</td>
+                        <td>¥144,570</td>
+                        <td>轮动</td>
+                    </tr>
+                    <tr>
+                        <td>2025-02-25</td>
+                        <td>🔴 卖出</td>
+                        <td>159915</td>
+                        <td>创业板 ETF</td>
+                        <td>¥2.195</td>
+                        <td>65,898</td>
+                        <td>¥144,634</td>
+                        <td>轮动</td>
+                    </tr>
+                    <tr>
+                        <td>2025-02-19</td>
+                        <td>🟢 买入</td>
+                        <td>159915</td>
+                        <td>创业板 ETF</td>
+                        <td>¥2.187</td>
+                        <td>65,898</td>
+                        <td>¥144,176</td>
+                        <td>轮动</td>
+                    </tr>
+                    <tr>
+                        <td>2025-02-19</td>
+                        <td>🔴 卖出</td>
+                        <td>518880</td>
+                        <td>黄金 ETF</td>
+                        <td>¥6.591</td>
+                        <td>21,884</td>
+                        <td>¥144,247</td>
+                        <td>轮动</td>
+                    </tr>
+                    <tr>
+                        <td>2025-02-18</td>
+                        <td>🟢 买入</td>
+                        <td>518880</td>
+                        <td>黄金 ETF</td>
+                        <td>¥6.562</td>
+                        <td>21,884</td>
+                        <td>¥143,637</td>
+                        <td>轮动</td>
+                    </tr>
+                    <tr>
+                        <td>2025-02-18</td>
+                        <td>🔴 卖出</td>
+                        <td>159915</td>
+                        <td>创业板 ETF</td>
+                        <td>¥2.138</td>
+                        <td>67,132</td>
+                        <td>¥143,520</td>
+                        <td>轮动</td>
+                    </tr>
+                    <tr>
+                        <td>2025-02-17</td>
+                        <td>🟢 买入</td>
+                        <td>159915</td>
+                        <td>创业板 ETF</td>
+                        <td>¥2.184</td>
+                        <td>67,132</td>
+                        <td>¥146,674</td>
+                        <td>轮动</td>
+                    </tr>
+                    <tr>
+                        <td>2025-02-17</td>
+                        <td>🔴 卖出</td>
+                        <td>518880</td>
+                        <td>黄金 ETF</td>
+                        <td>¥6.488</td>
+                        <td>22,678</td>
+                        <td>¥147,124</td>
+                        <td>轮动</td>
+                    </tr>
+                    <tr>
+                        <td>2025-01-13</td>
+                        <td>🟢 买入</td>
+                        <td>518880</td>
+                        <td>黄金 ETF</td>
+                        <td>¥6.126</td>
+                        <td>22,678</td>
+                        <td>¥138,970</td>
+                        <td>轮动</td>
+                    </tr>
+                    <tr>
+                        <td>2025-01-13</td>
+                        <td>🔴 卖出</td>
+                        <td>513100</td>
+                        <td>纳指 ETF</td>
+                        <td>¥1.590</td>
+                        <td>75,003</td>
+                        <td>¥119,286</td>
+                        <td>轮动</td>
+                    </tr>
+                    <tr>
+                        <td>2024-11-21</td>
+                        <td>🟢 买入</td>
+                        <td>513100</td>
+                        <td>纳指 ETF</td>
+                        <td>¥1.512</td>
+                        <td>75,003</td>
+                        <td>¥113,402</td>
+                        <td>轮动</td>
+                    </tr>
+                    <tr>
+                        <td>2024-11-21</td>
+                        <td>🔴 卖出</td>
+                        <td>159915</td>
+                        <td>创业板 ETF</td>
+                        <td>¥2.221</td>
+                        <td>50,402</td>
+                        <td>¥111,932</td>
+                        <td>轮动</td>
+                    </tr>
+                    <tr>
+                        <td>2024-11-13</td>
+                        <td>🟢 买入</td>
+                        <td>159915</td>
+                        <td>创业板 ETF</td>
+                        <td>¥2.374</td>
+                        <td>50,402</td>
+                        <td>¥119,710</td>
+                        <td>轮动</td>
+                    </tr>
+                    <tr>
+                        <td>2024-11-13</td>
+                        <td>🔴 卖出</td>
+                        <td>513100</td>
+                        <td>纳指 ETF</td>
+                        <td>¥1.525</td>
+                        <td>64,802</td>
+                        <td>¥98,854</td>
+                        <td>轮动</td>
+                    </tr>
+                    <tr>
+                        <td>2024-11-07</td>
+                        <td>🟢 买入</td>
+                        <td>513100</td>
+                        <td>纳指 ETF</td>
+                        <td>¥1.514</td>
+                        <td>64,802</td>
+                        <td>¥98,108</td>
+                        <td>轮动</td>
+                    </tr>
+                    <tr>
+                        <td>2024-11-07</td>
+                        <td>🔴 卖出</td>
+                        <td>518880</td>
+                        <td>黄金 ETF</td>
+                        <td>¥5.854</td>
+                        <td>16,621</td>
+                        <td>¥97,306</td>
+                        <td>轮动</td>
+                    </tr>
+                    <tr>
+                        <td>2024-11-06</td>
+                        <td>🟢 买入</td>
+                        <td>518880</td>
+                        <td>黄金 ETF</td>
+                        <td>¥6.000</td>
+                        <td>16,621</td>
+                        <td>¥99,760</td>
+                        <td>轮动</td>
+                    </tr>
+                    <tr>
+                        <td>2024-11-06</td>
+                        <td>🔴 卖出</td>
+                        <td>159915</td>
+                        <td>创业板 ETF</td>
+                        <td>¥2.221</td>
+                        <td>57,201</td>
+                        <td>¥127,032</td>
+                        <td>轮动</td>
+                    </tr>
+                    <tr>
+                        <td>2024-09-26</td>
+                        <td>🟢 买入</td>
+                        <td>159915</td>
+                        <td>创业板 ETF</td>
+                        <td>¥1.688</td>
+                        <td>57,201</td>
+                        <td>¥96,567</td>
+                        <td>轮动</td>
+                    </tr>
+                    <tr>
+                        <td>2024-09-26</td>
+                        <td>🔴 卖出</td>
+                        <td>518880</td>
+                        <td>黄金 ETF</td>
+                        <td>¥5.745</td>
+                        <td>19,803</td>
+                        <td>¥113,778</td>
+                        <td>轮动</td>
+                    </tr>
+                    <tr>
+                        <td>2024-09-19</td>
+                        <td>🟢 买入</td>
+                        <td>518880</td>
+                        <td>黄金 ETF</td>
+                        <td>¥5.606</td>
+                        <td>19,803</td>
+                        <td>¥111,046</td>
+                        <td>轮动</td>
+                    </tr>
+                    <tr>
+                        <td>2024-09-19</td>
+                        <td>🔴 卖出</td>
+                        <td>511010</td>
+                        <td>国债 ETF</td>
+                        <td>¥135.883</td>
+                        <td>817</td>
+                        <td>¥111,058</td>
+                        <td>轮动</td>
+                    </tr>
+                    <tr>
+                        <td>2024-09-13</td>
+                        <td>🟢 买入</td>
+                        <td>511010</td>
+                        <td>国债 ETF</td>
+                        <td>¥136.305</td>
+                        <td>817</td>
+                        <td>¥111,437</td>
+                        <td>轮动</td>
+                    </tr>
+                    <tr>
+                        <td>2024-09-13</td>
+                        <td>🔴 卖出</td>
+                        <td>518880</td>
+                        <td>黄金 ETF</td>
+                        <td>¥5.605</td>
+                        <td>19,900</td>
+                        <td>¥111,549</td>
+                        <td>轮动</td>
+                    </tr>
+                    <tr>
+                        <td>2024-09-06</td>
+                        <td>🟢 买入</td>
+                        <td>518880</td>
+                        <td>黄金 ETF</td>
+                        <td>¥5.523</td>
+                        <td>19,900</td>
+                        <td>¥109,933</td>
+                        <td>轮动</td>
+                    </tr>
+                    <tr>
+                        <td>2024-09-06</td>
+                        <td>🔴 卖出</td>
+                        <td>511010</td>
+                        <td>国债 ETF</td>
+                        <td>¥135.656</td>
+                        <td>810</td>
+                        <td>¥109,957</td>
+                        <td>轮动</td>
+                    </tr>
+                    <tr>
+                        <td>2024-09-04</td>
+                        <td>🟢 买入</td>
+                        <td>511010</td>
+                        <td>国债 ETF</td>
+                        <td>¥135.797</td>
+                        <td>810</td>
+                        <td>¥110,104</td>
+                        <td>轮动</td>
+                    </tr>
+                    <tr>
+                        <td>2024-09-04</td>
+                        <td>🔴 卖出</td>
+                        <td>518880</td>
+                        <td>黄金 ETF</td>
+                        <td>¥5.458</td>
+                        <td>17,108</td>
+                        <td>¥93,372</td>
+                        <td>轮动</td>
+                    </tr>
+                    <tr>
+                        <td>2024-08-22</td>
+                        <td>🟢 买入</td>
+                        <td>518880</td>
+                        <td>黄金 ETF</td>
+                        <td>¥5.529</td>
+                        <td>17,108</td>
+                        <td>¥94,615</td>
+                        <td>轮动</td>
+                    </tr>
+                    <tr>
+                        <td>2024-08-22</td>
+                        <td>🔴 卖出</td>
+                        <td>511010</td>
+                        <td>国债 ETF</td>
+                        <td>¥134.932</td>
+                        <td>700</td>
+                        <td>¥94,549</td>
+                        <td>轮动</td>
+                    </tr>
+                    <tr>
+                        <td>2024-08-02</td>
+                        <td>🟢 买入</td>
+                        <td>511010</td>
+                        <td>国债 ETF</td>
+                        <td>¥135.547</td>
+                        <td>700</td>
+                        <td>¥95,009</td>
+                        <td>轮动</td>
+                    </tr>
+                    <tr>
+                        <td>2024-08-02</td>
+                        <td>🔴 卖出</td>
+                        <td>518880</td>
+                        <td>黄金 ETF</td>
+                        <td>¥5.499</td>
+                        <td>20,349</td>
+                        <td>¥111,914</td>
+                        <td>轮动</td>
+                    </tr>
+                    <tr>
+                        <td>2024-07-29</td>
+                        <td>🟢 买入</td>
+                        <td>518880</td>
+                        <td>黄金 ETF</td>
+                        <td>¥5.392</td>
+                        <td>20,349</td>
+                        <td>¥109,768</td>
+                        <td>轮动</td>
+                    </tr>
+                    <tr>
+                        <td>2024-07-29</td>
+                        <td>🔴 卖出</td>
+                        <td>511010</td>
+                        <td>国债 ETF</td>
+                        <td>¥134.733</td>
+                        <td>814</td>
+                        <td>¥109,788</td>
+                        <td>轮动</td>
+                    </tr>
+                    <tr>
+                        <td>2024-07-25</td>
+                        <td>🟢 买入</td>
+                        <td>511010</td>
+                        <td>国债 ETF</td>
+                        <td>¥134.967</td>
+                        <td>814</td>
+                        <td>¥110,011</td>
+                        <td>轮动</td>
+                    </tr>
+                    <tr>
+                        <td>2024-07-25</td>
+                        <td>🔴 卖出</td>
+                        <td>518880</td>
+                        <td>黄金 ETF</td>
+                        <td>¥5.322</td>
+                        <td>20,628</td>
+                        <td>¥109,776</td>
+                        <td>轮动</td>
+                    </tr>
+                    <tr>
+                        <td>2024-07-18</td>
+                        <td>🟢 买入</td>
+                        <td>518880</td>
+                        <td>黄金 ETF</td>
+                        <td>¥5.579</td>
+                        <td>20,628</td>
+                        <td>¥115,110</td>
+                        <td>轮动</td>
+                    </tr>
+                    <tr>
+                        <td>2024-07-18</td>
+                        <td>🔴 卖出</td>
+                        <td>513100</td>
+                        <td>纳指 ETF</td>
+                        <td>¥1.494</td>
+                        <td>77,382</td>
+                        <td>¥115,571</td>
+                        <td>轮动</td>
+                    </tr>
+                    <tr>
+                        <td>2024-05-23</td>
+                        <td>🟢 买入</td>
+                        <td>513100</td>
+                        <td>纳指 ETF</td>
+                        <td>¥1.382</td>
+                        <td>77,382</td>
+                        <td>¥107,004</td>
+                        <td>轮动</td>
+                    </tr>
+                    <tr>
+                        <td>2024-05-23</td>
+                        <td>🔴 卖出</td>
+                        <td>510300</td>
+                        <td>沪深 300ETF</td>
+                        <td>¥3.429</td>
+                        <td>31,211</td>
+                        <td>¥107,011</td>
+                        <td>轮动</td>
+                    </tr>
+                    <tr>
+                        <td>2024-05-07</td>
+                        <td>🟢 买入</td>
+                        <td>510300</td>
+                        <td>沪深 300ETF</td>
+                        <td>¥3.442</td>
+                        <td>31,211</td>
+                        <td>¥107,476</td>
+                        <td>轮动</td>
+                    </tr>
+                    <tr>
+                        <td>2024-05-07</td>
+                        <td>🔴 卖出</td>
+                        <td>518880</td>
+                        <td>黄金 ETF</td>
+                        <td>¥5.263</td>
+                        <td>20,486</td>
+                        <td>¥107,815</td>
+                        <td>轮动</td>
+                    </tr>
+                    <tr>
+                        <td>2024-03-25</td>
+                        <td>🟢 买入</td>
+                        <td>518880</td>
+                        <td>黄金 ETF</td>
+                        <td>¥4.961</td>
+                        <td>20,486</td>
+                        <td>¥101,663</td>
+                        <td>轮动</td>
+                    </tr>
+                    <tr>
+                        <td>2024-03-25</td>
+                        <td>🔴 卖出</td>
+                        <td>159915</td>
+                        <td>创业板 ETF</td>
+                        <td>¥1.779</td>
+                        <td>57,189</td>
+                        <td>¥101,752</td>
+                        <td>轮动</td>
+                    </tr>
+                    <tr>
+                        <td>2024-03-08</td>
+                        <td>🟢 买入</td>
+                        <td>159915</td>
+                        <td>创业板 ETF</td>
+                        <td>¥1.758</td>
+                        <td>57,189</td>
+                        <td>¥100,554</td>
+                        <td>轮动</td>
+                    </tr>
+                    <tr>
+                        <td>2024-03-08</td>
+                        <td>🔴 卖出</td>
+                        <td>510300</td>
+                        <td>沪深 300ETF</td>
+                        <td>¥3.319</td>
+                        <td>25,794</td>
+                        <td>¥85,603</td>
+                        <td>轮动</td>
+                    </tr>
+                    <tr>
+                        <td>2024-02-29</td>
+                        <td>🟢 买入</td>
+                        <td>510300</td>
+                        <td>沪深 300ETF</td>
+                        <td>¥3.295</td>
+                        <td>25,794</td>
+                        <td>¥85,026</td>
+                        <td>轮动</td>
+                    </tr>
+                    <tr>
+                        <td>2024-02-29</td>
+                        <td>🔴 卖出</td>
+                        <td>513100</td>
+                        <td>纳指 ETF</td>
+                        <td>¥1.299</td>
+                        <td>77,095</td>
+                        <td>¥100,124</td>
+                        <td>轮动</td>
+                    </tr>
+                    <tr>
+                        <td>2024-01-22</td>
+                        <td>🟢 买入</td>
+                        <td>513100</td>
+                        <td>纳指 ETF</td>
+                        <td>¥1.281</td>
+                        <td>77,095</td>
+                        <td>¥98,811</td>
+                        <td>轮动</td>
+                    </tr>
+                    <tr>
+                        <td>2024-01-22</td>
+                        <td>🔴 卖出</td>
+                        <td>511010</td>
+                        <td>国债 ETF</td>
+                        <td>¥130.830</td>
+                        <td>755</td>
+                        <td>¥98,839</td>
+                        <td>轮动</td>
+                    </tr>
+                    <tr>
+                        <td>2024-01-18</td>
+                        <td>🟢 买入</td>
+                        <td>511010</td>
+                        <td>国债 ETF</td>
+                        <td>¥130.805</td>
+                        <td>755</td>
+                        <td>¥98,849</td>
+                        <td>轮动</td>
+                    </tr>
+                    <tr>
+                        <td>2024-01-18</td>
+                        <td>🔴 卖出</td>
+                        <td>518880</td>
+                        <td>黄金 ETF</td>
+                        <td>¥4.611</td>
+                        <td>21,426</td>
+                        <td>¥98,805</td>
+                        <td>轮动</td>
+                    </tr>
+                    <tr>
+                        <td>2024-01-15</td>
+                        <td>🟢 买入</td>
+                        <td>518880</td>
+                        <td>黄金 ETF</td>
+                        <td>¥4.678</td>
+                        <td>21,426</td>
+                        <td>¥100,255</td>
+                        <td>轮动</td>
+                    </tr>
+                    <tr>
+                        <td>2024-01-15</td>
+                        <td>🔴 卖出</td>
+                        <td>513100</td>
+                        <td>纳指 ETF</td>
+                        <td>¥1.226</td>
+                        <td>81,863</td>
+                        <td>¥100,346</td>
+                        <td>轮动</td>
+                    </tr>
+                    <tr>
+                        <td>2024-01-09</td>
+                        <td>🟢 买入</td>
+                        <td>513100</td>
+                        <td>纳指 ETF</td>
+                        <td>¥1.210</td>
+                        <td>81,863</td>
+                        <td>¥99,102</td>
+                        <td>轮动</td>
+                    </tr>
+                    <tr>
+                        <td>2024-01-09</td>
+                        <td>🔴 卖出</td>
+                        <td>511010</td>
+                        <td>国债 ETF</td>
+                        <td>¥130.637</td>
+                        <td>758</td>
+                        <td>¥99,119</td>
+                        <td>轮动</td>
+                    </tr>
+                    <tr>
+                        <td>2024-01-08</td>
+                        <td>🟢 买入</td>
+                        <td>511010</td>
+                        <td>国债 ETF</td>
+                        <td>¥130.878</td>
+                        <td>758</td>
+                        <td>¥99,331</td>
+                        <td>轮动</td>
+                    </tr>
+                    <tr>
+                        <td>2024-01-08</td>
+                        <td>🔴 卖出</td>
+                        <td>513100</td>
+                        <td>纳指 ETF</td>
+                        <td>¥1.178</td>
+                        <td>84,421</td>
+                        <td>¥99,433</td>
+                        <td>轮动</td>
+                    </tr>
+                    <tr>
+                        <td>2023-11-16</td>
+                        <td>🟢 买入</td>
+                        <td>513100</td>
+                        <td>纳指 ETF</td>
+                        <td>¥1.160</td>
+                        <td>84,421</td>
+                        <td>¥97,971</td>
+                        <td>轮动</td>
+                    </tr>
+                    <tr>
+                        <td>2023-11-16</td>
+                        <td>🔴 卖出</td>
+                        <td>518880</td>
+                        <td>黄金 ETF</td>
+                        <td>¥4.554</td>
+                        <td>21,516</td>
+                        <td>¥97,996</td>
+                        <td>轮动</td>
+                    </tr>
+                    <tr>
+                        <td>2023-11-08</td>
+                        <td>🟢 买入</td>
+                        <td>518880</td>
+                        <td>黄金 ETF</td>
+                        <td>¥4.556</td>
+                        <td>21,516</td>
+                        <td>¥98,050</td>
+                        <td>轮动</td>
+                    </tr>
                     <tr>
                         <td>2023-11-08</td>
                         <td>🔴 卖出</td>
@@ -634,20 +1293,511 @@
                         <td>¥98,110</td>
                         <td>轮动</td>
                     </tr>
-                    
+                    <tr>
+                        <td>2023-11-07</td>
+                        <td>🟢 买入</td>
+                        <td>513100</td>
+                        <td>纳指 ETF</td>
+                        <td>¥1.111</td>
+                        <td>87,686</td>
+                        <td>¥97,458</td>
+                        <td>轮动</td>
+                    </tr>
+                    <tr>
+                        <td>2023-11-07</td>
+                        <td>🔴 卖出</td>
+                        <td>159915</td>
+                        <td>创业板 ETF</td>
+                        <td>¥1.965</td>
+                        <td>49,586</td>
+                        <td>¥97,440</td>
+                        <td>轮动</td>
+                    </tr>
+                    <tr>
+                        <td>2023-11-06</td>
+                        <td>🟢 买入</td>
+                        <td>159915</td>
+                        <td>创业板 ETF</td>
+                        <td>¥1.983</td>
+                        <td>49,586</td>
+                        <td>¥98,360</td>
+                        <td>轮动</td>
+                    </tr>
+                    <tr>
+                        <td>2023-11-06</td>
+                        <td>🔴 卖出</td>
+                        <td>518880</td>
+                        <td>黄金 ETF</td>
+                        <td>¥4.582</td>
+                        <td>21,497</td>
+                        <td>¥98,511</td>
+                        <td>轮动</td>
+                    </tr>
+                    <tr>
+                        <td>2023-08-29</td>
+                        <td>🟢 买入</td>
+                        <td>518880</td>
+                        <td>黄金 ETF</td>
+                        <td>¥4.466</td>
+                        <td>21,497</td>
+                        <td>¥96,047</td>
+                        <td>轮动</td>
+                    </tr>
+                    <tr>
+                        <td>2023-08-29</td>
+                        <td>🔴 卖出</td>
+                        <td>511010</td>
+                        <td>国债 ETF</td>
+                        <td>¥129.265</td>
+                        <td>743</td>
+                        <td>¥96,051</td>
+                        <td>轮动</td>
+                    </tr>
+                    <tr>
+                        <td>2023-08-25</td>
+                        <td>🟢 买入</td>
+                        <td>511010</td>
+                        <td>国债 ETF</td>
+                        <td>¥129.851</td>
+                        <td>743</td>
+                        <td>¥96,516</td>
+                        <td>轮动</td>
+                    </tr>
+                    <tr>
+                        <td>2023-08-25</td>
+                        <td>🔴 卖出</td>
+                        <td>513100</td>
+                        <td>纳指 ETF</td>
+                        <td>¥1.090</td>
+                        <td>88,394</td>
+                        <td>¥96,342</td>
+                        <td>轮动</td>
+                    </tr>
+                    <tr>
+                        <td>2023-08-24</td>
+                        <td>🟢 买入</td>
+                        <td>513100</td>
+                        <td>纳指 ETF</td>
+                        <td>¥1.135</td>
+                        <td>88,394</td>
+                        <td>¥100,369</td>
+                        <td>轮动</td>
+                    </tr>
+                    <tr>
+                        <td>2023-08-24</td>
+                        <td>🔴 卖出</td>
+                        <td>511010</td>
+                        <td>国债 ETF</td>
+                        <td>¥129.654</td>
+                        <td>774</td>
+                        <td>¥100,388</td>
+                        <td>轮动</td>
+                    </tr>
+                    <tr>
+                        <td>2023-08-16</td>
+                        <td>🟢 买入</td>
+                        <td>511010</td>
+                        <td>国债 ETF</td>
+                        <td>¥129.886</td>
+                        <td>774</td>
+                        <td>¥100,597</td>
+                        <td>轮动</td>
+                    </tr>
+                    <tr>
+                        <td>2023-08-16</td>
+                        <td>🔴 卖出</td>
+                        <td>513100</td>
+                        <td>纳指 ETF</td>
+                        <td>¥1.111</td>
+                        <td>90,521</td>
+                        <td>¥100,560</td>
+                        <td>轮动</td>
+                    </tr>
+                    <tr>
+                        <td>2023-08-15</td>
+                        <td>🟢 买入</td>
+                        <td>513100</td>
+                        <td>纳指 ETF</td>
+                        <td>¥1.125</td>
+                        <td>90,521</td>
+                        <td>¥101,879</td>
+                        <td>轮动</td>
+                    </tr>
+                    <tr>
+                        <td>2023-08-15</td>
+                        <td>🔴 卖出</td>
+                        <td>510300</td>
+                        <td>沪深 300ETF</td>
+                        <td>¥3.635</td>
+                        <td>27,983</td>
+                        <td>¥101,731</td>
+                        <td>轮动</td>
+                    </tr>
+                    <tr>
+                        <td>2023-08-02</td>
+                        <td>🟢 买入</td>
+                        <td>510300</td>
+                        <td>沪深 300ETF</td>
+                        <td>¥3.761</td>
+                        <td>27,983</td>
+                        <td>¥105,271</td>
+                        <td>轮动</td>
+                    </tr>
+                    <tr>
+                        <td>2023-08-02</td>
+                        <td>🔴 卖出</td>
+                        <td>513100</td>
+                        <td>纳指 ETF</td>
+                        <td>¥1.136</td>
+                        <td>92,646</td>
+                        <td>¥105,234</td>
+                        <td>轮动</td>
+                    </tr>
+                    <tr>
+                        <td>2023-07-31</td>
+                        <td>🟢 买入</td>
+                        <td>513100</td>
+                        <td>纳指 ETF</td>
+                        <td>¥1.150</td>
+                        <td>92,646</td>
+                        <td>¥106,589</td>
+                        <td>轮动</td>
+                    </tr>
+                    <tr>
+                        <td>2023-07-31</td>
+                        <td>🔴 卖出</td>
+                        <td>510300</td>
+                        <td>沪深 300ETF</td>
+                        <td>¥3.800</td>
+                        <td>28,059</td>
+                        <td>¥106,630</td>
+                        <td>轮动</td>
+                    </tr>
+                    <tr>
+                        <td>2023-07-28</td>
+                        <td>🟢 买入</td>
+                        <td>510300</td>
+                        <td>沪深 300ETF</td>
+                        <td>¥3.792</td>
+                        <td>28,059</td>
+                        <td>¥106,426</td>
+                        <td>轮动</td>
+                    </tr>
+                    <tr>
+                        <td>2023-07-28</td>
+                        <td>🔴 卖出</td>
+                        <td>513100</td>
+                        <td>纳指 ETF</td>
+                        <td>¥1.133</td>
+                        <td>94,747</td>
+                        <td>¥107,336</td>
+                        <td>轮动</td>
+                    </tr>
+                    <tr>
+                        <td>2023-05-12</td>
+                        <td>🟢 买入</td>
+                        <td>513100</td>
+                        <td>纳指 ETF</td>
+                        <td>¥0.947</td>
+                        <td>94,747</td>
+                        <td>¥89,747</td>
+                        <td>轮动</td>
+                    </tr>
+                    <tr>
+                        <td>2023-05-12</td>
+                        <td>🔴 卖出</td>
+                        <td>518880</td>
+                        <td>黄金 ETF</td>
+                        <td>¥4.361</td>
+                        <td>20,577</td>
+                        <td>¥89,732</td>
+                        <td>轮动</td>
+                    </tr>
+                    <tr>
+                        <td>2023-05-04</td>
+                        <td>🟢 买入</td>
+                        <td>518880</td>
+                        <td>黄金 ETF</td>
+                        <td>¥4.399</td>
+                        <td>20,577</td>
+                        <td>¥90,556</td>
+                        <td>轮动</td>
+                    </tr>
+                    <tr>
+                        <td>2023-05-04</td>
+                        <td>🔴 卖出</td>
+                        <td>513100</td>
+                        <td>纳指 ETF</td>
+                        <td>¥0.917</td>
+                        <td>98,733</td>
+                        <td>¥90,547</td>
+                        <td>轮动</td>
+                    </tr>
+                    <tr>
+                        <td>2023-04-28</td>
+                        <td>🟢 买入</td>
+                        <td>513100</td>
+                        <td>纳指 ETF</td>
+                        <td>¥0.924</td>
+                        <td>98,733</td>
+                        <td>¥91,250</td>
+                        <td>轮动</td>
+                    </tr>
+                    <tr>
+                        <td>2023-04-28</td>
+                        <td>🔴 卖出</td>
+                        <td>518880</td>
+                        <td>黄金 ETF</td>
+                        <td>¥4.294</td>
+                        <td>21,249</td>
+                        <td>¥91,239</td>
+                        <td>轮动</td>
+                    </tr>
+                    <tr>
+                        <td>2023-04-26</td>
+                        <td>🟢 买入</td>
+                        <td>518880</td>
+                        <td>黄金 ETF</td>
+                        <td>¥4.327</td>
+                        <td>21,249</td>
+                        <td>¥91,981</td>
+                        <td>轮动</td>
+                    </tr>
+                    <tr>
+                        <td>2023-04-26</td>
+                        <td>🔴 卖出</td>
+                        <td>513100</td>
+                        <td>纳指 ETF</td>
+                        <td>¥0.903</td>
+                        <td>101,845</td>
+                        <td>¥91,976</td>
+                        <td>轮动</td>
+                    </tr>
+                    <tr>
+                        <td>2023-04-21</td>
+                        <td>🟢 买入</td>
+                        <td>513100</td>
+                        <td>纳指 ETF</td>
+                        <td>¥0.909</td>
+                        <td>101,845</td>
+                        <td>¥92,596</td>
+                        <td>轮动</td>
+                    </tr>
+                    <tr>
+                        <td>2023-04-21</td>
+                        <td>🔴 卖出</td>
+                        <td>510300</td>
+                        <td>沪深 300ETF</td>
+                        <td>¥3.746</td>
+                        <td>24,697</td>
+                        <td>¥92,521</td>
+                        <td>轮动</td>
+                    </tr>
+                    <tr>
+                        <td>2023-04-20</td>
+                        <td>🟢 买入</td>
+                        <td>510300</td>
+                        <td>沪深 300ETF</td>
+                        <td>¥3.827</td>
+                        <td>24,697</td>
+                        <td>¥94,540</td>
+                        <td>轮动</td>
+                    </tr>
+                    <tr>
+                        <td>2023-04-20</td>
+                        <td>🔴 卖出</td>
+                        <td>513100</td>
+                        <td>纳指 ETF</td>
+                        <td>¥0.911</td>
+                        <td>103,794</td>
+                        <td>¥94,566</td>
+                        <td>轮动</td>
+                    </tr>
+                    <tr>
+                        <td>2023-04-14</td>
+                        <td>🟢 买入</td>
+                        <td>513100</td>
+                        <td>纳指 ETF</td>
+                        <td>¥0.911</td>
+                        <td>103,794</td>
+                        <td>¥94,576</td>
+                        <td>轮动</td>
+                    </tr>
+                    <tr>
+                        <td>2023-04-14</td>
+                        <td>🔴 卖出</td>
+                        <td>518880</td>
+                        <td>黄金 ETF</td>
+                        <td>¥4.362</td>
+                        <td>21,706</td>
+                        <td>¥94,678</td>
+                        <td>轮动</td>
+                    </tr>
+                    <tr>
+                        <td>2023-04-10</td>
+                        <td>🟢 买入</td>
+                        <td>518880</td>
+                        <td>黄金 ETF</td>
+                        <td>¥4.291</td>
+                        <td>21,706</td>
+                        <td>¥93,179</td>
+                        <td>轮动</td>
+                    </tr>
+                    <tr>
+                        <td>2023-04-10</td>
+                        <td>🔴 卖出</td>
+                        <td>513100</td>
+                        <td>纳指 ETF</td>
+                        <td>¥0.909</td>
+                        <td>102,457</td>
+                        <td>¥93,143</td>
+                        <td>轮动</td>
+                    </tr>
+                    <tr>
+                        <td>2023-04-03</td>
+                        <td>🟢 买入</td>
+                        <td>513100</td>
+                        <td>纳指 ETF</td>
+                        <td>¥0.921</td>
+                        <td>102,457</td>
+                        <td>¥94,384</td>
+                        <td>轮动</td>
+                    </tr>
+                    <tr>
+                        <td>2023-04-03</td>
+                        <td>🔴 卖出</td>
+                        <td>518880</td>
+                        <td>黄金 ETF</td>
+                        <td>¥4.217</td>
+                        <td>22,429</td>
+                        <td>¥94,579</td>
+                        <td>轮动</td>
+                    </tr>
+                    <tr>
+                        <td>2023-03-10</td>
+                        <td>🟢 买入</td>
+                        <td>518880</td>
+                        <td>黄金 ETF</td>
+                        <td>¥4.065</td>
+                        <td>22,429</td>
+                        <td>¥91,204</td>
+                        <td>轮动</td>
+                    </tr>
+                    <tr>
+                        <td>2023-03-10</td>
+                        <td>🔴 卖出</td>
+                        <td>511010</td>
+                        <td>国债 ETF</td>
+                        <td>¥126.497</td>
+                        <td>721</td>
+                        <td>¥91,221</td>
+                        <td>轮动</td>
+                    </tr>
+                    <tr>
+                        <td>2023-03-09</td>
+                        <td>🟢 买入</td>
+                        <td>511010</td>
+                        <td>国债 ETF</td>
+                        <td>¥126.702</td>
+                        <td>721</td>
+                        <td>¥91,396</td>
+                        <td>轮动</td>
+                    </tr>
+                    <tr>
+                        <td>2023-03-09</td>
+                        <td>🔴 卖出</td>
+                        <td>513100</td>
+                        <td>纳指 ETF</td>
+                        <td>¥0.867</td>
+                        <td>105,399</td>
+                        <td>¥91,395</td>
+                        <td>轮动</td>
+                    </tr>
+                    <tr>
+                        <td>2023-03-06</td>
+                        <td>🟢 买入</td>
+                        <td>513100</td>
+                        <td>纳指 ETF</td>
+                        <td>¥0.872</td>
+                        <td>105,399</td>
+                        <td>¥91,923</td>
+                        <td>轮动</td>
+                    </tr>
+                    <tr>
+                        <td>2023-03-06</td>
+                        <td>🔴 卖出</td>
+                        <td>511010</td>
+                        <td>国债 ETF</td>
+                        <td>¥126.261</td>
+                        <td>728</td>
+                        <td>¥91,941</td>
+                        <td>轮动</td>
+                    </tr>
+                    <tr>
+                        <td>2023-03-03</td>
+                        <td>🟢 买入</td>
+                        <td>511010</td>
+                        <td>国债 ETF</td>
+                        <td>¥126.424</td>
+                        <td>728</td>
+                        <td>¥92,088</td>
+                        <td>轮动</td>
+                    </tr>
+                    <tr>
+                        <td>2023-03-03</td>
+                        <td>🔴 卖出</td>
+                        <td>513100</td>
+                        <td>纳指 ETF</td>
+                        <td>¥0.848</td>
+                        <td>108,452</td>
+                        <td>¥91,984</td>
+                        <td>轮动</td>
+                    </tr>
+                    <tr>
+                        <td>2023-02-14</td>
+                        <td>🟢 买入</td>
+                        <td>513100</td>
+                        <td>纳指 ETF</td>
+                        <td>¥0.872</td>
+                        <td>108,452</td>
+                        <td>¥94,585</td>
+                        <td>轮动</td>
+                    </tr>
+                    <tr>
+                        <td>2023-02-14</td>
+                        <td>🔴 卖出</td>
+                        <td>159915</td>
+                        <td>创业板 ETF</td>
+                        <td>¥2.488</td>
+                        <td>38,026</td>
+                        <td>¥94,592</td>
+                        <td>轮动</td>
+                    </tr>
+                    <tr>
+                        <td>2023-02-13</td>
+                        <td>🟢 买入</td>
+                        <td>159915</td>
+                        <td>创业板 ETF</td>
+                        <td>¥2.497</td>
+                        <td>38,026</td>
+                        <td>¥95,000</td>
+                        <td>轮动</td>
+                    </tr>
                 </tbody>
             </table>
-            <p style="text-align: center; color: #666;">... 更多交易记录请查看 trades_table.html</p>
         </div>
         
         <p style="text-align: center; margin-top: 50px; color: #999; font-size: 0.9em;">
-            报告生成时间：2026-03-30 01:51:48 | 使用 Plotly 交互式图表
+            报告生成时间：2026-03-30 08:09:47 | 使用 Plotly 交互式图表
         </p>
     </div>
     
     <script>
-        // 这里可以嵌入 Plotly 图表数据
-        // 为简化，实际使用时可加载单独的 HTML 文件
+        // 渲染图表
+        Plotly.newPlot('nav-curve', {"data": [{"fill": "tozeroy", "fillcolor": "rgba(46, 139, 87, 0.2)", "hovertemplate": "<b>%{x}</b><br>净值：¥%{y:.2f}<extra></extra>", "line": {"color": "#2E8B57", "width": 2}, "name": "策略净值", "x": ["2023-02-10", "2023-02-13", "2023-02-14", "2023-02-15", "2023-02-16", "2023-02-17", "2023-02-20", "2023-02-21", "2023-02-22", "2023-02-23", "2023-02-24", "2023-02-27", "2023-02-28", "2023-03-01", "2023-03-02", "2023-03-03", "2023-03-06", "2023-03-07", "2023-03-08", "2023-03-09", "2023-03-10", "2023-03-13", "2023-03-14", "2023-03-15", "2023-03-16", "2023-03-17", "2023-03-20", "2023-03-21", "2023-03-22", "2023-03-23", "2023-03-24", "2023-03-27", "2023-03-28", "2023-03-29", "2023-03-30", "2023-03-31", "2023-04-03", "2023-04-04", "2023-04-06", "2023-04-07", "2023-04-10", "2023-04-11", "2023-04-12", "2023-04-13", "2023-04-14", "2023-04-17", "2023-04-18", "2023-04-19", "2023-04-20", "2023-04-21", "2023-04-24", "2023-04-25", "2023-04-26", "2023-04-27", "2023-04-28", "2023-05-04", "2023-05-05", "2023-05-08", "2023-05-09", "2023-05-10", "2023-05-11", "2023-05-12", "2023-05-15", "2023-05-16", "2023-05-17", "2023-05-18", "2023-05-19", "2023-05-22", "2023-05-23", "2023-05-24", "2023-05-25", "2023-05-26", "2023-05-29", "2023-05-30", "2023-05-31", "2023-06-01", "2023-06-02", "2023-06-05", "2023-06-06", "2023-06-07", "2023-06-08", "2023-06-09", "2023-06-12", "2023-06-13", "2023-06-14", "2023-06-15", "2023-06-16", "2023-06-19", "2023-06-20", "2023-06-21", "2023-06-26", "2023-06-27", "2023-06-28", "2023-06-29", "2023-06-30", "2023-07-03", "2023-07-04", "2023-07-05", "2023-07-06", "2023-07-07", "2023-07-10", "2023-07-11", "2023-07-12", "2023-07-13", "2023-07-14", "2023-07-17", "2023-07-18", "2023-07-19", "2023-07-20", "2023-07-21", "2023-07-24", "2023-07-25", "2023-07-26", "2023-07-27", "2023-07-28", "2023-07-31", "2023-08-01", "2023-08-02", "2023-08-03", "2023-08-04", "2023-08-07", "2023-08-08", "2023-08-09", "2023-08-10", "2023-08-11", "2023-08-14", "2023-08-15", "2023-08-16", "2023-08-17", "2023-08-18", "2023-08-21", "2023-08-22", "2023-08-23", "2023-08-24", "2023-08-25", "2023-08-28", "2023-08-29", "2023-08-30", "2023-08-31", "2023-09-01", "2023-09-04", "2023-09-05", "2023-09-06", "2023-09-07", "2023-09-08", "2023-09-11", "2023-09-12", "2023-09-13", "2023-09-14", "2023-09-15", "2023-09-18", "2023-09-19", "2023-09-20", "2023-09-21", "2023-09-22", "2023-09-25", "2023-09-26", "2023-09-27", "2023-09-28", "2023-10-09", "2023-10-10", "2023-10-11", "2023-10-12", "2023-10-13", "2023-10-16", "2023-10-17", "2023-10-18", "2023-10-19", "2023-10-20", "2023-10-23", "2023-10-24", "2023-10-25", "2023-10-26", "2023-10-27", "2023-10-30", "2023-10-31", "2023-11-01", "2023-11-02", "2023-11-03", "2023-11-06", "2023-11-07", "2023-11-08", "2023-11-09", "2023-11-10", "2023-11-13", "2023-11-14", "2023-11-15", "2023-11-16", "2023-11-17", "2023-11-20", "2023-11-21", "2023-11-22", "2023-11-23", "2023-11-24", "2023-11-27", "2023-11-28", "2023-11-29", "2023-11-30", "2023-12-01", "2023-12-04", "2023-12-05", "2023-12-06", "2023-12-07", "2023-12-08", "2023-12-11", "2023-12-12", "2023-12-13", "2023-12-14", "2023-12-15", "2023-12-18", "2023-12-19", "2023-12-20", "2023-12-21", "2023-12-22", "2023-12-25", "2023-12-26", "2023-12-27", "2023-12-28", "2023-12-29", "2024-01-02", "2024-01-03", "2024-01-04", "2024-01-05", "2024-01-08", "2024-01-09", "2024-01-10", "2024-01-11", "2024-01-12", "2024-01-15", "2024-01-16", "2024-01-17", "2024-01-18", "2024-01-19", "2024-01-22", "2024-01-23", "2024-01-24", "2024-01-25", "2024-01-26", "2024-01-29", "2024-01-30", "2024-01-31", "2024-02-01", "2024-02-02", "2024-02-05", "2024-02-06", "2024-02-07", "2024-02-08", "2024-02-19", "2024-02-20", "2024-02-21", "2024-02-22", "2024-02-23", "2024-02-26", "2024-02-27", "2024-02-28", "2024-02-29", "2024-03-01", "2024-03-04", "2024-03-05", "2024-03-06", "2024-03-07", "2024-03-08", "2024-03-11", "2024-03-12", "2024-03-13", "2024-03-14", "2024-03-15", "2024-03-18", "2024-03-19", "2024-03-20", "2024-03-21", "2024-03-22", "2024-03-25", "2024-03-26", "2024-03-27", "2024-03-28", "2024-03-29", "2024-04-01", "2024-04-02", "2024-04-03", "2024-04-08", "2024-04-09", "2024-04-10", "2024-04-11", "2024-04-12", "2024-04-15", "2024-04-16", "2024-04-17", "2024-04-18", "2024-04-19", "2024-04-22", "2024-04-23", "2024-04-24", "2024-04-25", "2024-04-26", "2024-04-29", "2024-04-30", "2024-05-06", "2024-05-07", "2024-05-08", "2024-05-09", "2024-05-10", "2024-05-13", "2024-05-14", "2024-05-15", "2024-05-16", "2024-05-17", "2024-05-20", "2024-05-21", "2024-05-22", "2024-05-23", "2024-05-24", "2024-05-27", "2024-05-28", "2024-05-29", "2024-05-30", "2024-05-31", "2024-06-03", "2024-06-04", "2024-06-05", "2024-06-06", "2024-06-07", "2024-06-11", "2024-06-12", "2024-06-13", "2024-06-14", "2024-06-17", "2024-06-18", "2024-06-19", "2024-06-20", "2024-06-21", "2024-06-24", "2024-06-25", "2024-06-26", "2024-06-27", "2024-06-28", "2024-07-01", "2024-07-02", "2024-07-03", "2024-07-04", "2024-07-05", "2024-07-08", "2024-07-09", "2024-07-10", "2024-07-11", "2024-07-12", "2024-07-15", "2024-07-16", "2024-07-17", "2024-07-18", "2024-07-19", "2024-07-22", "2024-07-23", "2024-07-24", "2024-07-25", "2024-07-26", "2024-07-29", "2024-07-30", "2024-07-31", "2024-08-01", "2024-08-02", "2024-08-05", "2024-08-06", "2024-08-07", "2024-08-08", "2024-08-09", "2024-08-12", "2024-08-13", "2024-08-14", "2024-08-15", "2024-08-16", "2024-08-19", "2024-08-20", "2024-08-21", "2024-08-22", "2024-08-23", "2024-08-26", "2024-08-27", "2024-08-28", "2024-08-29", "2024-08-30", "2024-09-02", "2024-09-03", "2024-09-04", "2024-09-05", "2024-09-06", "2024-09-09", "2024-09-10", "2024-09-11", "2024-09-12", "2024-09-13", "2024-09-18", "2024-09-19", "2024-09-20", "2024-09-23", "2024-09-24", "2024-09-25", "2024-09-26", "2024-09-27", "2024-09-30", "2024-10-08", "2024-10-09", "2024-10-10", "2024-10-11", "2024-10-14", "2024-10-15", "2024-10-16", "2024-10-17", "2024-10-18", "2024-10-21", "2024-10-22", "2024-10-23", "2024-10-24", "2024-10-25", "2024-10-28", "2024-10-29", "2024-10-30", "2024-10-31", "2024-11-01", "2024-11-04", "2024-11-05", "2024-11-06", "2024-11-07", "2024-11-08", "2024-11-11", "2024-11-12", "2024-11-13", "2024-11-14", "2024-11-15", "2024-11-18", "2024-11-19", "2024-11-20", "2024-11-21", "2024-11-22", "2024-11-25", "2024-11-26", "2024-11-27", "2024-11-28", "2024-11-29", "2024-12-02", "2024-12-03", "2024-12-04", "2024-12-05", "2024-12-06", "2024-12-09", "2024-12-10", "2024-12-11", "2024-12-12", "2024-12-13", "2024-12-16", "2024-12-17", "2024-12-18", "2024-12-19", "2024-12-20", "2024-12-23", "2024-12-24", "2024-12-25", "2024-12-26", "2024-12-27", "2024-12-30", "2024-12-31", "2025-01-02", "2025-01-03", "2025-01-06", "2025-01-07", "2025-01-08", "2025-01-09", "2025-01-10", "2025-01-13", "2025-01-14", "2025-01-15", "2025-01-16", "2025-01-17", "2025-01-20", "2025-01-21", "2025-01-22", "2025-01-23", "2025-01-24", "2025-01-27", "2025-02-05", "2025-02-06", "2025-02-07", "2025-02-10", "2025-02-11", "2025-02-12", "2025-02-13", "2025-02-14", "2025-02-17", "2025-02-18", "2025-02-19", "2025-02-20", "2025-02-21", "2025-02-24", "2025-02-25", "2025-02-26", "2025-02-27", "2025-02-28", "2025-03-03", "2025-03-04", "2025-03-05", "2025-03-06", "2025-03-07", "2025-03-10", "2025-03-11", "2025-03-12", "2025-03-13", "2025-03-14", "2025-03-17", "2025-03-18", "2025-03-19", "2025-03-20", "2025-03-21", "2025-03-24", "2025-03-25", "2025-03-26", "2025-03-27", "2025-03-28", "2025-03-31", "2025-04-01", "2025-04-02", "2025-04-03", "2025-04-07", "2025-04-08", "2025-04-09", "2025-04-10", "2025-04-11", "2025-04-14", "2025-04-15", "2025-04-16", "2025-04-17", "2025-04-18", "2025-04-21", "2025-04-22", "2025-04-23", "2025-04-24", "2025-04-25", "2025-04-28", "2025-04-29", "2025-04-30", "2025-05-06", "2025-05-07", "2025-05-08", "2025-05-09", "2025-05-12", "2025-05-13", "2025-05-14", "2025-05-15", "2025-05-16", "2025-05-19", "2025-05-20", "2025-05-21", "2025-05-22", "2025-05-23", "2025-05-26", "2025-05-27", "2025-05-28", "2025-05-29", "2025-05-30", "2025-06-03", "2025-06-04", "2025-06-05", "2025-06-06", "2025-06-09", "2025-06-10", "2025-06-11", "2025-06-12", "2025-06-13", "2025-06-16", "2025-06-17", "2025-06-18", "2025-06-19", "2025-06-20", "2025-06-23", "2025-06-24", "2025-06-25", "2025-06-26", "2025-06-27", "2025-06-30", "2025-07-01", "2025-07-02", "2025-07-03", "2025-07-04", "2025-07-07", "2025-07-08", "2025-07-09", "2025-07-10", "2025-07-11", "2025-07-14", "2025-07-15", "2025-07-16", "2025-07-17", "2025-07-18", "2025-07-21", "2025-07-22", "2025-07-23", "2025-07-24", "2025-07-25", "2025-07-28", "2025-07-29", "2025-07-30", "2025-07-31", "2025-08-01", "2025-08-04", "2025-08-05", "2025-08-06", "2025-08-07", "2025-08-08", "2025-08-11", "2025-08-12", "2025-08-13", "2025-08-14", "2025-08-15", "2025-08-18", "2025-08-19", "2025-08-20", "2025-08-21", "2025-08-22", "2025-08-25", "2025-08-26", "2025-08-27", "2025-08-28", "2025-08-29", "2025-09-01", "2025-09-02", "2025-09-03", "2025-09-04", "2025-09-05", "2025-09-08", "2025-09-09", "2025-09-10", "2025-09-11", "2025-09-12", "2025-09-15", "2025-09-16", "2025-09-17", "2025-09-18", "2025-09-19", "2025-09-22", "2025-09-23", "2025-09-24", "2025-09-25", "2025-09-26", "2025-09-29", "2025-09-30", "2025-10-09", "2025-10-10", "2025-10-13", "2025-10-14", "2025-10-15", "2025-10-16", "2025-10-17", "2025-10-20", "2025-10-21", "2025-10-22", "2025-10-23", "2025-10-24", "2025-10-27", "2025-10-28", "2025-10-29", "2025-10-30", "2025-10-31", "2025-11-03", "2025-11-04", "2025-11-05", "2025-11-06", "2025-11-07", "2025-11-10", "2025-11-11", "2025-11-12", "2025-11-13", "2025-11-14", "2025-11-17", "2025-11-18", "2025-11-19", "2025-11-20", "2025-11-21", "2025-11-24", "2025-11-25", "2025-11-26", "2025-11-27", "2025-11-28", "2025-12-01", "2025-12-02", "2025-12-03", "2025-12-04", "2025-12-05", "2025-12-08", "2025-12-09", "2025-12-10", "2025-12-11", "2025-12-12", "2025-12-15", "2025-12-16", "2025-12-17", "2025-12-18", "2025-12-19", "2025-12-22", "2025-12-23", "2025-12-24", "2025-12-25", "2025-12-26", "2025-12-29", "2025-12-30", "2025-12-31", "2026-01-05", "2026-01-06", "2026-01-07", "2026-01-08", "2026-01-09", "2026-01-12", "2026-01-13", "2026-01-14", "2026-01-15", "2026-01-16", "2026-01-19", "2026-01-20", "2026-01-21", "2026-01-22", "2026-01-23", "2026-01-26", "2026-01-27", "2026-01-28", "2026-01-29", "2026-01-30", "2026-02-02", "2026-02-03", "2026-02-04", "2026-02-05", "2026-02-06", "2026-02-09", "2026-02-10", "2026-02-11", "2026-02-12", "2026-02-13", "2026-02-24", "2026-02-25", "2026-02-26", "2026-02-27", "2026-03-02", "2026-03-03", "2026-03-04", "2026-03-05", "2026-03-06", "2026-03-09", "2026-03-10", "2026-03-11", "2026-03-12", "2026-03-13", "2026-03-16", "2026-03-17", "2026-03-18", "2026-03-19", "2026-03-20", "2026-03-23", "2026-03-24", "2026-03-25", "2026-03-26", "2026-03-27"], "y": [1.0, 0.998766233766234, 0.9944058783905828, 0.9965749350277231, 1.0150119164434157, 0.9878987084791618, 0.9911522934348724, 0.9889832367977321, 0.9716307837006097, 0.9792224819306008, 0.9824760668863112, 0.97379984033775, 0.9770534252934605, 0.97379984033775, 0.9607855005149082, 0.9681535869778578, 0.9664117163869708, 0.9674657134485287, 0.959033736956065, 0.9608737114101557, 0.958855812675323, 0.965136016163571, 0.9770235441948972, 0.9763506652497278, 0.9842009196100376, 0.9895839511713929, 1.0185177458136774, 1.0093217335630287, 0.9951912757144711, 1.0019200651661653, 1.0068545107640743, 1.0003500142941035, 0.9956398616779174, 0.9990042564037646, 1.0007986002575497, 1.0082002686544131, 0.9922864490759821, 0.9943356030727892, 0.9779423710983327, 0.9861389870855609, 0.9796187706539121, 0.9848284407809564, 0.9913405284397618, 0.9924258763828961, 0.9943072508066535, 0.998459033115935, 0.998459033115935, 0.9963831419612943, 0.9939250516981836, 0.9734899756688982, 0.971453069612181, 0.971453069612181, 0.9670249971686955, 0.9691499428533605, 0.9593405507254776, 0.9520497769252904, 0.956165310418745, 0.946493806709127, 0.9483457967811815, 0.9526671069493086, 0.9518440002506177, 0.9435435162623655, 0.9416485732117484, 0.944490987787674, 0.9501758169395256, 0.9643878898191541, 0.9852322633759424, 0.9795474342240911, 0.9871272064265596, 0.9729151335469312, 0.9880746779518682, 0.9909170925277939, 1.0250260674389022, 1.0278684820148278, 1.0240785959135936, 1.0231311243882852, 1.0354482542172965, 1.0401856118438395, 1.041133083369148, 1.0439754979450737, 1.0231311243882852, 1.0392381403185307, 1.0506077986222335, 1.0752420582802562, 1.076189529805565, 1.0809268874321076, 1.0894541311598849, 1.0856642450586507, 1.0847167735333418, 1.0894541311598849, 1.0809268874321076, 1.0667148145524792, 1.0799794159067992, 1.0885066596345763, 1.0894541311598849, 1.1065086186154391, 1.1008237894635877, 1.0989288464129705, 1.0998763179382791, 1.0951389603117363, 1.0847167735333418, 1.0904016026851933, 1.091349074210502, 1.1065086186154391, 1.1140883908179076, 1.1197732199697588, 1.1292479352228446, 1.1491448372543245, 1.1339852928493874, 1.1159833338685246, 1.1197732199697588, 1.1159833338685246, 1.1188257484444504, 1.128300463697536, 1.1188895694033114, 1.1206074835010582, 1.1243133421452658, 1.1067536541241059, 1.1168277861654587, 1.122704363189581, 1.1140294161539717, 1.1098318611367413, 1.107593165127552, 1.1089923501332954, 1.0824078350241706, 1.0748522359931558, 1.0710862661175464, 1.057608905782987, 1.057283711943879, 1.057802473544361, 1.0587393415094104, 1.0581663809357438, 1.0580657256998294, 1.055216160945051, 1.0146998024632548, 1.0134737569264227, 1.0097730147221544, 1.0129976516422998, 1.0166522401517977, 1.015577361178416, 1.019231949687914, 1.0196619012772667, 1.0190169738932375, 1.0188019980985612, 1.0256812235282045, 1.0276160056802917, 1.0278309814749682, 1.030195715216408, 1.03771986803008, 1.0282609330643206, 1.0231015139920883, 1.0306256668057605, 1.0381498196194328, 1.035140158493964, 1.0310556183951132, 1.0353551342886405, 1.0347102069046112, 1.0203068286612957, 1.0041836440605696, 0.9975193944256027, 0.9852657741290507, 0.9867706046917852, 0.9942947575054573, 0.9975193944256027, 1.009343063132802, 1.013642579026329, 1.022886538197412, 1.0280459572696443, 1.038794747003462, 1.033420352136553, 1.0340652795205822, 1.030195715216408, 1.0372899164407274, 1.0392246985928146, 1.0413744565395782, 1.043739190281018, 1.04008460177152, 1.0422343597182835, 1.0415894323342545, 1.0340859663670479, 1.0246104041307942, 1.0308292326409796, 1.0243742286703685, 1.0314747330380407, 1.0280320642537149, 1.032335400234122, 1.036423569415509, 1.0300032791962448, 1.031691699381894, 1.0181843378966993, 1.0291590691034198, 1.0224053883608226, 1.0274706489177705, 1.0283148590105955, 1.0232495984536474, 1.0257822287321212, 1.0257822287321212, 1.0249380186392967, 1.0207169681751733, 1.0224053883608226, 1.0114306571541019, 1.0249380186392967, 1.013963287432576, 1.0283148590105955, 1.034224329660368, 1.0460432709599135, 1.0570180021666342, 1.0679927333733548, 1.0587064223522835, 1.0663043131877055, 1.0722137838374783, 1.078123254487251, 1.0646158930020562, 1.069681153559004, 1.070525363651829, 1.0772790443944262, 1.080655884765725, 1.078123254487251, 1.075590624208777, 1.0730579939303029, 1.0570180021666342, 1.051952741609686, 1.0443548507742642, 1.0443038404433047, 1.0418866016601707, 1.0418866016601707, 1.053347470873898, 1.050072936812833, 1.0540144900852444, 1.0548715400872881, 1.0450154650637857, 1.0392323242512194, 1.0409321380403485, 1.0388313825171918, 1.0318927646622882, 1.0372894674383242, 1.0318927646622882, 1.0241831892679507, 1.0326637222017219, 1.0480828729903966, 1.026496061886252, 1.0172445714130471, 1.0411442551354928, 1.0457700003720953, 1.0473119154509627, 1.0380604249777579, 1.0604181936213362, 1.0550214908453, 1.0534795757664326, 1.0403732975960593, 1.0573343634636014, 1.0704406416339747, 1.0604181936213362, 1.0588762785424688, 1.0611891511607698, 1.0518436878909647, 1.0588081723323408, 1.0580343407277435, 1.0655147129055176, 1.06190349875073, 1.057002565254947, 1.0571624021608472, 1.1052011691893953, 1.1114919601098001, 1.1057730592730681, 1.1006260485200097, 1.1011979386036828, 1.1252173221179567, 1.1126357402771465, 1.1143514105281662, 1.1086325096914342, 1.0920476972649118, 1.0688155652098754, 1.0708642108355306, 1.0757809603371031, 1.0837706782771583, 1.1036425408460142, 1.1095836131604144, 1.1104030714106765, 1.1251533199153942, 1.1503516611109537, 1.1534246295494364, 1.1573170562381814, 1.1491224737355605, 1.181081345495782, 1.1632581285525814, 1.170428388242375, 1.1722721693054647, 1.1689943363044162, 1.1743208149311197, 1.1524003067366089, 1.1253581844779597, 1.1366257354190636, 1.136830599981629, 1.1452300470468155, 1.1380597873570222, 1.136420870856498, 1.1298652048544011, 1.129934840487575, 1.1208834648117976, 1.1318075389032534, 1.1324317717084793, 1.1314954225006402, 1.1296227240849623, 1.1215076976170237, 1.1252530944483798, 1.1380498669555135, 1.1405467981764177, 1.1368014013450616, 1.1392983325659656, 1.1249681462511891, 1.1071702057124329, 1.1195513817393938, 1.1241943227495041, 1.1195513817393938, 1.1079440292141178, 1.1033010882040075, 1.1079440292141178, 1.1048487352073777, 1.1133607937259133, 1.13425402827141, 1.135027851773095, 1.1358016752747802, 1.1458613807966858, 1.1675284388438676, 1.1667546153421826, 1.171397556352293, 1.186100202884309, 1.187647849887679, 1.1953860849045297, 1.1783619678674584, 1.1737190268573479, 1.162111674332072, 1.1830049088775687, 1.1822310853758837, 1.1977075554095848, 1.196159908406215, 1.1969337319078999, 1.2178269664533963, 1.224791377968562, 1.2394940245005779, 1.2572919650393344, 1.2696731410662956, 1.2541966710325942, 1.2596134355443898, 1.2108625549382308, 1.2472322595174286, 1.2449107890123736, 1.2340772599887826, 1.2101855161065613, 1.179655995008505, 1.1788308728166659, 1.1732612980217503, 1.1879072169268987, 1.1565836010470385, 1.1570643644869119, 1.1540230552132742, 1.1554475501777166, 1.1639945199643706, 1.172948488312294, 1.1753460828692912, 1.1757034483644593, 1.1743090222166472, 1.1756473910318839, 1.1748065310432534, 1.1735102052274484, 1.1691517476197144, 1.1719896500813418, 1.1728795602359756, 1.1719265855821948, 1.1717654207510406, 1.1721788435787837, 1.1720246859142014, 1.1709946324281293, 1.1704697645092978, 1.1672190967262406, 1.1730360811801324, 1.1723517300679098, 1.171325203399576, 1.1725228178459655, 1.1702986767312422, 1.1649949556115176, 1.166705833392074, 1.1575598075366758, 1.1582568869302337, 1.1557633908826672, 1.1478032398137992, 1.1549673757757803, 1.1607384853007097, 1.158549443756771, 1.1715712570274033, 1.1718491417978718, 1.1674582757557286, 1.1799346748685628, 1.1894405027640558, 1.1866679696278701, 1.1951836071175825, 1.1946276528081106, 1.2941585849051356, 1.5069488535263615, 1.7620683691313792, 1.5126690220376846, 1.4737718761606864, 1.408561955131601, 1.4405948987950117, 1.3999817023646162, 1.3742409440636614, 1.3713808598079997, 1.4634755728403048, 1.46976775820276, 1.474343893011819, 1.4669076739470988, 1.449747168413129, 1.486356246885598, 1.481780112076539, 1.4514632189665257, 1.4377348145393498, 1.4440269999018056, 1.4222903595587768, 1.457183387477849, 1.5166731399956113, 1.4988524294722543, 1.4740393120034097, 1.4824635983772314, 1.488295796636031, 1.489591840693542, 1.4809188788263745, 1.4385809410078432, 1.3962430031893123, 1.3685217343795597, 1.4017872569512626, 1.4058194415054084, 1.4028904438573897, 1.4111408119391968, 1.4223913138689341, 1.4223913138689341, 1.425391447716864, 1.4186411465590216, 1.4193911800210044, 1.425391447716864, 1.446392384652374, 1.4516426188862517, 1.4621430873540064, 1.458392920044094, 1.4778937900556388, 1.4681433550498664, 1.4651432212019362, 1.4831440242895164, 1.492144425833306, 1.5071450950729561, 1.5176455635407107, 1.525895931622518, 1.4928944592952886, 1.4681433550498664, 1.5093951954589033, 1.5063950616109736, 1.5206456973886409, 1.525895931622518, 1.5168955300787283, 1.499644760453131, 1.492144425833306, 1.502644894301061, 1.4951445596812363, 1.522145764312606, 1.514645429692781, 1.5018948608390783, 1.4973946600671835, 1.4928944592952886, 1.4610364725304608, 1.449243905659193, 1.4569544301519453, 1.4614900327947402, 1.465345295041116, 1.4626239334554387, 1.4626239334554387, 1.474870060590986, 1.4762307413838245, 1.4832609254801568, 1.4796324433659207, 1.533379334683043, 1.5249884697938718, 1.5290705121723878, 1.5512949651220838, 1.5662624538433076, 1.5558305677648792, 1.5630875319933513, 1.5710248366182427, 1.5420333017627452, 1.5101049310227508, 1.5157660485302409, 1.5151070626604242, 1.5513512855003404, 1.5394895398436408, 1.5199146479517087, 1.5023805376105257, 1.4953185241664515, 1.441390421502609, 1.4580824532795125, 1.4512865420742258, 1.4614687799099169, 1.4553237390115392, 1.4357634936415744, 1.4351325179844787, 1.4351325179844787, 1.4252997525610347, 1.4147018103045337, 1.431191644545698, 1.4270030632913893, 1.4301444992321208, 1.428705563867598, 1.4301026630288598, 1.4235163384114835, 1.4247138519782792, 1.4235163384114835, 1.4277076358952685, 1.4311005910011896, 1.4562483759038993, 1.47101770989438, 1.4797994760508817, 1.474410665000301, 1.487383728640588, 1.4440736546414765, 1.4536537631758422, 1.47101770989438, 1.5013547202532045, 1.5231095500499934, 1.5338871721511547, 1.533488000962223, 1.5690142367771622, 1.5813885436340513, 1.5849810843344385, 1.6131226531541376, 1.6646157365263532, 1.5684154799937644, 1.5847814987399722, 1.574403047827743, 1.5614299841874562, 1.5718084350996857, 1.5626274977542518, 1.590769066573951, 1.6025446166474422, 1.5797918588783237, 1.574602633422209, 1.5436668662799866, 1.5310918262088038, 1.5731387890085489, 1.5664494994722258, 1.5683607250540321, 1.5511446426770197, 1.559064499606589, 1.544860391744401, 1.5353909865029425, 1.530656283882213, 1.539178748599526, 1.545807332268547, 1.5628522617031724, 1.5827380127102353, 1.5514889754134222, 1.5571706185582972, 1.5694808453721931, 1.5656930832756097, 1.5619053211790266, 1.5656930832756097, 1.5656930832756097, 1.571374726420485, 1.5656930832756097, 1.5495950943651304, 1.558052107149738, 1.5455275257342358, 1.5463103120727049, 1.5388738418572503, 1.533198640903351, 1.538678145272633, 1.520674059487849, 1.5208291937167595, 1.5098689752188637, 1.5153490844678117, 1.5372695214636034, 1.5324744258707739, 1.5174041254361672, 1.5427496307125512, 1.5372695214636034, 1.5215142073728778, 1.5550798765226839, 1.5578199311471577, 1.561930013083869, 1.5728902315817646, 1.5674101223328167, 1.5913856002969637, 1.587275518360253, 1.6153610782611107, 1.6187861465417033, 1.6345414606324284, 1.6441316518180873, 1.6427616245058503, 1.6687921434383528, 1.6639970478455233, 1.680437375592367, 1.708522935493225, 1.6824924165607227, 1.6523518156915091, 1.6537218430037461, 1.660571979564931, 1.6653670751577605, 1.6763272936556561, 1.6653670751577605, 1.6598869659088125, 1.6907125804341445, 1.709892962805462, 1.7701741645438889, 1.7516787958286897, 1.7948346561641544, 1.844840653060804, 1.8400455574679748, 1.8489507349975152, 1.837990516499619, 1.899641745550283, 1.9510177697591695, 1.9366324829806816, 1.9229322098583117, 1.998283712031345, 2.038699517742336, 2.081170364421682, 2.0270542855883216, 2.0421245860229282, 1.9606079609448281, 2.0928155965756963, 2.0681551049554305, 2.0249992446199663, 2.045549654303521, 2.148301702721294, 2.1277512930377394, 2.1565218665947157, 2.171592167029323, 2.2126929863964317, 2.1770722762782704, 2.1736472079976776, 2.1873474811200473, 2.1948826313373506, 2.24077854629729, 2.2757142427593324, 2.219543122957617, 2.2770842700715694, 2.2798243246960435, 2.2864499809137695, 2.2548493101530727, 2.318797124212122, 2.3479095531806387, 2.400411454995655, 2.4145944332110867, 2.495213467277748, 2.420566213512321, 2.475805181298737, 2.3790125755829, 2.3523883884065637, 2.341440124520968, 2.327156640895394, 2.3319590659965814, 2.3694179817858445, 2.355010706482282, 2.352129251421569, 2.3463663413001443, 2.311788880571594, 2.2848953000049432, 2.3204332457537316, 2.2964211202477935, 2.3223542157942068, 2.3300380959561067, 2.344445371259669, 2.345405856279907, 2.295460635227556, 2.2820138449442307, 2.2195823186287926, 2.2068803439885145, 2.2079785421001614, 2.2074068773297153, 2.2076475782856924, 2.2076927097149386, 2.199965679417169, 2.197796679400943, 2.2118467003724818, 2.2336295468113585, 2.222274658774072, 2.218566940231284, 2.211151503145709, 2.2278362365882525, 2.2218111939562233, 2.206980319785073, 2.21833520782236, 2.2218111939562233, 2.248923885800357, 2.2776587045069605, 2.251936407116372, 2.268157675741067, 2.270011535012461, 2.26885287296784, 2.314735889934835, 2.3443976382771354, 2.3450928355039085, 2.321732046499939, 2.3187357385325957, 2.293207839316316, 2.309520394512432, 2.2802937331193913, 2.3448642641040163, 2.359817439700455, 2.3652549580991606, 2.348942402903045, 2.367294027498675, 2.40603634608945, 2.356025636794862, 2.3855071204940956, 2.3729374956610894, 2.370652109327815, 2.404704365693596, 2.422073301826478, 2.4894921986580583, 2.4812648078582717, 2.544341470656632, 2.6145028310881404, 2.6167882174214143, 2.6958625845526916, 2.838470691748983, 2.6339286149209693, 2.3823075796275117, 2.4997764371577906, 2.60147612898848, 2.522858839123857, 2.48492142599151, 2.5676524112560255, 2.556225479589656, 2.5765654179557935, 2.567880949889353, 2.534742848056881, 2.6204448355546526, 2.6225016832545993, 2.6119889061215393, 2.616559678788087, 2.7271723773185443, 2.691063273252816, 2.6273009945544747, 2.6171547753920743, 2.617792704914137, 2.6147979802133445, 2.6149397423293586, 2.614762539684341, 2.614833420742348, 2.6154181894709048, 2.607304897967644, 2.6010339843721844, 2.5874362505565167, 2.5887681917145993, 2.581665202674787, 2.492560213374439, 2.4919523504000645, 2.4865461108040203, 2.449064137322988, 2.444428590266199], "type": "scatter", "xaxis": "x", "yaxis": "y"}, {"fill": "tozeroy", "fillcolor": "rgba(220, 20, 60, 0.2)", "hovertemplate": "<b>%{x}</b><br>回撤：%{y:.2f}%<extra></extra>", "line": {"color": "#DC143C", "width": 1}, "name": "回撤 %", "x": ["2023-02-13", "2023-02-14", "2023-02-15", "2023-02-16", "2023-02-17", "2023-02-20", "2023-02-21", "2023-02-22", "2023-02-23", "2023-02-24", "2023-02-27", "2023-02-28", "2023-03-01", "2023-03-02", "2023-03-03", "2023-03-06", "2023-03-07", "2023-03-08", "2023-03-09", "2023-03-10", "2023-03-13", "2023-03-14", "2023-03-15", "2023-03-16", "2023-03-17", "2023-03-20", "2023-03-21", "2023-03-22", "2023-03-23", "2023-03-24", "2023-03-27", "2023-03-28", "2023-03-29", "2023-03-30", "2023-03-31", "2023-04-03", "2023-04-04", "2023-04-06", "2023-04-07", "2023-04-10", "2023-04-11", "2023-04-12", "2023-04-13", "2023-04-14", "2023-04-17", "2023-04-18", "2023-04-19", "2023-04-20", "2023-04-21", "2023-04-24", "2023-04-25", "2023-04-26", "2023-04-27", "2023-04-28", "2023-05-04", "2023-05-05", "2023-05-08", "2023-05-09", "2023-05-10", "2023-05-11", "2023-05-12", "2023-05-15", "2023-05-16", "2023-05-17", "2023-05-18", "2023-05-19", "2023-05-22", "2023-05-23", "2023-05-24", "2023-05-25", "2023-05-26", "2023-05-29", "2023-05-30", "2023-05-31", "2023-06-01", "2023-06-02", "2023-06-05", "2023-06-06", "2023-06-07", "2023-06-08", "2023-06-09", "2023-06-12", "2023-06-13", "2023-06-14", "2023-06-15", "2023-06-16", "2023-06-19", "2023-06-20", "2023-06-21", "2023-06-26", "2023-06-27", "2023-06-28", "2023-06-29", "2023-06-30", "2023-07-03", "2023-07-04", "2023-07-05", "2023-07-06", "2023-07-07", "2023-07-10", "2023-07-11", "2023-07-12", "2023-07-13", "2023-07-14", "2023-07-17", "2023-07-18", "2023-07-19", "2023-07-20", "2023-07-21", "2023-07-24", "2023-07-25", "2023-07-26", "2023-07-27", "2023-07-28", "2023-07-31", "2023-08-01", "2023-08-02", "2023-08-03", "2023-08-04", "2023-08-07", "2023-08-08", "2023-08-09", "2023-08-10", "2023-08-11", "2023-08-14", "2023-08-15", "2023-08-16", "2023-08-17", "2023-08-18", "2023-08-21", "2023-08-22", "2023-08-23", "2023-08-24", "2023-08-25", "2023-08-28", "2023-08-29", "2023-08-30", "2023-08-31", "2023-09-01", "2023-09-04", "2023-09-05", "2023-09-06", "2023-09-07", "2023-09-08", "2023-09-11", "2023-09-12", "2023-09-13", "2023-09-14", "2023-09-15", "2023-09-18", "2023-09-19", "2023-09-20", "2023-09-21", "2023-09-22", "2023-09-25", "2023-09-26", "2023-09-27", "2023-09-28", "2023-10-09", "2023-10-10", "2023-10-11", "2023-10-12", "2023-10-13", "2023-10-16", "2023-10-17", "2023-10-18", "2023-10-19", "2023-10-20", "2023-10-23", "2023-10-24", "2023-10-25", "2023-10-26", "2023-10-27", "2023-10-30", "2023-10-31", "2023-11-01", "2023-11-02", "2023-11-03", "2023-11-06", "2023-11-07", "2023-11-08", "2023-11-09", "2023-11-10", "2023-11-13", "2023-11-14", "2023-11-15", "2023-11-16", "2023-11-17", "2023-11-20", "2023-11-21", "2023-11-22", "2023-11-23", "2023-11-24", "2023-11-27", "2023-11-28", "2023-11-29", "2023-11-30", "2023-12-01", "2023-12-04", "2023-12-05", "2023-12-06", "2023-12-07", "2023-12-08", "2023-12-11", "2023-12-12", "2023-12-13", "2023-12-14", "2023-12-15", "2023-12-18", "2023-12-19", "2023-12-20", "2023-12-21", "2023-12-22", "2023-12-25", "2023-12-26", "2023-12-27", "2023-12-28", "2023-12-29", "2024-01-02", "2024-01-03", "2024-01-04", "2024-01-05", "2024-01-08", "2024-01-09", "2024-01-10", "2024-01-11", "2024-01-12", "2024-01-15", "2024-01-16", "2024-01-17", "2024-01-18", "2024-01-19", "2024-01-22", "2024-01-23", "2024-01-24", "2024-01-25", "2024-01-26", "2024-01-29", "2024-01-30", "2024-01-31", "2024-02-01", "2024-02-02", "2024-02-05", "2024-02-06", "2024-02-07", "2024-02-08", "2024-02-19", "2024-02-20", "2024-02-21", "2024-02-22", "2024-02-23", "2024-02-26", "2024-02-27", "2024-02-28", "2024-02-29", "2024-03-01", "2024-03-04", "2024-03-05", "2024-03-06", "2024-03-07", "2024-03-08", "2024-03-11", "2024-03-12", "2024-03-13", "2024-03-14", "2024-03-15", "2024-03-18", "2024-03-19", "2024-03-20", "2024-03-21", "2024-03-22", "2024-03-25", "2024-03-26", "2024-03-27", "2024-03-28", "2024-03-29", "2024-04-01", "2024-04-02", "2024-04-03", "2024-04-08", "2024-04-09", "2024-04-10", "2024-04-11", "2024-04-12", "2024-04-15", "2024-04-16", "2024-04-17", "2024-04-18", "2024-04-19", "2024-04-22", "2024-04-23", "2024-04-24", "2024-04-25", "2024-04-26", "2024-04-29", "2024-04-30", "2024-05-06", "2024-05-07", "2024-05-08", "2024-05-09", "2024-05-10", "2024-05-13", "2024-05-14", "2024-05-15", "2024-05-16", "2024-05-17", "2024-05-20", "2024-05-21", "2024-05-22", "2024-05-23", "2024-05-24", "2024-05-27", "2024-05-28", "2024-05-29", "2024-05-30", "2024-05-31", "2024-06-03", "2024-06-04", "2024-06-05", "2024-06-06", "2024-06-07", "2024-06-11", "2024-06-12", "2024-06-13", "2024-06-14", "2024-06-17", "2024-06-18", "2024-06-19", "2024-06-20", "2024-06-21", "2024-06-24", "2024-06-25", "2024-06-26", "2024-06-27", "2024-06-28", "2024-07-01", "2024-07-02", "2024-07-03", "2024-07-04", "2024-07-05", "2024-07-08", "2024-07-09", "2024-07-10", "2024-07-11", "2024-07-12", "2024-07-15", "2024-07-16", "2024-07-17", "2024-07-18", "2024-07-19", "2024-07-22", "2024-07-23", "2024-07-24", "2024-07-25", "2024-07-26", "2024-07-29", "2024-07-30", "2024-07-31", "2024-08-01", "2024-08-02", "2024-08-05", "2024-08-06", "2024-08-07", "2024-08-08", "2024-08-09", "2024-08-12", "2024-08-13", "2024-08-14", "2024-08-15", "2024-08-16", "2024-08-19", "2024-08-20", "2024-08-21", "2024-08-22", "2024-08-23", "2024-08-26", "2024-08-27", "2024-08-28", "2024-08-29", "2024-08-30", "2024-09-02", "2024-09-03", "2024-09-04", "2024-09-05", "2024-09-06", "2024-09-09", "2024-09-10", "2024-09-11", "2024-09-12", "2024-09-13", "2024-09-18", "2024-09-19", "2024-09-20", "2024-09-23", "2024-09-24", "2024-09-25", "2024-09-26", "2024-09-27", "2024-09-30", "2024-10-08", "2024-10-09", "2024-10-10", "2024-10-11", "2024-10-14", "2024-10-15", "2024-10-16", "2024-10-17", "2024-10-18", "2024-10-21", "2024-10-22", "2024-10-23", "2024-10-24", "2024-10-25", "2024-10-28", "2024-10-29", "2024-10-30", "2024-10-31", "2024-11-01", "2024-11-04", "2024-11-05", "2024-11-06", "2024-11-07", "2024-11-08", "2024-11-11", "2024-11-12", "2024-11-13", "2024-11-14", "2024-11-15", "2024-11-18", "2024-11-19", "2024-11-20", "2024-11-21", "2024-11-22", "2024-11-25", "2024-11-26", "2024-11-27", "2024-11-28", "2024-11-29", "2024-12-02", "2024-12-03", "2024-12-04", "2024-12-05", "2024-12-06", "2024-12-09", "2024-12-10", "2024-12-11", "2024-12-12", "2024-12-13", "2024-12-16", "2024-12-17", "2024-12-18", "2024-12-19", "2024-12-20", "2024-12-23", "2024-12-24", "2024-12-25", "2024-12-26", "2024-12-27", "2024-12-30", "2024-12-31", "2025-01-02", "2025-01-03", "2025-01-06", "2025-01-07", "2025-01-08", "2025-01-09", "2025-01-10", "2025-01-13", "2025-01-14", "2025-01-15", "2025-01-16", "2025-01-17", "2025-01-20", "2025-01-21", "2025-01-22", "2025-01-23", "2025-01-24", "2025-01-27", "2025-02-05", "2025-02-06", "2025-02-07", "2025-02-10", "2025-02-11", "2025-02-12", "2025-02-13", "2025-02-14", "2025-02-17", "2025-02-18", "2025-02-19", "2025-02-20", "2025-02-21", "2025-02-24", "2025-02-25", "2025-02-26", "2025-02-27", "2025-02-28", "2025-03-03", "2025-03-04", "2025-03-05", "2025-03-06", "2025-03-07", "2025-03-10", "2025-03-11", "2025-03-12", "2025-03-13", "2025-03-14", "2025-03-17", "2025-03-18", "2025-03-19", "2025-03-20", "2025-03-21", "2025-03-24", "2025-03-25", "2025-03-26", "2025-03-27", "2025-03-28", "2025-03-31", "2025-04-01", "2025-04-02", "2025-04-03", "2025-04-07", "2025-04-08", "2025-04-09", "2025-04-10", "2025-04-11", "2025-04-14", "2025-04-15", "2025-04-16", "2025-04-17", "2025-04-18", "2025-04-21", "2025-04-22", "2025-04-23", "2025-04-24", "2025-04-25", "2025-04-28", "2025-04-29", "2025-04-30", "2025-05-06", "2025-05-07", "2025-05-08", "2025-05-09", "2025-05-12", "2025-05-13", "2025-05-14", "2025-05-15", "2025-05-16", "2025-05-19", "2025-05-20", "2025-05-21", "2025-05-22", "2025-05-23", "2025-05-26", "2025-05-27", "2025-05-28", "2025-05-29", "2025-05-30", "2025-06-03", "2025-06-04", "2025-06-05", "2025-06-06", "2025-06-09", "2025-06-10", "2025-06-11", "2025-06-12", "2025-06-13", "2025-06-16", "2025-06-17", "2025-06-18", "2025-06-19", "2025-06-20", "2025-06-23", "2025-06-24", "2025-06-25", "2025-06-26", "2025-06-27", "2025-06-30", "2025-07-01", "2025-07-02", "2025-07-03", "2025-07-04", "2025-07-07", "2025-07-08", "2025-07-09", "2025-07-10", "2025-07-11", "2025-07-14", "2025-07-15", "2025-07-16", "2025-07-17", "2025-07-18", "2025-07-21", "2025-07-22", "2025-07-23", "2025-07-24", "2025-07-25", "2025-07-28", "2025-07-29", "2025-07-30", "2025-07-31", "2025-08-01", "2025-08-04", "2025-08-05", "2025-08-06", "2025-08-07", "2025-08-08", "2025-08-11", "2025-08-12", "2025-08-13", "2025-08-14", "2025-08-15", "2025-08-18", "2025-08-19", "2025-08-20", "2025-08-21", "2025-08-22", "2025-08-25", "2025-08-26", "2025-08-27", "2025-08-28", "2025-08-29", "2025-09-01", "2025-09-02", "2025-09-03", "2025-09-04", "2025-09-05", "2025-09-08", "2025-09-09", "2025-09-10", "2025-09-11", "2025-09-12", "2025-09-15", "2025-09-16", "2025-09-17", "2025-09-18", "2025-09-19", "2025-09-22", "2025-09-23", "2025-09-24", "2025-09-25", "2025-09-26", "2025-09-29", "2025-09-30", "2025-10-09", "2025-10-10", "2025-10-13", "2025-10-14", "2025-10-15", "2025-10-16", "2025-10-17", "2025-10-20", "2025-10-21", "2025-10-22", "2025-10-23", "2025-10-24", "2025-10-27", "2025-10-28", "2025-10-29", "2025-10-30", "2025-10-31", "2025-11-03", "2025-11-04", "2025-11-05", "2025-11-06", "2025-11-07", "2025-11-10", "2025-11-11", "2025-11-12", "2025-11-13", "2025-11-14", "2025-11-17", "2025-11-18", "2025-11-19", "2025-11-20", "2025-11-21", "2025-11-24", "2025-11-25", "2025-11-26", "2025-11-27", "2025-11-28", "2025-12-01", "2025-12-02", "2025-12-03", "2025-12-04", "2025-12-05", "2025-12-08", "2025-12-09", "2025-12-10", "2025-12-11", "2025-12-12", "2025-12-15", "2025-12-16", "2025-12-17", "2025-12-18", "2025-12-19", "2025-12-22", "2025-12-23", "2025-12-24", "2025-12-25", "2025-12-26", "2025-12-29", "2025-12-30", "2025-12-31", "2026-01-05", "2026-01-06", "2026-01-07", "2026-01-08", "2026-01-09", "2026-01-12", "2026-01-13", "2026-01-14", "2026-01-15", "2026-01-16", "2026-01-19", "2026-01-20", "2026-01-21", "2026-01-22", "2026-01-23", "2026-01-26", "2026-01-27", "2026-01-28", "2026-01-29", "2026-01-30", "2026-02-02", "2026-02-03", "2026-02-04", "2026-02-05", "2026-02-06", "2026-02-09", "2026-02-10", "2026-02-11", "2026-02-12", "2026-02-13", "2026-02-24", "2026-02-25", "2026-02-26", "2026-02-27", "2026-03-02", "2026-03-03", "2026-03-04", "2026-03-05", "2026-03-06", "2026-03-09", "2026-03-10", "2026-03-11", "2026-03-12", "2026-03-13", "2026-03-16", "2026-03-17", "2026-03-18", "2026-03-19", "2026-03-20", "2026-03-23", "2026-03-24", "2026-03-25", "2026-03-26", "2026-03-27"], "y": [-0.12337662337660732, -0.5594121609417197, -0.34250649722768867, 0.0, -2.671220655148368, -2.350674176530556, -2.5643718289424258, -4.273953048237371, -3.5260112647958337, -3.205464786178036, -4.060255395825502, -3.7397089172077043, -4.060255395825502, -5.3424413102967225, -4.616529984174835, -4.788140835502616, -4.684299979599063, -5.51502682682754, -5.333750683731809, -5.532556106815238, -4.913824111012306, -3.7426528332424933, -3.80894554707853, -3.035530552324865, -2.5051888416366577, 0.0, -0.9028818877674278, -2.290236983605151, -1.6295916998728923, -1.1451184918025683, -1.7837422660770725, -2.2461939646896707, -1.9158713228235271, -1.7396992471615924, -1.012989435056128, -2.5754383608446227, -2.374248543069763, -3.9837670852685823, -3.179007814169173, -3.8191750040338897, -3.307679730784384, -2.668310639222509, -2.561749123962194, -2.377032222220402, -1.9694023771493412, -1.9694023771493412, -2.173217299684864, -2.4145572540660285, -4.420911695437116, -4.6208989872726525, -4.6208989872726525, -5.055655520645365, -4.847024331508114, -5.810129016546893, -6.525950987264038, -6.121880119537847, -7.071446658694371, -6.889614768217593, -6.465340357105112, -6.546154530650342, -7.361111758677917, -7.54716085388571, -7.268087211074029, -6.7099399254506515, -5.314571711392216, -3.268031664106531, -3.826178949729893, -3.0819825688987383, -4.477350782957159, -2.988958021294835, -2.709884378483154, 0.0, 0.0, -0.368713134758774, -0.4608914184484462, 0.0, 0.0, 0.0, 0.0, -1.9966343652526186, -0.4537805375574235, 0.0, 0.0, 0.0, 0.0, 0.0, -0.347870184970468, -0.4348377312130917, 0.0, -0.7827079161835597, -2.087221109822795, -0.8696754624261567, -0.08696754624262368, 0.0, 0.0, -0.5137627539643259, -0.6850170052857723, -0.5993898796250557, -1.0275255079286651, -1.9694238901966266, -1.4556611362322875, -1.3700340105715576, 0.0, 0.0, 0.0, 0.0, 0.0, -1.3192022374793115, -2.8857548944860025, -2.5559543351161844, -2.8857548944860025, -2.638404474958623, -1.813903076534058, -2.632850696462487, -2.4833556944354593, -2.160867307935625, -3.688933000952664, -2.812269614862618, -2.30088263964344, -3.0557872221098634, -3.421063632980719, -3.6158777187785027, -3.4941189151548797, -5.807536184003587, -6.465033723571125, -6.792753063511571, -7.965569569980946, -7.993868338644876, -7.948725064823833, -7.867197659863481, -7.917057395128488, -7.925816537810183, -8.173789174713534, -11.699572624135184, -11.806264617788601, -12.128307765379168, -11.847695886388344, -11.529669090198768, -11.6232063831957, -11.305179587006112, -11.267764669807336, -11.323887045605506, -11.3425945042049, -10.743955829024499, -10.57558870163, -10.556881243030606, -10.351099198437346, -9.6963381474588, -10.519466325831845, -10.968445332217142, -10.313684281238583, -9.658923230260024, -9.920827650651443, -10.276269364039807, -9.902120192052049, -9.958242567850219, -11.211642294009179, -12.614701688963228, -13.194632905544236, -14.260958045709316, -14.130005835513595, -13.475244784535063, -13.194632905544236, -12.16572268257793, -11.791573510590172, -10.987152790816536, -10.538173784431239, -9.602800854461854, -10.070487319446546, -10.014364943648376, -10.351099198437346, -9.733753064657575, -9.565385937263079, -9.378311351269211, -9.172529306675951, -9.49055610286554, -9.30348151687166, -9.359603892669817, -10.012564748773453, -10.837139852717174, -10.29596973137336, -10.857692132357563, -10.23979749127494, -10.539382771799852, -10.164901171143722, -9.809143650520399, -10.36784521807949, -10.220916812632925, -11.39634405620547, -10.441309420802785, -11.029023042589058, -10.58823782624935, -10.514773623526056, -10.955558839865763, -10.735166231695915, -10.735166231695915, -10.808630434419197, -11.175951448035622, -11.029023042589058, -11.984057677991741, -10.808630434419197, -11.763665069821895, -10.514773623526056, -10.000524204463078, -8.972025366337098, -8.01699073093439, -7.061956095531705, -7.870062325487824, -7.20888450097827, -6.694635081915281, -6.180385662852291, -7.3558129064248465, -6.91502769008514, -6.841563487361844, -6.253849865575573, -5.95999305468243, -6.180385662852291, -6.400778271022138, -6.6211708791919985, -8.01699073093439, -8.457775947274095, -9.118953771783664, -9.123392753651357, -9.333743851682637, -9.333743851682637, -8.33640488777005, -8.621358877459357, -8.278360053931666, -8.203778506483612, -9.061466302136232, -9.564722343070466, -9.416802452207056, -9.59961278690569, -10.203419864130375, -9.733792137400075, -10.203419864130375, -10.874316616602234, -10.13633018888319, -8.794536683939459, -10.673047590860676, -11.478123693826909, -9.398343761164144, -8.995805709681028, -8.861626359186655, -9.666702462152887, -7.721101879984483, -8.190729606714797, -8.32490895720917, -9.465433436411317, -7.989460580973226, -6.8489361017710655, -7.721101879984483, -7.855281230478854, -7.65401220473731, -8.467265936280354, -7.861207916821609, -7.928547696761473, -7.2775964906761486, -7.591848797062169, -8.01833407001462, -8.004424865472378, -3.82403215332933, -3.276599774358225, -3.774265573422876, -4.222164792581048, -4.172398212674595, -2.0822018566030702, -3.1770666145452924, -3.0277668748258932, -3.5254326738905446, -4.968663491178031, -6.990352255019616, -6.812076587824342, -6.3842149865556825, -5.6889398844941, -3.9596659126998985, -3.442666477833589, -3.3713562109554904, -2.0877714071494857, 0.0, 0.0, 0.0, -0.7080672023669218, 0.0, -1.5090592202790984, -0.9019664305116334, -0.7458568560000032, -1.0233849884651287, -0.572401773209306, -2.428371159069811, -4.717978251907059, -3.7639752965582, -3.746629788279133, -3.035463948837264, -3.6425567386047164, -3.7813208048372795, -4.336377069767531, -4.330481147912563, -5.096844591912097, -4.17192319398162, -4.119070542671304, -4.198349519636777, -4.356907473567707, -5.043991940601783, -4.726876032739908, -3.643396680878499, -3.431986075637241, -3.7491019834991155, -3.53769137825787, -4.751002076071079, -6.25792118935918, -5.209629632289194, -4.816520298387958, -5.209629632289194, -6.192402967042314, -6.585512300943563, -6.192402967042314, -6.454475856309817, -5.733775410824188, -3.9647834082685818, -3.8992651859517156, -3.8337469636348245, -2.982010073515461, -1.1474998486429764, -1.213018070959843, -0.8199087370585945, 0.0, 0.0, 0.0, -1.4241521841398257, -1.8125573252688678, -2.7835701780914612, -1.0357470430107834, -1.1004812331989489, 0.0, -0.12921743679247477, -0.06460871839624346, 0.0, 0.0, 0.0, 0.0, 0.0, -1.218933403655665, -0.7923067123761885, -4.631946933891534, -1.7674534353007274, -1.9502934458490666, -2.8035468284080425, -4.685270802040852, -7.089788950106661, -7.154775927081398, -7.5934380216609725, -6.439919180359147, -8.90698057330585, -8.869115439018627, -9.108650259065588, -8.996456425994023, -8.323293427564664, -7.618075048257715, -7.429239474797946, -7.401093215449041, -7.51091881565358, -7.405508314954745, -7.4717348075404075, -7.573833983609954, -7.917107970178947, -7.693593557702358, -7.6235038530492005, -7.698560544646272, -7.711253955725191, -7.67869259687058, -7.6908341205112905, -7.771961573928716, -7.813300395855016, -8.069324381707561, -7.611176196497739, -7.665075982993019, -7.745925662735928, -7.651601036369199, -7.8267753424788244, -8.244498687817186, -8.109749221579, -8.830094132373704, -8.775191860992857, -8.971580676894893, -9.598525581957865, -9.034275167401198, -8.579740111230548, -8.752149960122871, -7.726546373699336, -7.704660050244838, -8.050486538978447, -7.067840005055835, -6.319156931590984, -6.537522828018242, -5.8668275747059875, -5.910614774063843, 0.0, 0.0, 0.0, -14.153783784033156, -16.361254649432823, -20.06201462966167, -18.244097446391347, -20.548956732323365, -22.009783040308438, -22.172097074529002, -16.945585172626835, -16.588494297341615, -16.3287918425887, -16.750808331562165, -17.72469253688555, -15.647072898862321, -15.906775353615238, -17.627304116353212, -18.406411480611926, -18.049320605326677, -19.282907265402976, -17.302676047912087, -13.926544136124347, -14.937895956266365, -16.34607726770301, -15.867986489762625, -15.537000566573129, -15.463448139197686, -15.955651621145606, -18.358392545403955, -20.761133469662276, -22.33435669387905, -20.446488824818935, -20.217656355841953, -20.383881327547368, -19.91566067128111, -19.277177958190727, -19.277177958190727, -19.106915901366634, -19.490005529220856, -19.44744001501482, -19.106915901366634, -17.91508150359792, -17.61712290415574, -17.02120570527139, -17.23403327630152, -16.12732990694486, -16.680681591623188, -16.8509436484473, -15.829371307502676, -15.318585137030382, -14.46727485290987, -13.871357654025541, -13.403136997759265, -15.276019622824363, -16.680681591623188, -14.339578310291815, -14.509840367115906, -13.70109559720143, -13.403136997759265, -13.913923168231559, -14.892929994970128, -15.318585137030382, -14.722667938146033, -15.148323080206275, -13.615964568789376, -14.041619710849632, -14.765233452352069, -15.020626537588216, -15.276019622824363, -17.084007741953496, -17.753253446482024, -17.315669716597974, -17.05826752254856, -16.83947565760654, -16.99391697403621, -16.99391697403621, -16.29893105010275, -16.22171039188791, -15.822736991111311, -16.028658746350853, -12.978442746865129, -13.454636805856582, -13.22297483121209, -11.961704080369904, -11.112276840006787, -11.70430188632046, -11.292458375841377, -10.842004536254892, -12.487317247349573, -14.299299761724644, -13.97802292555506, -14.01542135352534, -11.958507815160027, -12.631679518625027, -13.74258373975815, -14.737670573410721, -15.138450336999323, -18.19895034985788, -17.25165272683025, -17.63733079269535, -17.059473655363583, -17.4082138635206, -18.518286872753894, -18.554095679503366, -18.554095679503366, -19.11211973780316, -19.713568719134425, -18.7777461069112, -19.015454321171557, -18.83717316047629, -18.918834881992364, -18.83954742721837, -19.21333114258142, -19.145370467060868, -19.21333114258142, -18.975468778259476, -18.78291353095124, -17.35573934501959, -16.517557680266076, -16.019179393115344, -16.32500243295784, -15.588761781485164, -18.04667287947856, -17.50298747531412, -16.517557680266076, -14.795887233745356, -13.561268295121941, -12.949622215436948, -12.972275773943794, -10.956109066833998, -10.253848753121588, -10.04996672655993, -8.45289085182689, -5.530581804443024, -10.990089404594281, -10.061293505813367, -10.6502860269915, -11.386526678464177, -10.797534157286028, -11.318566002943625, -9.721490128210586, -9.053210152258462, -10.344462987149003, -10.638959247738079, -12.394610032019068, -13.108262254116546, -10.722034594830411, -11.101661722444113, -10.993196828840203, -11.970235102644493, -11.520771445710816, -12.326875687238626, -12.864278514923837, -13.132979928766437, -12.649317383849748, -12.273135404470104, -11.30581031463674, -10.177264376497828, -11.950693707858981, -11.628252011247863, -10.929628335257116, -11.14458946633119, -11.359550597405264, -11.14458946633119, -11.14458946633119, -10.822147769720068, -11.14458946633119, -12.058174273396029, -11.578226222982039, -12.289014841341734, -12.244590552694246, -12.66662129484532, -12.98869738753956, -12.677727367007192, -13.699486005899242, -13.690681907736632, -14.312690604442246, -14.00168625608944, -12.757668862678226, -13.029797667486932, -13.88505962545713, -12.446664514325418, -12.757668862678226, -13.651806364192545, -11.746904730531629, -11.591402556355233, -11.358149295090616, -10.736140598385017, -11.047144946737808, -9.6865009226943, -9.919754183958903, -8.325856898650793, -8.131479180930295, -7.237341679415992, -6.693084069798583, -6.770835156886788, -5.293564502210972, -5.565693307019677, -4.632680261961271, -3.038782976653162, -4.516053631328962, -6.226577547269379, -6.148826460181174, -5.760071024740176, -5.487942219931471, -4.8659335232258725, -5.487942219931471, -5.798946568284278, -4.049547108799758, -2.9610318895649557, 0.0, -1.044833276050247, 0.0, 0.0, -0.2599192285183844, 0.0, -0.5927804505786746, 0.0, 0.0, -0.7373221813486495, -1.4395337826330896, 0.0, 0.0, 0.0, -2.6002714510303124, -1.8761452241611032, -5.793009814953607, 0.0, -1.178340397530269, -3.240436093208233, -2.2584857619330085, 0.0, -0.9565886233541137, 0.0, 0.0, 0.0, -1.609835179898727, -1.7646270241197686, -1.145459647235642, -0.8049175899493767, 0.0, 0.0, -2.4682852858365747, 0.0, 0.0, 0.0, -1.3820844988731409, 0.0, 0.0, 0.0, 0.0, 0.0, -2.991617941484832, -0.777820664786056, -4.656951928911393, -5.723962328041006, -6.162732959458782, -6.7351682966709125, -6.542702795656005, -5.041471887739727, -5.618868390784447, -5.734347691393401, -5.9653062926112845, -7.351057899918621, -8.428864705602109, -7.004619998091783, -7.96694750316633, -6.927633797685819, -6.619688996061971, -6.04229249301725, -6.003799392814262, -8.005440603369305, -8.54434400621105, -11.04639551940485, -11.555449145751924, -11.511436954969504, -11.534347410445273, -11.524700902876535, -11.522892182707382, -11.83256630073785, -11.919492731869703, -11.356413814743332, -10.483428528132105, -10.938495326471994, -11.087088566746257, -11.384275047294757, -10.71560546606063, -10.957069481506283, -11.551442442603294, -11.096375644263382, -10.957069481506283, -9.870481412000805, -8.718883799875352, -9.749749404277978, -9.099653978078127, -9.025357357941003, -9.071792745526702, -7.232951397132847, -6.0442054749388205, -6.0163442423873965, -6.952568309399017, -7.072650539101481, -8.09572530008095, -7.441971406474697, -8.613280465852565, -6.025504636994494, -5.426230234522113, -5.2083122699866955, -5.862066163592937, -5.126593033285905, -3.573927535971075, -5.578193301222381, -4.396671796715683, -4.9004212753813245, -4.992012089684186, -3.6273089565718113, -2.931218767870196, -0.22928974593631238, -0.5590166774265616, 0.0, 0.0, 0.0, 0.0, 0.0, -7.206066189888373, -16.07073532404159, -11.932279433982778, -8.349375015546645, -11.119080903056828, -12.455625023192555, -9.540992664824293, -9.943566194985644, -9.226985311298428, -9.532941194221054, -10.70040443168902, -7.681102955478796, -7.608639720049745, -7.979007367798195, -7.817977955733658, -3.9210661837716607, -5.193198539081577, -7.43955883738197, -7.797012560328407, -7.774538150995353, -7.880043017031049, -7.875048703845927, -7.881291595327338, -7.87879443873477, -7.858192896846153, -8.144026093110782, -8.364951875916585, -8.844003283958036, -8.797078679030658, -9.047318678353529, -12.186508720349122, -12.207923878030403, -12.398386989443157, -13.71888586195175, -13.882197291245843], "type": "scatter", "xaxis": "x2", "yaxis": "y2"}], "layout": {"template": {"data": {"histogram2dcontour": [{"type": "histogram2dcontour", "colorbar": {"outlinewidth": 0, "ticks": ""}, "colorscale": [[0.0, "#0d0887"], [0.1111111111111111, "#46039f"], [0.2222222222222222, "#7201a8"], [0.3333333333333333, "#9c179e"], [0.4444444444444444, "#bd3786"], [0.5555555555555556, "#d8576b"], [0.6666666666666666, "#ed7953"], [0.7777777777777778, "#fb9f3a"], [0.8888888888888888, "#fdca26"], [1.0, "#f0f921"]]}], "choropleth": [{"type": "choropleth", "colorbar": {"outlinewidth": 0, "ticks": ""}}], "histogram2d": [{"type": "histogram2d", "colorbar": {"outlinewidth": 0, "ticks": ""}, "colorscale": [[0.0, "#0d0887"], [0.1111111111111111, "#46039f"], [0.2222222222222222, "#7201a8"], [0.3333333333333333, "#9c179e"], [0.4444444444444444, "#bd3786"], [0.5555555555555556, "#d8576b"], [0.6666666666666666, "#ed7953"], [0.7777777777777778, "#fb9f3a"], [0.8888888888888888, "#fdca26"], [1.0, "#f0f921"]]}], "heatmap": [{"type": "heatmap", "colorbar": {"outlinewidth": 0, "ticks": ""}, "colorscale": [[0.0, "#0d0887"], [0.1111111111111111, "#46039f"], [0.2222222222222222, "#7201a8"], [0.3333333333333333, "#9c179e"], [0.4444444444444444, "#bd3786"], [0.5555555555555556, "#d8576b"], [0.6666666666666666, "#ed7953"], [0.7777777777777778, "#fb9f3a"], [0.8888888888888888, "#fdca26"], [1.0, "#f0f921"]]}], "contourcarpet": [{"type": "contourcarpet", "colorbar": {"outlinewidth": 0, "ticks": ""}}], "contour": [{"type": "contour", "colorbar": {"outlinewidth": 0, "ticks": ""}, "colorscale": [[0.0, "#0d0887"], [0.1111111111111111, "#46039f"], [0.2222222222222222, "#7201a8"], [0.3333333333333333, "#9c179e"], [0.4444444444444444, "#bd3786"], [0.5555555555555556, "#d8576b"], [0.6666666666666666, "#ed7953"], [0.7777777777777778, "#fb9f3a"], [0.8888888888888888, "#fdca26"], [1.0, "#f0f921"]]}], "surface": [{"type": "surface", "colorbar": {"outlinewidth": 0, "ticks": ""}, "colorscale": [[0.0, "#0d0887"], [0.1111111111111111, "#46039f"], [0.2222222222222222, "#7201a8"], [0.3333333333333333, "#9c179e"], [0.4444444444444444, "#bd3786"], [0.5555555555555556, "#d8576b"], [0.6666666666666666, "#ed7953"], [0.7777777777777778, "#fb9f3a"], [0.8888888888888888, "#fdca26"], [1.0, "#f0f921"]]}], "mesh3d": [{"type": "mesh3d", "colorbar": {"outlinewidth": 0, "ticks": ""}}], "scatter": [{"fillpattern": {"fillmode": "overlay", "size": 10, "solidity": 0.2}, "type": "scatter"}], "parcoords": [{"type": "parcoords", "line": {"colorbar": {"outlinewidth": 0, "ticks": ""}}}], "scatterpolargl": [{"type": "scatterpolargl", "marker": {"colorbar": {"outlinewidth": 0, "ticks": ""}}}], "bar": [{"error_x": {"color": "#2a3f5f"}, "error_y": {"color": "#2a3f5f"}, "marker": {"line": {"color": "white", "width": 0.5}, "pattern": {"fillmode": "overlay", "size": 10, "solidity": 0.2}}, "type": "bar"}], "scattergeo": [{"type": "scattergeo", "marker": {"colorbar": {"outlinewidth": 0, "ticks": ""}}}], "scatterpolar": [{"type": "scatterpolar", "marker": {"colorbar": {"outlinewidth": 0, "ticks": ""}}}], "histogram": [{"marker": {"pattern": {"fillmode": "overlay", "size": 10, "solidity": 0.2}}, "type": "histogram"}], "scattergl": [{"type": "scattergl", "marker": {"colorbar": {"outlinewidth": 0, "ticks": ""}}}], "scatter3d": [{"type": "scatter3d", "line": {"colorbar": {"outlinewidth": 0, "ticks": ""}}, "marker": {"colorbar": {"outlinewidth": 0, "ticks": ""}}}], "scattermap": [{"type": "scattermap", "marker": {"colorbar": {"outlinewidth": 0, "ticks": ""}}}], "scattermapbox": [{"type": "scattermapbox", "marker": {"colorbar": {"outlinewidth": 0, "ticks": ""}}}], "scatterternary": [{"type": "scatterternary", "marker": {"colorbar": {"outlinewidth": 0, "ticks": ""}}}], "scattercarpet": [{"type": "scattercarpet", "marker": {"colorbar": {"outlinewidth": 0, "ticks": ""}}}], "carpet": [{"aaxis": {"endlinecolor": "#2a3f5f", "gridcolor": "#C8D4E3", "linecolor": "#C8D4E3", "minorgridcolor": "#C8D4E3", "startlinecolor": "#2a3f5f"}, "baxis": {"endlinecolor": "#2a3f5f", "gridcolor": "#C8D4E3", "linecolor": "#C8D4E3", "minorgridcolor": "#C8D4E3", "startlinecolor": "#2a3f5f"}, "type": "carpet"}], "table": [{"cells": {"fill": {"color": "#EBF0F8"}, "line": {"color": "white"}}, "header": {"fill": {"color": "#C8D4E3"}, "line": {"color": "white"}}, "type": "table"}], "barpolar": [{"marker": {"line": {"color": "white", "width": 0.5}, "pattern": {"fillmode": "overlay", "size": 10, "solidity": 0.2}}, "type": "barpolar"}], "pie": [{"automargin": true, "type": "pie"}]}, "layout": {"autotypenumbers": "strict", "colorway": ["#636efa", "#EF553B", "#00cc96", "#ab63fa", "#FFA15A", "#19d3f3", "#FF6692", "#B6E880", "#FF97FF", "#FECB52"], "font": {"color": "#2a3f5f"}, "hovermode": "closest", "hoverlabel": {"align": "left"}, "paper_bgcolor": "white", "plot_bgcolor": "white", "polar": {"bgcolor": "white", "angularaxis": {"gridcolor": "#EBF0F8", "linecolor": "#EBF0F8", "ticks": ""}, "radialaxis": {"gridcolor": "#EBF0F8", "linecolor": "#EBF0F8", "ticks": ""}}, "ternary": {"bgcolor": "white", "aaxis": {"gridcolor": "#DFE8F3", "linecolor": "#A2B1C6", "ticks": ""}, "baxis": {"gridcolor": "#DFE8F3", "linecolor": "#A2B1C6", "ticks": ""}, "caxis": {"gridcolor": "#DFE8F3", "linecolor": "#A2B1C6", "ticks": ""}}, "coloraxis": {"colorbar": {"outlinewidth": 0, "ticks": ""}}, "colorscale": {"sequential": [[0.0, "#0d0887"], [0.1111111111111111, "#46039f"], [0.2222222222222222, "#7201a8"], [0.3333333333333333, "#9c179e"], [0.4444444444444444, "#bd3786"], [0.5555555555555556, "#d8576b"], [0.6666666666666666, "#ed7953"], [0.7777777777777778, "#fb9f3a"], [0.8888888888888888, "#fdca26"], [1.0, "#f0f921"]], "sequentialminus": [[0.0, "#0d0887"], [0.1111111111111111, "#46039f"], [0.2222222222222222, "#7201a8"], [0.3333333333333333, "#9c179e"], [0.4444444444444444, "#bd3786"], [0.5555555555555556, "#d8576b"], [0.6666666666666666, "#ed7953"], [0.7777777777777778, "#fb9f3a"], [0.8888888888888888, "#fdca26"], [1.0, "#f0f921"]], "diverging": [[0, "#8e0152"], [0.1, "#c51b7d"], [0.2, "#de77ae"], [0.3, "#f1b6da"], [0.4, "#fde0ef"], [0.5, "#f7f7f7"], [0.6, "#e6f5d0"], [0.7, "#b8e186"], [0.8, "#7fbc41"], [0.9, "#4d9221"], [1, "#276419"]]}, "xaxis": {"gridcolor": "#EBF0F8", "linecolor": "#EBF0F8", "ticks": "", "title": {"standoff": 15}, "zerolinecolor": "#EBF0F8", "automargin": true, "zerolinewidth": 2}, "yaxis": {"gridcolor": "#EBF0F8", "linecolor": "#EBF0F8", "ticks": "", "title": {"standoff": 15}, "zerolinecolor": "#EBF0F8", "automargin": true, "zerolinewidth": 2}, "scene": {"xaxis": {"backgroundcolor": "white", "gridcolor": "#DFE8F3", "linecolor": "#EBF0F8", "showbackground": true, "ticks": "", "zerolinecolor": "#EBF0F8", "gridwidth": 2}, "yaxis": {"backgroundcolor": "white", "gridcolor": "#DFE8F3", "linecolor": "#EBF0F8", "showbackground": true, "ticks": "", "zerolinecolor": "#EBF0F8", "gridwidth": 2}, "zaxis": {"backgroundcolor": "white", "gridcolor": "#DFE8F3", "linecolor": "#EBF0F8", "showbackground": true, "ticks": "", "zerolinecolor": "#EBF0F8", "gridwidth": 2}}, "shapedefaults": {"line": {"color": "#2a3f5f"}}, "annotationdefaults": {"arrowcolor": "#2a3f5f", "arrowhead": 0, "arrowwidth": 1}, "geo": {"bgcolor": "white", "landcolor": "white", "subunitcolor": "#C8D4E3", "showland": true, "showlakes": true, "lakecolor": "white"}, "title": {"x": 0.05}, "mapbox": {"style": "light"}}}, "xaxis": {"anchor": "y", "domain": [0.0, 1.0], "matches": "x2", "showticklabels": false}, "yaxis": {"anchor": "x", "domain": [0.32099999999999995, 0.9999999999999999], "title": {"text": "净值"}}, "xaxis2": {"anchor": "y2", "domain": [0.0, 1.0], "title": {"text": "日期"}}, "yaxis2": {"anchor": "x2", "domain": [0.0, 0.291], "title": {"text": "回撤 %"}}, "height": 600, "showlegend": true, "hovermode": "x unified"}});
+        Plotly.newPlot('drawdown-curve', {"data": [{"fill": "tozeroy", "fillcolor": "rgba(220, 20, 60, 0.3)", "hovertemplate": "<b>%{x}</b><br>DD: %{y:.2f}%<extra></extra>", "line": {"color": "#DC143C", "width": 2}, "name": "Drawdown", "x": ["2023-02-13", "2023-02-14", "2023-02-15", "2023-02-16", "2023-02-17", "2023-02-20", "2023-02-21", "2023-02-22", "2023-02-23", "2023-02-24", "2023-02-27", "2023-02-28", "2023-03-01", "2023-03-02", "2023-03-03", "2023-03-06", "2023-03-07", "2023-03-08", "2023-03-09", "2023-03-10", "2023-03-13", "2023-03-14", "2023-03-15", "2023-03-16", "2023-03-17", "2023-03-20", "2023-03-21", "2023-03-22", "2023-03-23", "2023-03-24", "2023-03-27", "2023-03-28", "2023-03-29", "2023-03-30", "2023-03-31", "2023-04-03", "2023-04-04", "2023-04-06", "2023-04-07", "2023-04-10", "2023-04-11", "2023-04-12", "2023-04-13", "2023-04-14", "2023-04-17", "2023-04-18", "2023-04-19", "2023-04-20", "2023-04-21", "2023-04-24", "2023-04-25", "2023-04-26", "2023-04-27", "2023-04-28", "2023-05-04", "2023-05-05", "2023-05-08", "2023-05-09", "2023-05-10", "2023-05-11", "2023-05-12", "2023-05-15", "2023-05-16", "2023-05-17", "2023-05-18", "2023-05-19", "2023-05-22", "2023-05-23", "2023-05-24", "2023-05-25", "2023-05-26", "2023-05-29", "2023-05-30", "2023-05-31", "2023-06-01", "2023-06-02", "2023-06-05", "2023-06-06", "2023-06-07", "2023-06-08", "2023-06-09", "2023-06-12", "2023-06-13", "2023-06-14", "2023-06-15", "2023-06-16", "2023-06-19", "2023-06-20", "2023-06-21", "2023-06-26", "2023-06-27", "2023-06-28", "2023-06-29", "2023-06-30", "2023-07-03", "2023-07-04", "2023-07-05", "2023-07-06", "2023-07-07", "2023-07-10", "2023-07-11", "2023-07-12", "2023-07-13", "2023-07-14", "2023-07-17", "2023-07-18", "2023-07-19", "2023-07-20", "2023-07-21", "2023-07-24", "2023-07-25", "2023-07-26", "2023-07-27", "2023-07-28", "2023-07-31", "2023-08-01", "2023-08-02", "2023-08-03", "2023-08-04", "2023-08-07", "2023-08-08", "2023-08-09", "2023-08-10", "2023-08-11", "2023-08-14", "2023-08-15", "2023-08-16", "2023-08-17", "2023-08-18", "2023-08-21", "2023-08-22", "2023-08-23", "2023-08-24", "2023-08-25", "2023-08-28", "2023-08-29", "2023-08-30", "2023-08-31", "2023-09-01", "2023-09-04", "2023-09-05", "2023-09-06", "2023-09-07", "2023-09-08", "2023-09-11", "2023-09-12", "2023-09-13", "2023-09-14", "2023-09-15", "2023-09-18", "2023-09-19", "2023-09-20", "2023-09-21", "2023-09-22", "2023-09-25", "2023-09-26", "2023-09-27", "2023-09-28", "2023-10-09", "2023-10-10", "2023-10-11", "2023-10-12", "2023-10-13", "2023-10-16", "2023-10-17", "2023-10-18", "2023-10-19", "2023-10-20", "2023-10-23", "2023-10-24", "2023-10-25", "2023-10-26", "2023-10-27", "2023-10-30", "2023-10-31", "2023-11-01", "2023-11-02", "2023-11-03", "2023-11-06", "2023-11-07", "2023-11-08", "2023-11-09", "2023-11-10", "2023-11-13", "2023-11-14", "2023-11-15", "2023-11-16", "2023-11-17", "2023-11-20", "2023-11-21", "2023-11-22", "2023-11-23", "2023-11-24", "2023-11-27", "2023-11-28", "2023-11-29", "2023-11-30", "2023-12-01", "2023-12-04", "2023-12-05", "2023-12-06", "2023-12-07", "2023-12-08", "2023-12-11", "2023-12-12", "2023-12-13", "2023-12-14", "2023-12-15", "2023-12-18", "2023-12-19", "2023-12-20", "2023-12-21", "2023-12-22", "2023-12-25", "2023-12-26", "2023-12-27", "2023-12-28", "2023-12-29", "2024-01-02", "2024-01-03", "2024-01-04", "2024-01-05", "2024-01-08", "2024-01-09", "2024-01-10", "2024-01-11", "2024-01-12", "2024-01-15", "2024-01-16", "2024-01-17", "2024-01-18", "2024-01-19", "2024-01-22", "2024-01-23", "2024-01-24", "2024-01-25", "2024-01-26", "2024-01-29", "2024-01-30", "2024-01-31", "2024-02-01", "2024-02-02", "2024-02-05", "2024-02-06", "2024-02-07", "2024-02-08", "2024-02-19", "2024-02-20", "2024-02-21", "2024-02-22", "2024-02-23", "2024-02-26", "2024-02-27", "2024-02-28", "2024-02-29", "2024-03-01", "2024-03-04", "2024-03-05", "2024-03-06", "2024-03-07", "2024-03-08", "2024-03-11", "2024-03-12", "2024-03-13", "2024-03-14", "2024-03-15", "2024-03-18", "2024-03-19", "2024-03-20", "2024-03-21", "2024-03-22", "2024-03-25", "2024-03-26", "2024-03-27", "2024-03-28", "2024-03-29", "2024-04-01", "2024-04-02", "2024-04-03", "2024-04-08", "2024-04-09", "2024-04-10", "2024-04-11", "2024-04-12", "2024-04-15", "2024-04-16", "2024-04-17", "2024-04-18", "2024-04-19", "2024-04-22", "2024-04-23", "2024-04-24", "2024-04-25", "2024-04-26", "2024-04-29", "2024-04-30", "2024-05-06", "2024-05-07", "2024-05-08", "2024-05-09", "2024-05-10", "2024-05-13", "2024-05-14", "2024-05-15", "2024-05-16", "2024-05-17", "2024-05-20", "2024-05-21", "2024-05-22", "2024-05-23", "2024-05-24", "2024-05-27", "2024-05-28", "2024-05-29", "2024-05-30", "2024-05-31", "2024-06-03", "2024-06-04", "2024-06-05", "2024-06-06", "2024-06-07", "2024-06-11", "2024-06-12", "2024-06-13", "2024-06-14", "2024-06-17", "2024-06-18", "2024-06-19", "2024-06-20", "2024-06-21", "2024-06-24", "2024-06-25", "2024-06-26", "2024-06-27", "2024-06-28", "2024-07-01", "2024-07-02", "2024-07-03", "2024-07-04", "2024-07-05", "2024-07-08", "2024-07-09", "2024-07-10", "2024-07-11", "2024-07-12", "2024-07-15", "2024-07-16", "2024-07-17", "2024-07-18", "2024-07-19", "2024-07-22", "2024-07-23", "2024-07-24", "2024-07-25", "2024-07-26", "2024-07-29", "2024-07-30", "2024-07-31", "2024-08-01", "2024-08-02", "2024-08-05", "2024-08-06", "2024-08-07", "2024-08-08", "2024-08-09", "2024-08-12", "2024-08-13", "2024-08-14", "2024-08-15", "2024-08-16", "2024-08-19", "2024-08-20", "2024-08-21", "2024-08-22", "2024-08-23", "2024-08-26", "2024-08-27", "2024-08-28", "2024-08-29", "2024-08-30", "2024-09-02", "2024-09-03", "2024-09-04", "2024-09-05", "2024-09-06", "2024-09-09", "2024-09-10", "2024-09-11", "2024-09-12", "2024-09-13", "2024-09-18", "2024-09-19", "2024-09-20", "2024-09-23", "2024-09-24", "2024-09-25", "2024-09-26", "2024-09-27", "2024-09-30", "2024-10-08", "2024-10-09", "2024-10-10", "2024-10-11", "2024-10-14", "2024-10-15", "2024-10-16", "2024-10-17", "2024-10-18", "2024-10-21", "2024-10-22", "2024-10-23", "2024-10-24", "2024-10-25", "2024-10-28", "2024-10-29", "2024-10-30", "2024-10-31", "2024-11-01", "2024-11-04", "2024-11-05", "2024-11-06", "2024-11-07", "2024-11-08", "2024-11-11", "2024-11-12", "2024-11-13", "2024-11-14", "2024-11-15", "2024-11-18", "2024-11-19", "2024-11-20", "2024-11-21", "2024-11-22", "2024-11-25", "2024-11-26", "2024-11-27", "2024-11-28", "2024-11-29", "2024-12-02", "2024-12-03", "2024-12-04", "2024-12-05", "2024-12-06", "2024-12-09", "2024-12-10", "2024-12-11", "2024-12-12", "2024-12-13", "2024-12-16", "2024-12-17", "2024-12-18", "2024-12-19", "2024-12-20", "2024-12-23", "2024-12-24", "2024-12-25", "2024-12-26", "2024-12-27", "2024-12-30", "2024-12-31", "2025-01-02", "2025-01-03", "2025-01-06", "2025-01-07", "2025-01-08", "2025-01-09", "2025-01-10", "2025-01-13", "2025-01-14", "2025-01-15", "2025-01-16", "2025-01-17", "2025-01-20", "2025-01-21", "2025-01-22", "2025-01-23", "2025-01-24", "2025-01-27", "2025-02-05", "2025-02-06", "2025-02-07", "2025-02-10", "2025-02-11", "2025-02-12", "2025-02-13", "2025-02-14", "2025-02-17", "2025-02-18", "2025-02-19", "2025-02-20", "2025-02-21", "2025-02-24", "2025-02-25", "2025-02-26", "2025-02-27", "2025-02-28", "2025-03-03", "2025-03-04", "2025-03-05", "2025-03-06", "2025-03-07", "2025-03-10", "2025-03-11", "2025-03-12", "2025-03-13", "2025-03-14", "2025-03-17", "2025-03-18", "2025-03-19", "2025-03-20", "2025-03-21", "2025-03-24", "2025-03-25", "2025-03-26", "2025-03-27", "2025-03-28", "2025-03-31", "2025-04-01", "2025-04-02", "2025-04-03", "2025-04-07", "2025-04-08", "2025-04-09", "2025-04-10", "2025-04-11", "2025-04-14", "2025-04-15", "2025-04-16", "2025-04-17", "2025-04-18", "2025-04-21", "2025-04-22", "2025-04-23", "2025-04-24", "2025-04-25", "2025-04-28", "2025-04-29", "2025-04-30", "2025-05-06", "2025-05-07", "2025-05-08", "2025-05-09", "2025-05-12", "2025-05-13", "2025-05-14", "2025-05-15", "2025-05-16", "2025-05-19", "2025-05-20", "2025-05-21", "2025-05-22", "2025-05-23", "2025-05-26", "2025-05-27", "2025-05-28", "2025-05-29", "2025-05-30", "2025-06-03", "2025-06-04", "2025-06-05", "2025-06-06", "2025-06-09", "2025-06-10", "2025-06-11", "2025-06-12", "2025-06-13", "2025-06-16", "2025-06-17", "2025-06-18", "2025-06-19", "2025-06-20", "2025-06-23", "2025-06-24", "2025-06-25", "2025-06-26", "2025-06-27", "2025-06-30", "2025-07-01", "2025-07-02", "2025-07-03", "2025-07-04", "2025-07-07", "2025-07-08", "2025-07-09", "2025-07-10", "2025-07-11", "2025-07-14", "2025-07-15", "2025-07-16", "2025-07-17", "2025-07-18", "2025-07-21", "2025-07-22", "2025-07-23", "2025-07-24", "2025-07-25", "2025-07-28", "2025-07-29", "2025-07-30", "2025-07-31", "2025-08-01", "2025-08-04", "2025-08-05", "2025-08-06", "2025-08-07", "2025-08-08", "2025-08-11", "2025-08-12", "2025-08-13", "2025-08-14", "2025-08-15", "2025-08-18", "2025-08-19", "2025-08-20", "2025-08-21", "2025-08-22", "2025-08-25", "2025-08-26", "2025-08-27", "2025-08-28", "2025-08-29", "2025-09-01", "2025-09-02", "2025-09-03", "2025-09-04", "2025-09-05", "2025-09-08", "2025-09-09", "2025-09-10", "2025-09-11", "2025-09-12", "2025-09-15", "2025-09-16", "2025-09-17", "2025-09-18", "2025-09-19", "2025-09-22", "2025-09-23", "2025-09-24", "2025-09-25", "2025-09-26", "2025-09-29", "2025-09-30", "2025-10-09", "2025-10-10", "2025-10-13", "2025-10-14", "2025-10-15", "2025-10-16", "2025-10-17", "2025-10-20", "2025-10-21", "2025-10-22", "2025-10-23", "2025-10-24", "2025-10-27", "2025-10-28", "2025-10-29", "2025-10-30", "2025-10-31", "2025-11-03", "2025-11-04", "2025-11-05", "2025-11-06", "2025-11-07", "2025-11-10", "2025-11-11", "2025-11-12", "2025-11-13", "2025-11-14", "2025-11-17", "2025-11-18", "2025-11-19", "2025-11-20", "2025-11-21", "2025-11-24", "2025-11-25", "2025-11-26", "2025-11-27", "2025-11-28", "2025-12-01", "2025-12-02", "2025-12-03", "2025-12-04", "2025-12-05", "2025-12-08", "2025-12-09", "2025-12-10", "2025-12-11", "2025-12-12", "2025-12-15", "2025-12-16", "2025-12-17", "2025-12-18", "2025-12-19", "2025-12-22", "2025-12-23", "2025-12-24", "2025-12-25", "2025-12-26", "2025-12-29", "2025-12-30", "2025-12-31", "2026-01-05", "2026-01-06", "2026-01-07", "2026-01-08", "2026-01-09", "2026-01-12", "2026-01-13", "2026-01-14", "2026-01-15", "2026-01-16", "2026-01-19", "2026-01-20", "2026-01-21", "2026-01-22", "2026-01-23", "2026-01-26", "2026-01-27", "2026-01-28", "2026-01-29", "2026-01-30", "2026-02-02", "2026-02-03", "2026-02-04", "2026-02-05", "2026-02-06", "2026-02-09", "2026-02-10", "2026-02-11", "2026-02-12", "2026-02-13", "2026-02-24", "2026-02-25", "2026-02-26", "2026-02-27", "2026-03-02", "2026-03-03", "2026-03-04", "2026-03-05", "2026-03-06", "2026-03-09", "2026-03-10", "2026-03-11", "2026-03-12", "2026-03-13", "2026-03-16", "2026-03-17", "2026-03-18", "2026-03-19", "2026-03-20", "2026-03-23", "2026-03-24", "2026-03-25", "2026-03-26", "2026-03-27"], "y": [-0.12337662337660732, -0.5594121609417197, -0.34250649722768867, 0.0, -2.671220655148368, -2.350674176530556, -2.5643718289424258, -4.273953048237371, -3.5260112647958337, -3.205464786178036, -4.060255395825502, -3.7397089172077043, -4.060255395825502, -5.3424413102967225, -4.616529984174835, -4.788140835502616, -4.684299979599063, -5.51502682682754, -5.333750683731809, -5.532556106815238, -4.913824111012306, -3.7426528332424933, -3.80894554707853, -3.035530552324865, -2.5051888416366577, 0.0, -0.9028818877674278, -2.290236983605151, -1.6295916998728923, -1.1451184918025683, -1.7837422660770725, -2.2461939646896707, -1.9158713228235271, -1.7396992471615924, -1.012989435056128, -2.5754383608446227, -2.374248543069763, -3.9837670852685823, -3.179007814169173, -3.8191750040338897, -3.307679730784384, -2.668310639222509, -2.561749123962194, -2.377032222220402, -1.9694023771493412, -1.9694023771493412, -2.173217299684864, -2.4145572540660285, -4.420911695437116, -4.6208989872726525, -4.6208989872726525, -5.055655520645365, -4.847024331508114, -5.810129016546893, -6.525950987264038, -6.121880119537847, -7.071446658694371, -6.889614768217593, -6.465340357105112, -6.546154530650342, -7.361111758677917, -7.54716085388571, -7.268087211074029, -6.7099399254506515, -5.314571711392216, -3.268031664106531, -3.826178949729893, -3.0819825688987383, -4.477350782957159, -2.988958021294835, -2.709884378483154, 0.0, 0.0, -0.368713134758774, -0.4608914184484462, 0.0, 0.0, 0.0, 0.0, -1.9966343652526186, -0.4537805375574235, 0.0, 0.0, 0.0, 0.0, 0.0, -0.347870184970468, -0.4348377312130917, 0.0, -0.7827079161835597, -2.087221109822795, -0.8696754624261567, -0.08696754624262368, 0.0, 0.0, -0.5137627539643259, -0.6850170052857723, -0.5993898796250557, -1.0275255079286651, -1.9694238901966266, -1.4556611362322875, -1.3700340105715576, 0.0, 0.0, 0.0, 0.0, 0.0, -1.3192022374793115, -2.8857548944860025, -2.5559543351161844, -2.8857548944860025, -2.638404474958623, -1.813903076534058, -2.632850696462487, -2.4833556944354593, -2.160867307935625, -3.688933000952664, -2.812269614862618, -2.30088263964344, -3.0557872221098634, -3.421063632980719, -3.6158777187785027, -3.4941189151548797, -5.807536184003587, -6.465033723571125, -6.792753063511571, -7.965569569980946, -7.993868338644876, -7.948725064823833, -7.867197659863481, -7.917057395128488, -7.925816537810183, -8.173789174713534, -11.699572624135184, -11.806264617788601, -12.128307765379168, -11.847695886388344, -11.529669090198768, -11.6232063831957, -11.305179587006112, -11.267764669807336, -11.323887045605506, -11.3425945042049, -10.743955829024499, -10.57558870163, -10.556881243030606, -10.351099198437346, -9.6963381474588, -10.519466325831845, -10.968445332217142, -10.313684281238583, -9.658923230260024, -9.920827650651443, -10.276269364039807, -9.902120192052049, -9.958242567850219, -11.211642294009179, -12.614701688963228, -13.194632905544236, -14.260958045709316, -14.130005835513595, -13.475244784535063, -13.194632905544236, -12.16572268257793, -11.791573510590172, -10.987152790816536, -10.538173784431239, -9.602800854461854, -10.070487319446546, -10.014364943648376, -10.351099198437346, -9.733753064657575, -9.565385937263079, -9.378311351269211, -9.172529306675951, -9.49055610286554, -9.30348151687166, -9.359603892669817, -10.012564748773453, -10.837139852717174, -10.29596973137336, -10.857692132357563, -10.23979749127494, -10.539382771799852, -10.164901171143722, -9.809143650520399, -10.36784521807949, -10.220916812632925, -11.39634405620547, -10.441309420802785, -11.029023042589058, -10.58823782624935, -10.514773623526056, -10.955558839865763, -10.735166231695915, -10.735166231695915, -10.808630434419197, -11.175951448035622, -11.029023042589058, -11.984057677991741, -10.808630434419197, -11.763665069821895, -10.514773623526056, -10.000524204463078, -8.972025366337098, -8.01699073093439, -7.061956095531705, -7.870062325487824, -7.20888450097827, -6.694635081915281, -6.180385662852291, -7.3558129064248465, -6.91502769008514, -6.841563487361844, -6.253849865575573, -5.95999305468243, -6.180385662852291, -6.400778271022138, -6.6211708791919985, -8.01699073093439, -8.457775947274095, -9.118953771783664, -9.123392753651357, -9.333743851682637, -9.333743851682637, -8.33640488777005, -8.621358877459357, -8.278360053931666, -8.203778506483612, -9.061466302136232, -9.564722343070466, -9.416802452207056, -9.59961278690569, -10.203419864130375, -9.733792137400075, -10.203419864130375, -10.874316616602234, -10.13633018888319, -8.794536683939459, -10.673047590860676, -11.478123693826909, -9.398343761164144, -8.995805709681028, -8.861626359186655, -9.666702462152887, -7.721101879984483, -8.190729606714797, -8.32490895720917, -9.465433436411317, -7.989460580973226, -6.8489361017710655, -7.721101879984483, -7.855281230478854, -7.65401220473731, -8.467265936280354, -7.861207916821609, -7.928547696761473, -7.2775964906761486, -7.591848797062169, -8.01833407001462, -8.004424865472378, -3.82403215332933, -3.276599774358225, -3.774265573422876, -4.222164792581048, -4.172398212674595, -2.0822018566030702, -3.1770666145452924, -3.0277668748258932, -3.5254326738905446, -4.968663491178031, -6.990352255019616, -6.812076587824342, -6.3842149865556825, -5.6889398844941, -3.9596659126998985, -3.442666477833589, -3.3713562109554904, -2.0877714071494857, 0.0, 0.0, 0.0, -0.7080672023669218, 0.0, -1.5090592202790984, -0.9019664305116334, -0.7458568560000032, -1.0233849884651287, -0.572401773209306, -2.428371159069811, -4.717978251907059, -3.7639752965582, -3.746629788279133, -3.035463948837264, -3.6425567386047164, -3.7813208048372795, -4.336377069767531, -4.330481147912563, -5.096844591912097, -4.17192319398162, -4.119070542671304, -4.198349519636777, -4.356907473567707, -5.043991940601783, -4.726876032739908, -3.643396680878499, -3.431986075637241, -3.7491019834991155, -3.53769137825787, -4.751002076071079, -6.25792118935918, -5.209629632289194, -4.816520298387958, -5.209629632289194, -6.192402967042314, -6.585512300943563, -6.192402967042314, -6.454475856309817, -5.733775410824188, -3.9647834082685818, -3.8992651859517156, -3.8337469636348245, -2.982010073515461, -1.1474998486429764, -1.213018070959843, -0.8199087370585945, 0.0, 0.0, 0.0, -1.4241521841398257, -1.8125573252688678, -2.7835701780914612, -1.0357470430107834, -1.1004812331989489, 0.0, -0.12921743679247477, -0.06460871839624346, 0.0, 0.0, 0.0, 0.0, 0.0, -1.218933403655665, -0.7923067123761885, -4.631946933891534, -1.7674534353007274, -1.9502934458490666, -2.8035468284080425, -4.685270802040852, -7.089788950106661, -7.154775927081398, -7.5934380216609725, -6.439919180359147, -8.90698057330585, -8.869115439018627, -9.108650259065588, -8.996456425994023, -8.323293427564664, -7.618075048257715, -7.429239474797946, -7.401093215449041, -7.51091881565358, -7.405508314954745, -7.4717348075404075, -7.573833983609954, -7.917107970178947, -7.693593557702358, -7.6235038530492005, -7.698560544646272, -7.711253955725191, -7.67869259687058, -7.6908341205112905, -7.771961573928716, -7.813300395855016, -8.069324381707561, -7.611176196497739, -7.665075982993019, -7.745925662735928, -7.651601036369199, -7.8267753424788244, -8.244498687817186, -8.109749221579, -8.830094132373704, -8.775191860992857, -8.971580676894893, -9.598525581957865, -9.034275167401198, -8.579740111230548, -8.752149960122871, -7.726546373699336, -7.704660050244838, -8.050486538978447, -7.067840005055835, -6.319156931590984, -6.537522828018242, -5.8668275747059875, -5.910614774063843, 0.0, 0.0, 0.0, -14.153783784033156, -16.361254649432823, -20.06201462966167, -18.244097446391347, -20.548956732323365, -22.009783040308438, -22.172097074529002, -16.945585172626835, -16.588494297341615, -16.3287918425887, -16.750808331562165, -17.72469253688555, -15.647072898862321, -15.906775353615238, -17.627304116353212, -18.406411480611926, -18.049320605326677, -19.282907265402976, -17.302676047912087, -13.926544136124347, -14.937895956266365, -16.34607726770301, -15.867986489762625, -15.537000566573129, -15.463448139197686, -15.955651621145606, -18.358392545403955, -20.761133469662276, -22.33435669387905, -20.446488824818935, -20.217656355841953, -20.383881327547368, -19.91566067128111, -19.277177958190727, -19.277177958190727, -19.106915901366634, -19.490005529220856, -19.44744001501482, -19.106915901366634, -17.91508150359792, -17.61712290415574, -17.02120570527139, -17.23403327630152, -16.12732990694486, -16.680681591623188, -16.8509436484473, -15.829371307502676, -15.318585137030382, -14.46727485290987, -13.871357654025541, -13.403136997759265, -15.276019622824363, -16.680681591623188, -14.339578310291815, -14.509840367115906, -13.70109559720143, -13.403136997759265, -13.913923168231559, -14.892929994970128, -15.318585137030382, -14.722667938146033, -15.148323080206275, -13.615964568789376, -14.041619710849632, -14.765233452352069, -15.020626537588216, -15.276019622824363, -17.084007741953496, -17.753253446482024, -17.315669716597974, -17.05826752254856, -16.83947565760654, -16.99391697403621, -16.99391697403621, -16.29893105010275, -16.22171039188791, -15.822736991111311, -16.028658746350853, -12.978442746865129, -13.454636805856582, -13.22297483121209, -11.961704080369904, -11.112276840006787, -11.70430188632046, -11.292458375841377, -10.842004536254892, -12.487317247349573, -14.299299761724644, -13.97802292555506, -14.01542135352534, -11.958507815160027, -12.631679518625027, -13.74258373975815, -14.737670573410721, -15.138450336999323, -18.19895034985788, -17.25165272683025, -17.63733079269535, -17.059473655363583, -17.4082138635206, -18.518286872753894, -18.554095679503366, -18.554095679503366, -19.11211973780316, -19.713568719134425, -18.7777461069112, -19.015454321171557, -18.83717316047629, -18.918834881992364, -18.83954742721837, -19.21333114258142, -19.145370467060868, -19.21333114258142, -18.975468778259476, -18.78291353095124, -17.35573934501959, -16.517557680266076, -16.019179393115344, -16.32500243295784, -15.588761781485164, -18.04667287947856, -17.50298747531412, -16.517557680266076, -14.795887233745356, -13.561268295121941, -12.949622215436948, -12.972275773943794, -10.956109066833998, -10.253848753121588, -10.04996672655993, -8.45289085182689, -5.530581804443024, -10.990089404594281, -10.061293505813367, -10.6502860269915, -11.386526678464177, -10.797534157286028, -11.318566002943625, -9.721490128210586, -9.053210152258462, -10.344462987149003, -10.638959247738079, -12.394610032019068, -13.108262254116546, -10.722034594830411, -11.101661722444113, -10.993196828840203, -11.970235102644493, -11.520771445710816, -12.326875687238626, -12.864278514923837, -13.132979928766437, -12.649317383849748, -12.273135404470104, -11.30581031463674, -10.177264376497828, -11.950693707858981, -11.628252011247863, -10.929628335257116, -11.14458946633119, -11.359550597405264, -11.14458946633119, -11.14458946633119, -10.822147769720068, -11.14458946633119, -12.058174273396029, -11.578226222982039, -12.289014841341734, -12.244590552694246, -12.66662129484532, -12.98869738753956, -12.677727367007192, -13.699486005899242, -13.690681907736632, -14.312690604442246, -14.00168625608944, -12.757668862678226, -13.029797667486932, -13.88505962545713, -12.446664514325418, -12.757668862678226, -13.651806364192545, -11.746904730531629, -11.591402556355233, -11.358149295090616, -10.736140598385017, -11.047144946737808, -9.6865009226943, -9.919754183958903, -8.325856898650793, -8.131479180930295, -7.237341679415992, -6.693084069798583, -6.770835156886788, -5.293564502210972, -5.565693307019677, -4.632680261961271, -3.038782976653162, -4.516053631328962, -6.226577547269379, -6.148826460181174, -5.760071024740176, -5.487942219931471, -4.8659335232258725, -5.487942219931471, -5.798946568284278, -4.049547108799758, -2.9610318895649557, 0.0, -1.044833276050247, 0.0, 0.0, -0.2599192285183844, 0.0, -0.5927804505786746, 0.0, 0.0, -0.7373221813486495, -1.4395337826330896, 0.0, 0.0, 0.0, -2.6002714510303124, -1.8761452241611032, -5.793009814953607, 0.0, -1.178340397530269, -3.240436093208233, -2.2584857619330085, 0.0, -0.9565886233541137, 0.0, 0.0, 0.0, -1.609835179898727, -1.7646270241197686, -1.145459647235642, -0.8049175899493767, 0.0, 0.0, -2.4682852858365747, 0.0, 0.0, 0.0, -1.3820844988731409, 0.0, 0.0, 0.0, 0.0, 0.0, -2.991617941484832, -0.777820664786056, -4.656951928911393, -5.723962328041006, -6.162732959458782, -6.7351682966709125, -6.542702795656005, -5.041471887739727, -5.618868390784447, -5.734347691393401, -5.9653062926112845, -7.351057899918621, -8.428864705602109, -7.004619998091783, -7.96694750316633, -6.927633797685819, -6.619688996061971, -6.04229249301725, -6.003799392814262, -8.005440603369305, -8.54434400621105, -11.04639551940485, -11.555449145751924, -11.511436954969504, -11.534347410445273, -11.524700902876535, -11.522892182707382, -11.83256630073785, -11.919492731869703, -11.356413814743332, -10.483428528132105, -10.938495326471994, -11.087088566746257, -11.384275047294757, -10.71560546606063, -10.957069481506283, -11.551442442603294, -11.096375644263382, -10.957069481506283, -9.870481412000805, -8.718883799875352, -9.749749404277978, -9.099653978078127, -9.025357357941003, -9.071792745526702, -7.232951397132847, -6.0442054749388205, -6.0163442423873965, -6.952568309399017, -7.072650539101481, -8.09572530008095, -7.441971406474697, -8.613280465852565, -6.025504636994494, -5.426230234522113, -5.2083122699866955, -5.862066163592937, -5.126593033285905, -3.573927535971075, -5.578193301222381, -4.396671796715683, -4.9004212753813245, -4.992012089684186, -3.6273089565718113, -2.931218767870196, -0.22928974593631238, -0.5590166774265616, 0.0, 0.0, 0.0, 0.0, 0.0, -7.206066189888373, -16.07073532404159, -11.932279433982778, -8.349375015546645, -11.119080903056828, -12.455625023192555, -9.540992664824293, -9.943566194985644, -9.226985311298428, -9.532941194221054, -10.70040443168902, -7.681102955478796, -7.608639720049745, -7.979007367798195, -7.817977955733658, -3.9210661837716607, -5.193198539081577, -7.43955883738197, -7.797012560328407, -7.774538150995353, -7.880043017031049, -7.875048703845927, -7.881291595327338, -7.87879443873477, -7.858192896846153, -8.144026093110782, -8.364951875916585, -8.844003283958036, -8.797078679030658, -9.047318678353529, -12.186508720349122, -12.207923878030403, -12.398386989443157, -13.71888586195175, -13.882197291245843], "type": "scatter"}], "layout": {"template": {"data": {"histogram2dcontour": [{"type": "histogram2dcontour", "colorbar": {"outlinewidth": 0, "ticks": ""}, "colorscale": [[0.0, "#0d0887"], [0.1111111111111111, "#46039f"], [0.2222222222222222, "#7201a8"], [0.3333333333333333, "#9c179e"], [0.4444444444444444, "#bd3786"], [0.5555555555555556, "#d8576b"], [0.6666666666666666, "#ed7953"], [0.7777777777777778, "#fb9f3a"], [0.8888888888888888, "#fdca26"], [1.0, "#f0f921"]]}], "choropleth": [{"type": "choropleth", "colorbar": {"outlinewidth": 0, "ticks": ""}}], "histogram2d": [{"type": "histogram2d", "colorbar": {"outlinewidth": 0, "ticks": ""}, "colorscale": [[0.0, "#0d0887"], [0.1111111111111111, "#46039f"], [0.2222222222222222, "#7201a8"], [0.3333333333333333, "#9c179e"], [0.4444444444444444, "#bd3786"], [0.5555555555555556, "#d8576b"], [0.6666666666666666, "#ed7953"], [0.7777777777777778, "#fb9f3a"], [0.8888888888888888, "#fdca26"], [1.0, "#f0f921"]]}], "heatmap": [{"type": "heatmap", "colorbar": {"outlinewidth": 0, "ticks": ""}, "colorscale": [[0.0, "#0d0887"], [0.1111111111111111, "#46039f"], [0.2222222222222222, "#7201a8"], [0.3333333333333333, "#9c179e"], [0.4444444444444444, "#bd3786"], [0.5555555555555556, "#d8576b"], [0.6666666666666666, "#ed7953"], [0.7777777777777778, "#fb9f3a"], [0.8888888888888888, "#fdca26"], [1.0, "#f0f921"]]}], "contourcarpet": [{"type": "contourcarpet", "colorbar": {"outlinewidth": 0, "ticks": ""}}], "contour": [{"type": "contour", "colorbar": {"outlinewidth": 0, "ticks": ""}, "colorscale": [[0.0, "#0d0887"], [0.1111111111111111, "#46039f"], [0.2222222222222222, "#7201a8"], [0.3333333333333333, "#9c179e"], [0.4444444444444444, "#bd3786"], [0.5555555555555556, "#d8576b"], [0.6666666666666666, "#ed7953"], [0.7777777777777778, "#fb9f3a"], [0.8888888888888888, "#fdca26"], [1.0, "#f0f921"]]}], "surface": [{"type": "surface", "colorbar": {"outlinewidth": 0, "ticks": ""}, "colorscale": [[0.0, "#0d0887"], [0.1111111111111111, "#46039f"], [0.2222222222222222, "#7201a8"], [0.3333333333333333, "#9c179e"], [0.4444444444444444, "#bd3786"], [0.5555555555555556, "#d8576b"], [0.6666666666666666, "#ed7953"], [0.7777777777777778, "#fb9f3a"], [0.8888888888888888, "#fdca26"], [1.0, "#f0f921"]]}], "mesh3d": [{"type": "mesh3d", "colorbar": {"outlinewidth": 0, "ticks": ""}}], "scatter": [{"fillpattern": {"fillmode": "overlay", "size": 10, "solidity": 0.2}, "type": "scatter"}], "parcoords": [{"type": "parcoords", "line": {"colorbar": {"outlinewidth": 0, "ticks": ""}}}], "scatterpolargl": [{"type": "scatterpolargl", "marker": {"colorbar": {"outlinewidth": 0, "ticks": ""}}}], "bar": [{"error_x": {"color": "#2a3f5f"}, "error_y": {"color": "#2a3f5f"}, "marker": {"line": {"color": "white", "width": 0.5}, "pattern": {"fillmode": "overlay", "size": 10, "solidity": 0.2}}, "type": "bar"}], "scattergeo": [{"type": "scattergeo", "marker": {"colorbar": {"outlinewidth": 0, "ticks": ""}}}], "scatterpolar": [{"type": "scatterpolar", "marker": {"colorbar": {"outlinewidth": 0, "ticks": ""}}}], "histogram": [{"marker": {"pattern": {"fillmode": "overlay", "size": 10, "solidity": 0.2}}, "type": "histogram"}], "scattergl": [{"type": "scattergl", "marker": {"colorbar": {"outlinewidth": 0, "ticks": ""}}}], "scatter3d": [{"type": "scatter3d", "line": {"colorbar": {"outlinewidth": 0, "ticks": ""}}, "marker": {"colorbar": {"outlinewidth": 0, "ticks": ""}}}], "scattermap": [{"type": "scattermap", "marker": {"colorbar": {"outlinewidth": 0, "ticks": ""}}}], "scattermapbox": [{"type": "scattermapbox", "marker": {"colorbar": {"outlinewidth": 0, "ticks": ""}}}], "scatterternary": [{"type": "scatterternary", "marker": {"colorbar": {"outlinewidth": 0, "ticks": ""}}}], "scattercarpet": [{"type": "scattercarpet", "marker": {"colorbar": {"outlinewidth": 0, "ticks": ""}}}], "carpet": [{"aaxis": {"endlinecolor": "#2a3f5f", "gridcolor": "#C8D4E3", "linecolor": "#C8D4E3", "minorgridcolor": "#C8D4E3", "startlinecolor": "#2a3f5f"}, "baxis": {"endlinecolor": "#2a3f5f", "gridcolor": "#C8D4E3", "linecolor": "#C8D4E3", "minorgridcolor": "#C8D4E3", "startlinecolor": "#2a3f5f"}, "type": "carpet"}], "table": [{"cells": {"fill": {"color": "#EBF0F8"}, "line": {"color": "white"}}, "header": {"fill": {"color": "#C8D4E3"}, "line": {"color": "white"}}, "type": "table"}], "barpolar": [{"marker": {"line": {"color": "white", "width": 0.5}, "pattern": {"fillmode": "overlay", "size": 10, "solidity": 0.2}}, "type": "barpolar"}], "pie": [{"automargin": true, "type": "pie"}]}, "layout": {"autotypenumbers": "strict", "colorway": ["#636efa", "#EF553B", "#00cc96", "#ab63fa", "#FFA15A", "#19d3f3", "#FF6692", "#B6E880", "#FF97FF", "#FECB52"], "font": {"color": "#2a3f5f"}, "hovermode": "closest", "hoverlabel": {"align": "left"}, "paper_bgcolor": "white", "plot_bgcolor": "white", "polar": {"bgcolor": "white", "angularaxis": {"gridcolor": "#EBF0F8", "linecolor": "#EBF0F8", "ticks": ""}, "radialaxis": {"gridcolor": "#EBF0F8", "linecolor": "#EBF0F8", "ticks": ""}}, "ternary": {"bgcolor": "white", "aaxis": {"gridcolor": "#DFE8F3", "linecolor": "#A2B1C6", "ticks": ""}, "baxis": {"gridcolor": "#DFE8F3", "linecolor": "#A2B1C6", "ticks": ""}, "caxis": {"gridcolor": "#DFE8F3", "linecolor": "#A2B1C6", "ticks": ""}}, "coloraxis": {"colorbar": {"outlinewidth": 0, "ticks": ""}}, "colorscale": {"sequential": [[0.0, "#0d0887"], [0.1111111111111111, "#46039f"], [0.2222222222222222, "#7201a8"], [0.3333333333333333, "#9c179e"], [0.4444444444444444, "#bd3786"], [0.5555555555555556, "#d8576b"], [0.6666666666666666, "#ed7953"], [0.7777777777777778, "#fb9f3a"], [0.8888888888888888, "#fdca26"], [1.0, "#f0f921"]], "sequentialminus": [[0.0, "#0d0887"], [0.1111111111111111, "#46039f"], [0.2222222222222222, "#7201a8"], [0.3333333333333333, "#9c179e"], [0.4444444444444444, "#bd3786"], [0.5555555555555556, "#d8576b"], [0.6666666666666666, "#ed7953"], [0.7777777777777778, "#fb9f3a"], [0.8888888888888888, "#fdca26"], [1.0, "#f0f921"]], "diverging": [[0, "#8e0152"], [0.1, "#c51b7d"], [0.2, "#de77ae"], [0.3, "#f1b6da"], [0.4, "#fde0ef"], [0.5, "#f7f7f7"], [0.6, "#e6f5d0"], [0.7, "#b8e186"], [0.8, "#7fbc41"], [0.9, "#4d9221"], [1, "#276419"]]}, "xaxis": {"gridcolor": "#EBF0F8", "linecolor": "#EBF0F8", "ticks": "", "title": {"standoff": 15}, "zerolinecolor": "#EBF0F8", "automargin": true, "zerolinewidth": 2}, "yaxis": {"gridcolor": "#EBF0F8", "linecolor": "#EBF0F8", "ticks": "", "title": {"standoff": 15}, "zerolinecolor": "#EBF0F8", "automargin": true, "zerolinewidth": 2}, "scene": {"xaxis": {"backgroundcolor": "white", "gridcolor": "#DFE8F3", "linecolor": "#EBF0F8", "showbackground": true, "ticks": "", "zerolinecolor": "#EBF0F8", "gridwidth": 2}, "yaxis": {"backgroundcolor": "white", "gridcolor": "#DFE8F3", "linecolor": "#EBF0F8", "showbackground": true, "ticks": "", "zerolinecolor": "#EBF0F8", "gridwidth": 2}, "zaxis": {"backgroundcolor": "white", "gridcolor": "#DFE8F3", "linecolor": "#EBF0F8", "showbackground": true, "ticks": "", "zerolinecolor": "#EBF0F8", "gridwidth": 2}}, "shapedefaults": {"line": {"color": "#2a3f5f"}}, "annotationdefaults": {"arrowcolor": "#2a3f5f", "arrowhead": 0, "arrowwidth": 1}, "geo": {"bgcolor": "white", "landcolor": "white", "subunitcolor": "#C8D4E3", "showland": true, "showlakes": true, "lakecolor": "white"}, "title": {"x": 0.05}, "mapbox": {"style": "light"}}}, "annotations": [{"arrowhead": 2, "ax": 0, "ay": -40, "bgcolor": "white", "bordercolor": "red", "borderwidth": 1, "showarrow": true, "text": "Max DD<br>-22.33%", "x": "2024-11-18", "y": -22.33435669387905}], "title": {"text": "<b>回撤曲线</b>"}, "height": 400, "xaxis": {"title": {"text": "日期"}}, "yaxis": {"title": {"text": "回撤 %"}}, "showlegend": false, "shapes": [{"line": {"color": "gray", "dash": "dash"}, "type": "line", "x0": 0, "x1": 1, "xref": "x domain", "y0": 0, "y1": 0, "yref": "y"}]}});
+        Plotly.newPlot('yearly-returns', {"data": [{"hovertemplate": "<b>%{x}年</b><br>收益：%{y:.2f}%<extra></extra>", "marker": {"color": ["green", "green", "green", "green"]}, "name": "年度收益", "text": ["+7.56%", "+39.06%", "+51.75%", "+4.25%"], "textposition": "outside", "x": ["2023", "2024", "2025", "2026"], "y": [7.56, 39.06, 51.75, 4.25], "type": "bar"}], "layout": {"template": {"data": {"histogram2dcontour": [{"type": "histogram2dcontour", "colorbar": {"outlinewidth": 0, "ticks": ""}, "colorscale": [[0.0, "#0d0887"], [0.1111111111111111, "#46039f"], [0.2222222222222222, "#7201a8"], [0.3333333333333333, "#9c179e"], [0.4444444444444444, "#bd3786"], [0.5555555555555556, "#d8576b"], [0.6666666666666666, "#ed7953"], [0.7777777777777778, "#fb9f3a"], [0.8888888888888888, "#fdca26"], [1.0, "#f0f921"]]}], "choropleth": [{"type": "choropleth", "colorbar": {"outlinewidth": 0, "ticks": ""}}], "histogram2d": [{"type": "histogram2d", "colorbar": {"outlinewidth": 0, "ticks": ""}, "colorscale": [[0.0, "#0d0887"], [0.1111111111111111, "#46039f"], [0.2222222222222222, "#7201a8"], [0.3333333333333333, "#9c179e"], [0.4444444444444444, "#bd3786"], [0.5555555555555556, "#d8576b"], [0.6666666666666666, "#ed7953"], [0.7777777777777778, "#fb9f3a"], [0.8888888888888888, "#fdca26"], [1.0, "#f0f921"]]}], "heatmap": [{"type": "heatmap", "colorbar": {"outlinewidth": 0, "ticks": ""}, "colorscale": [[0.0, "#0d0887"], [0.1111111111111111, "#46039f"], [0.2222222222222222, "#7201a8"], [0.3333333333333333, "#9c179e"], [0.4444444444444444, "#bd3786"], [0.5555555555555556, "#d8576b"], [0.6666666666666666, "#ed7953"], [0.7777777777777778, "#fb9f3a"], [0.8888888888888888, "#fdca26"], [1.0, "#f0f921"]]}], "contourcarpet": [{"type": "contourcarpet", "colorbar": {"outlinewidth": 0, "ticks": ""}}], "contour": [{"type": "contour", "colorbar": {"outlinewidth": 0, "ticks": ""}, "colorscale": [[0.0, "#0d0887"], [0.1111111111111111, "#46039f"], [0.2222222222222222, "#7201a8"], [0.3333333333333333, "#9c179e"], [0.4444444444444444, "#bd3786"], [0.5555555555555556, "#d8576b"], [0.6666666666666666, "#ed7953"], [0.7777777777777778, "#fb9f3a"], [0.8888888888888888, "#fdca26"], [1.0, "#f0f921"]]}], "surface": [{"type": "surface", "colorbar": {"outlinewidth": 0, "ticks": ""}, "colorscale": [[0.0, "#0d0887"], [0.1111111111111111, "#46039f"], [0.2222222222222222, "#7201a8"], [0.3333333333333333, "#9c179e"], [0.4444444444444444, "#bd3786"], [0.5555555555555556, "#d8576b"], [0.6666666666666666, "#ed7953"], [0.7777777777777778, "#fb9f3a"], [0.8888888888888888, "#fdca26"], [1.0, "#f0f921"]]}], "mesh3d": [{"type": "mesh3d", "colorbar": {"outlinewidth": 0, "ticks": ""}}], "scatter": [{"fillpattern": {"fillmode": "overlay", "size": 10, "solidity": 0.2}, "type": "scatter"}], "parcoords": [{"type": "parcoords", "line": {"colorbar": {"outlinewidth": 0, "ticks": ""}}}], "scatterpolargl": [{"type": "scatterpolargl", "marker": {"colorbar": {"outlinewidth": 0, "ticks": ""}}}], "bar": [{"error_x": {"color": "#2a3f5f"}, "error_y": {"color": "#2a3f5f"}, "marker": {"line": {"color": "white", "width": 0.5}, "pattern": {"fillmode": "overlay", "size": 10, "solidity": 0.2}}, "type": "bar"}], "scattergeo": [{"type": "scattergeo", "marker": {"colorbar": {"outlinewidth": 0, "ticks": ""}}}], "scatterpolar": [{"type": "scatterpolar", "marker": {"colorbar": {"outlinewidth": 0, "ticks": ""}}}], "histogram": [{"marker": {"pattern": {"fillmode": "overlay", "size": 10, "solidity": 0.2}}, "type": "histogram"}], "scattergl": [{"type": "scattergl", "marker": {"colorbar": {"outlinewidth": 0, "ticks": ""}}}], "scatter3d": [{"type": "scatter3d", "line": {"colorbar": {"outlinewidth": 0, "ticks": ""}}, "marker": {"colorbar": {"outlinewidth": 0, "ticks": ""}}}], "scattermap": [{"type": "scattermap", "marker": {"colorbar": {"outlinewidth": 0, "ticks": ""}}}], "scattermapbox": [{"type": "scattermapbox", "marker": {"colorbar": {"outlinewidth": 0, "ticks": ""}}}], "scatterternary": [{"type": "scatterternary", "marker": {"colorbar": {"outlinewidth": 0, "ticks": ""}}}], "scattercarpet": [{"type": "scattercarpet", "marker": {"colorbar": {"outlinewidth": 0, "ticks": ""}}}], "carpet": [{"aaxis": {"endlinecolor": "#2a3f5f", "gridcolor": "#C8D4E3", "linecolor": "#C8D4E3", "minorgridcolor": "#C8D4E3", "startlinecolor": "#2a3f5f"}, "baxis": {"endlinecolor": "#2a3f5f", "gridcolor": "#C8D4E3", "linecolor": "#C8D4E3", "minorgridcolor": "#C8D4E3", "startlinecolor": "#2a3f5f"}, "type": "carpet"}], "table": [{"cells": {"fill": {"color": "#EBF0F8"}, "line": {"color": "white"}}, "header": {"fill": {"color": "#C8D4E3"}, "line": {"color": "white"}}, "type": "table"}], "barpolar": [{"marker": {"line": {"color": "white", "width": 0.5}, "pattern": {"fillmode": "overlay", "size": 10, "solidity": 0.2}}, "type": "barpolar"}], "pie": [{"automargin": true, "type": "pie"}]}, "layout": {"autotypenumbers": "strict", "colorway": ["#636efa", "#EF553B", "#00cc96", "#ab63fa", "#FFA15A", "#19d3f3", "#FF6692", "#B6E880", "#FF97FF", "#FECB52"], "font": {"color": "#2a3f5f"}, "hovermode": "closest", "hoverlabel": {"align": "left"}, "paper_bgcolor": "white", "plot_bgcolor": "white", "polar": {"bgcolor": "white", "angularaxis": {"gridcolor": "#EBF0F8", "linecolor": "#EBF0F8", "ticks": ""}, "radialaxis": {"gridcolor": "#EBF0F8", "linecolor": "#EBF0F8", "ticks": ""}}, "ternary": {"bgcolor": "white", "aaxis": {"gridcolor": "#DFE8F3", "linecolor": "#A2B1C6", "ticks": ""}, "baxis": {"gridcolor": "#DFE8F3", "linecolor": "#A2B1C6", "ticks": ""}, "caxis": {"gridcolor": "#DFE8F3", "linecolor": "#A2B1C6", "ticks": ""}}, "coloraxis": {"colorbar": {"outlinewidth": 0, "ticks": ""}}, "colorscale": {"sequential": [[0.0, "#0d0887"], [0.1111111111111111, "#46039f"], [0.2222222222222222, "#7201a8"], [0.3333333333333333, "#9c179e"], [0.4444444444444444, "#bd3786"], [0.5555555555555556, "#d8576b"], [0.6666666666666666, "#ed7953"], [0.7777777777777778, "#fb9f3a"], [0.8888888888888888, "#fdca26"], [1.0, "#f0f921"]], "sequentialminus": [[0.0, "#0d0887"], [0.1111111111111111, "#46039f"], [0.2222222222222222, "#7201a8"], [0.3333333333333333, "#9c179e"], [0.4444444444444444, "#bd3786"], [0.5555555555555556, "#d8576b"], [0.6666666666666666, "#ed7953"], [0.7777777777777778, "#fb9f3a"], [0.8888888888888888, "#fdca26"], [1.0, "#f0f921"]], "diverging": [[0, "#8e0152"], [0.1, "#c51b7d"], [0.2, "#de77ae"], [0.3, "#f1b6da"], [0.4, "#fde0ef"], [0.5, "#f7f7f7"], [0.6, "#e6f5d0"], [0.7, "#b8e186"], [0.8, "#7fbc41"], [0.9, "#4d9221"], [1, "#276419"]]}, "xaxis": {"gridcolor": "#EBF0F8", "linecolor": "#EBF0F8", "ticks": "", "title": {"standoff": 15}, "zerolinecolor": "#EBF0F8", "automargin": true, "zerolinewidth": 2}, "yaxis": {"gridcolor": "#EBF0F8", "linecolor": "#EBF0F8", "ticks": "", "title": {"standoff": 15}, "zerolinecolor": "#EBF0F8", "automargin": true, "zerolinewidth": 2}, "scene": {"xaxis": {"backgroundcolor": "white", "gridcolor": "#DFE8F3", "linecolor": "#EBF0F8", "showbackground": true, "ticks": "", "zerolinecolor": "#EBF0F8", "gridwidth": 2}, "yaxis": {"backgroundcolor": "white", "gridcolor": "#DFE8F3", "linecolor": "#EBF0F8", "showbackground": true, "ticks": "", "zerolinecolor": "#EBF0F8", "gridwidth": 2}, "zaxis": {"backgroundcolor": "white", "gridcolor": "#DFE8F3", "linecolor": "#EBF0F8", "showbackground": true, "ticks": "", "zerolinecolor": "#EBF0F8", "gridwidth": 2}}, "shapedefaults": {"line": {"color": "#2a3f5f"}}, "annotationdefaults": {"arrowcolor": "#2a3f5f", "arrowhead": 0, "arrowwidth": 1}, "geo": {"bgcolor": "white", "landcolor": "white", "subunitcolor": "#C8D4E3", "showland": true, "showlakes": true, "lakecolor": "white"}, "title": {"x": 0.05}, "mapbox": {"style": "light"}}}, "title": {"text": "<b>年度收益对比</b>"}, "height": 400, "xaxis": {"title": {"text": "年份"}}, "yaxis": {"title": {"text": "收益率 %"}}, "showlegend": false, "shapes": [{"line": {"color": "gray", "dash": "dash"}, "type": "line", "x0": 0, "x1": 1, "xref": "x domain", "y0": 0, "y1": 0, "yref": "y"}]}});
+        Plotly.newPlot('etf-allocation', {"data": [{"hoverinfo": "label+percent+value", "labels": ["纳指 ETF (513100)", "黄金 ETF (518880)", "创业板 ETF (159915)", "国债 ETF (511010)", "沪深 300ETF (510300)"], "marker": {"colors": ["#4169E1", "#FFD700", "#DC143C", "#708090", "#228B22"]}, "textinfo": "percent+label", "values": [268, 266, 140, 50, 33], "type": "pie"}], "layout": {"template": {"data": {"histogram2dcontour": [{"type": "histogram2dcontour", "colorbar": {"outlinewidth": 0, "ticks": ""}, "colorscale": [[0.0, "#0d0887"], [0.1111111111111111, "#46039f"], [0.2222222222222222, "#7201a8"], [0.3333333333333333, "#9c179e"], [0.4444444444444444, "#bd3786"], [0.5555555555555556, "#d8576b"], [0.6666666666666666, "#ed7953"], [0.7777777777777778, "#fb9f3a"], [0.8888888888888888, "#fdca26"], [1.0, "#f0f921"]]}], "choropleth": [{"type": "choropleth", "colorbar": {"outlinewidth": 0, "ticks": ""}}], "histogram2d": [{"type": "histogram2d", "colorbar": {"outlinewidth": 0, "ticks": ""}, "colorscale": [[0.0, "#0d0887"], [0.1111111111111111, "#46039f"], [0.2222222222222222, "#7201a8"], [0.3333333333333333, "#9c179e"], [0.4444444444444444, "#bd3786"], [0.5555555555555556, "#d8576b"], [0.6666666666666666, "#ed7953"], [0.7777777777777778, "#fb9f3a"], [0.8888888888888888, "#fdca26"], [1.0, "#f0f921"]]}], "heatmap": [{"type": "heatmap", "colorbar": {"outlinewidth": 0, "ticks": ""}, "colorscale": [[0.0, "#0d0887"], [0.1111111111111111, "#46039f"], [0.2222222222222222, "#7201a8"], [0.3333333333333333, "#9c179e"], [0.4444444444444444, "#bd3786"], [0.5555555555555556, "#d8576b"], [0.6666666666666666, "#ed7953"], [0.7777777777777778, "#fb9f3a"], [0.8888888888888888, "#fdca26"], [1.0, "#f0f921"]]}], "contourcarpet": [{"type": "contourcarpet", "colorbar": {"outlinewidth": 0, "ticks": ""}}], "contour": [{"type": "contour", "colorbar": {"outlinewidth": 0, "ticks": ""}, "colorscale": [[0.0, "#0d0887"], [0.1111111111111111, "#46039f"], [0.2222222222222222, "#7201a8"], [0.3333333333333333, "#9c179e"], [0.4444444444444444, "#bd3786"], [0.5555555555555556, "#d8576b"], [0.6666666666666666, "#ed7953"], [0.7777777777777778, "#fb9f3a"], [0.8888888888888888, "#fdca26"], [1.0, "#f0f921"]]}], "surface": [{"type": "surface", "colorbar": {"outlinewidth": 0, "ticks": ""}, "colorscale": [[0.0, "#0d0887"], [0.1111111111111111, "#46039f"], [0.2222222222222222, "#7201a8"], [0.3333333333333333, "#9c179e"], [0.4444444444444444, "#bd3786"], [0.5555555555555556, "#d8576b"], [0.6666666666666666, "#ed7953"], [0.7777777777777778, "#fb9f3a"], [0.8888888888888888, "#fdca26"], [1.0, "#f0f921"]]}], "mesh3d": [{"type": "mesh3d", "colorbar": {"outlinewidth": 0, "ticks": ""}}], "scatter": [{"fillpattern": {"fillmode": "overlay", "size": 10, "solidity": 0.2}, "type": "scatter"}], "parcoords": [{"type": "parcoords", "line": {"colorbar": {"outlinewidth": 0, "ticks": ""}}}], "scatterpolargl": [{"type": "scatterpolargl", "marker": {"colorbar": {"outlinewidth": 0, "ticks": ""}}}], "bar": [{"error_x": {"color": "#2a3f5f"}, "error_y": {"color": "#2a3f5f"}, "marker": {"line": {"color": "white", "width": 0.5}, "pattern": {"fillmode": "overlay", "size": 10, "solidity": 0.2}}, "type": "bar"}], "scattergeo": [{"type": "scattergeo", "marker": {"colorbar": {"outlinewidth": 0, "ticks": ""}}}], "scatterpolar": [{"type": "scatterpolar", "marker": {"colorbar": {"outlinewidth": 0, "ticks": ""}}}], "histogram": [{"marker": {"pattern": {"fillmode": "overlay", "size": 10, "solidity": 0.2}}, "type": "histogram"}], "scattergl": [{"type": "scattergl", "marker": {"colorbar": {"outlinewidth": 0, "ticks": ""}}}], "scatter3d": [{"type": "scatter3d", "line": {"colorbar": {"outlinewidth": 0, "ticks": ""}}, "marker": {"colorbar": {"outlinewidth": 0, "ticks": ""}}}], "scattermap": [{"type": "scattermap", "marker": {"colorbar": {"outlinewidth": 0, "ticks": ""}}}], "scattermapbox": [{"type": "scattermapbox", "marker": {"colorbar": {"outlinewidth": 0, "ticks": ""}}}], "scatterternary": [{"type": "scatterternary", "marker": {"colorbar": {"outlinewidth": 0, "ticks": ""}}}], "scattercarpet": [{"type": "scattercarpet", "marker": {"colorbar": {"outlinewidth": 0, "ticks": ""}}}], "carpet": [{"aaxis": {"endlinecolor": "#2a3f5f", "gridcolor": "#C8D4E3", "linecolor": "#C8D4E3", "minorgridcolor": "#C8D4E3", "startlinecolor": "#2a3f5f"}, "baxis": {"endlinecolor": "#2a3f5f", "gridcolor": "#C8D4E3", "linecolor": "#C8D4E3", "minorgridcolor": "#C8D4E3", "startlinecolor": "#2a3f5f"}, "type": "carpet"}], "table": [{"cells": {"fill": {"color": "#EBF0F8"}, "line": {"color": "white"}}, "header": {"fill": {"color": "#C8D4E3"}, "line": {"color": "white"}}, "type": "table"}], "barpolar": [{"marker": {"line": {"color": "white", "width": 0.5}, "pattern": {"fillmode": "overlay", "size": 10, "solidity": 0.2}}, "type": "barpolar"}], "pie": [{"automargin": true, "type": "pie"}]}, "layout": {"autotypenumbers": "strict", "colorway": ["#636efa", "#EF553B", "#00cc96", "#ab63fa", "#FFA15A", "#19d3f3", "#FF6692", "#B6E880", "#FF97FF", "#FECB52"], "font": {"color": "#2a3f5f"}, "hovermode": "closest", "hoverlabel": {"align": "left"}, "paper_bgcolor": "white", "plot_bgcolor": "white", "polar": {"bgcolor": "white", "angularaxis": {"gridcolor": "#EBF0F8", "linecolor": "#EBF0F8", "ticks": ""}, "radialaxis": {"gridcolor": "#EBF0F8", "linecolor": "#EBF0F8", "ticks": ""}}, "ternary": {"bgcolor": "white", "aaxis": {"gridcolor": "#DFE8F3", "linecolor": "#A2B1C6", "ticks": ""}, "baxis": {"gridcolor": "#DFE8F3", "linecolor": "#A2B1C6", "ticks": ""}, "caxis": {"gridcolor": "#DFE8F3", "linecolor": "#A2B1C6", "ticks": ""}}, "coloraxis": {"colorbar": {"outlinewidth": 0, "ticks": ""}}, "colorscale": {"sequential": [[0.0, "#0d0887"], [0.1111111111111111, "#46039f"], [0.2222222222222222, "#7201a8"], [0.3333333333333333, "#9c179e"], [0.4444444444444444, "#bd3786"], [0.5555555555555556, "#d8576b"], [0.6666666666666666, "#ed7953"], [0.7777777777777778, "#fb9f3a"], [0.8888888888888888, "#fdca26"], [1.0, "#f0f921"]], "sequentialminus": [[0.0, "#0d0887"], [0.1111111111111111, "#46039f"], [0.2222222222222222, "#7201a8"], [0.3333333333333333, "#9c179e"], [0.4444444444444444, "#bd3786"], [0.5555555555555556, "#d8576b"], [0.6666666666666666, "#ed7953"], [0.7777777777777778, "#fb9f3a"], [0.8888888888888888, "#fdca26"], [1.0, "#f0f921"]], "diverging": [[0, "#8e0152"], [0.1, "#c51b7d"], [0.2, "#de77ae"], [0.3, "#f1b6da"], [0.4, "#fde0ef"], [0.5, "#f7f7f7"], [0.6, "#e6f5d0"], [0.7, "#b8e186"], [0.8, "#7fbc41"], [0.9, "#4d9221"], [1, "#276419"]]}, "xaxis": {"gridcolor": "#EBF0F8", "linecolor": "#EBF0F8", "ticks": "", "title": {"standoff": 15}, "zerolinecolor": "#EBF0F8", "automargin": true, "zerolinewidth": 2}, "yaxis": {"gridcolor": "#EBF0F8", "linecolor": "#EBF0F8", "ticks": "", "title": {"standoff": 15}, "zerolinecolor": "#EBF0F8", "automargin": true, "zerolinewidth": 2}, "scene": {"xaxis": {"backgroundcolor": "white", "gridcolor": "#DFE8F3", "linecolor": "#EBF0F8", "showbackground": true, "ticks": "", "zerolinecolor": "#EBF0F8", "gridwidth": 2}, "yaxis": {"backgroundcolor": "white", "gridcolor": "#DFE8F3", "linecolor": "#EBF0F8", "showbackground": true, "ticks": "", "zerolinecolor": "#EBF0F8", "gridwidth": 2}, "zaxis": {"backgroundcolor": "white", "gridcolor": "#DFE8F3", "linecolor": "#EBF0F8", "showbackground": true, "ticks": "", "zerolinecolor": "#EBF0F8", "gridwidth": 2}}, "shapedefaults": {"line": {"color": "#2a3f5f"}}, "annotationdefaults": {"arrowcolor": "#2a3f5f", "arrowhead": 0, "arrowwidth": 1}, "geo": {"bgcolor": "white", "landcolor": "white", "subunitcolor": "#C8D4E3", "showland": true, "showlakes": true, "lakecolor": "white"}, "title": {"x": 0.05}, "mapbox": {"style": "light"}}}, "title": {"text": "<b>ETF 持仓偏好分布</b>"}, "height": 500, "showlegend": true}});
     </script>
 </body>
 </html>
