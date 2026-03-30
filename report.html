@@ -21,12 +21,58 @@
         .positive { color: green; }
         .negative { color: red; }
         .chart-container { background: white; border-radius: 8px; padding: 20px; box-shadow: 0 1px 3px rgba(0,0,0,0.1); }
+        .holding-card { background: linear-gradient(135deg, #11998e 0%, #38ef7d 100%); color: white; padding: 25px; border-radius: 10px; margin: 30px 0; box-shadow: 0 4px 15px rgba(56, 239, 125, 0.3); }
+        .holding-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 15px; margin-top: 15px; }
+        .holding-item { background: rgba(255,255,255,0.15); padding: 12px; border-radius: 8px; text-align: center; }
+        .holding-label { font-size: 0.85em; opacity: 0.9; margin-bottom: 5px; }
+        .holding-value { font-size: 1.4em; font-weight: bold; }
+        .holding-sub { font-size: 0.8em; opacity: 0.8; margin-top: 3px; }
     </style>
 </head>
 <body>
     <div class="container">
         <h1>📊 ETF 轮动策略 v3.0 - 完整回测报告</h1>
         <p style="text-align: center; color: #666;">回测区间：2023-01-03 至 2026-03-27 (3.2 年)</p>
+        
+        <h2>💼 当前持仓</h2>
+        <div class="holding-card">
+            <div style="text-align: center; margin-bottom: 10px;">
+                <span style="font-size: 1.3em; font-weight: bold;">📍 创业板 ETF (159915)</span>
+                <span style="margin-left: 20px; opacity: 0.9;">截至 2026-03-27</span>
+            </div>
+            <div class="holding-grid">
+                <div class="holding-item">
+                    <div class="holding-label">持仓数量</div>
+                    <div class="holding-value">70,514</div>
+                    <div class="holding-sub">份额</div>
+                </div>
+                <div class="holding-item">
+                    <div class="holding-label">当前价格</div>
+                    <div class="holding-value">¥3.293</div>
+                    <div class="holding-sub">元/份</div>
+                </div>
+                <div class="holding-item">
+                    <div class="holding-label">持仓市值</div>
+                    <div class="holding-value">¥232,206</div>
+                    <div class="holding-sub">占仓位 95.0%</div>
+                </div>
+                <div class="holding-item">
+                    <div class="holding-label">现金</div>
+                    <div class="holding-value">¥12,237</div>
+                    <div class="holding-sub">可用资金</div>
+                </div>
+                <div class="holding-item">
+                    <div class="holding-label">总资产</div>
+                    <div class="holding-value">¥244,443</div>
+                    <div class="holding-sub">初始 ¥100,000</div>
+                </div>
+                <div class="holding-item">
+                    <div class="holding-label">盈亏金额</div>
+                    <div class="holding-value" style="color: #FFD700;">+¥144,443</div>
+                    <div class="holding-sub">收益率 +144.44%</div>
+                </div>
+            </div>
+        </div>
         
         <h2>📈 核心绩效指标</h2>
         <div class="stats">
@@ -1788,7 +1834,7 @@
         </div>
         
         <p style="text-align: center; margin-top: 50px; color: #999; font-size: 0.9em;">
-            报告生成时间：2026-03-30 08:09:47 | 使用 Plotly 交互式图表
+            报告生成时间：2026-03-30 08:16:54 | 使用 Plotly 交互式图表
         </p>
     </div>
     
